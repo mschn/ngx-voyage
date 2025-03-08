@@ -39,6 +39,7 @@ jobs:
       - run: npm run build
 
       - run: |
+          rm .gitignore
           cd dist/ngx-voyage
           git config user.email "mathieu.schnoor@gmail.com"
           git config user.name "Mathieu Schnoor"
