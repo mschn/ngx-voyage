@@ -42,7 +42,7 @@ jobs:
           cd dist/ngx-voyage
           git config user.email "mathieu.schnoor@gmail.com"
           git config user.name "Mathieu Schnoor"
-          npm version from-git
+          npm version from-git -f
 
       - uses: JS-DevTools/npm-publish@v3
         with:
