@@ -17,6 +17,7 @@
     "email": "mathieu.schnoor@gmail.com"
   },
   "scripts": {
+    "prepare": "husky",
     "ng": "ng",
     "start:lib": "ng build ngx-voyage --watch",
     "build:lib": "ng build ngx-voyage",
@@ -24,7 +25,10 @@
     "build:demo": "ng build demo",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "eslint": "npx eslint",
+    "eslint:ci": "npx eslint --fix --max-warnings 0 src",
+    "prettier": "npx prettier --write"
   },
   "private": false,
   "dependencies": {
@@ -55,11 +59,16 @@
     "@playwright/test": "^1.51.0",
     "@types/jest": "^29.5.14",
     "@types/node": "^22.13.10",
+    "angular-eslint": "^19.2.1",
+    "eslint": "^9.22.0",
+    "husky": "^9.1.7",
     "jest": "^29.7.0",
     "jest-preset-angular": "^14.5.3",
+    "lint-staged": "^15.5.0",
     "ng-packagr": "^19.1.0",
     "prettier": "^3.3.3",
     "ts-node": "^10.9.2",
-    "typescript": "~5.7.2"
+    "typescript": "~5.7.2",
+    "typescript-eslint": "^8.26.1"
   }
 }
