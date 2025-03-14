@@ -23,10 +23,10 @@ import { TextComponent } from "./text.component";
 export class PreviewComponent {
   data = input.required<Blob>();
   name = input.required<string>();
-  close = output<void>();
+  closed = output<void>();
 
   @HostListener("document:keydown.escape", ["$event"]) onKeydownHandler() {
-    this.close.emit();
+    this.closed.emit();
   }
 
   isPdf() {

@@ -14,7 +14,7 @@ export const routes: Routes = [
     data: { name: "Quickstart" },
     loadComponent: () =>
       import("./routes/quickstart.component").then(
-        (c) => c.QuickstartComponent
+        (c) => c.QuickstartComponent,
       ),
   },
 ];

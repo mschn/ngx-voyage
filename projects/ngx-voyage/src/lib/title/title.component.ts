@@ -31,7 +31,7 @@ export class TitleComponent implements OnChanges {
 
   bookmarks = this.#store.bookmarks;
   pathIsBookmarked = computed(() =>
-    this.bookmarks().some((bookmark) => bookmark.path === this.path())
+    this.bookmarks().some((bookmark) => bookmark.path === this.path()),
   );
 
   pathWithRoot = computed(() => {
@@ -61,11 +61,12 @@ export class TitleComponent implements OnChanges {
   historyPos = signal(0);
 
   backButtonDisabled = computed(
-    () => this.history().length === 0 || this.historyPos() <= 1
+    () => this.history().length === 0 || this.historyPos() <= 1,
   );
   forwardButtonDisabled = computed(
     () =>
-      this.history().length === 0 || this.historyPos() === this.history().length
+      this.history().length === 0 ||
+      this.historyPos() === this.history().length,
   );
 
   ngOnChanges(changes: SimpleChanges): void {

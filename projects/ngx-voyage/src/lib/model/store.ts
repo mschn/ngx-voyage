@@ -11,11 +11,11 @@ import {
   writeBookmarksToLocalstorage,
 } from "./bookmark";
 
-type State = {
+interface State {
   showHiddenFiles: boolean;
   showOpenFile: boolean;
   bookmarks: Bookmark[];
-};
+}
 
 const initialState: State = {
   showHiddenFiles: false,
@@ -44,5 +44,5 @@ export const Store = signalStore(
         bookmarks,
       }));
     },
-  }))
+  })),
 );

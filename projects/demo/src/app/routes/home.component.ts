@@ -2,7 +2,11 @@ import { Component, computed, model } from "@angular/core";
 import { RouterLink } from "@angular/router";
 import { ButtonModule } from "primeng/button";
 import { filesContentMock, filesMock } from "../mocks/files.mock";
-import { FilePreviewOutput, NgxVoyageComponent, VoyageIconComponent } from "ngx-voyage";
+import {
+  FilePreviewOutput,
+  NgxVoyageComponent,
+  VoyageIconComponent,
+} from "ngx-voyage";
 @Component({
   selector: "app-home",
   template: `
@@ -66,11 +70,11 @@ export class HomeComponent {
   preview({ path, cb }: FilePreviewOutput) {
     if (path.endsWith("light.png")) {
       fetch("light.png").then((response) =>
-        response.blob().then((blob) => cb(blob))
+        response.blob().then((blob) => cb(blob)),
       );
     } else if (path.endsWith("dark.png")) {
       fetch("dark.png").then((response) =>
-        response.blob().then((blob) => cb(blob))
+        response.blob().then((blob) => cb(blob)),
       );
     } else {
       const blob = new Blob([filesContentMock[path]], {

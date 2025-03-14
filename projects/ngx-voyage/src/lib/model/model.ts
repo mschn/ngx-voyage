@@ -23,7 +23,7 @@ export function isFileEqual(f1: File, f2: File) {
 }
 
 export function isFileSortField(
-  field?: string | null
+  field?: string | null,
 ): field is FileSortFields {
   return (
     field === "name" ||
@@ -33,7 +33,10 @@ export function isFileSortField(
   );
 }
 
-export type FilePreviewOutput = { path: string; cb: (data: Blob) => void };
+export interface FilePreviewOutput {
+  path: string;
+  cb: (data: Blob) => void;
+}
 
 export function getFileExtension(file: File) {
   return getExtension(file.name);
@@ -49,15 +52,15 @@ export function getExtension(name: string) {
 export function sortFiles(
   files: File[],
   field?: FileSortFields,
-  order?: number
+  order?: number,
 ): File[] {
   if (field == undefined || order == undefined) {
     return files;
   }
 
   return files.sort((f1, f2) => {
-    let value1 = f1[field];
-    let value2 = f2[field];
+    const value1 = f1[field];
+    const value2 = f2[field];
     let result = null;
     if (value1 == null && value2 != null) result = -1;
     else if (value1 != null && value2 == null) result = 1;

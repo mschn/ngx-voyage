@@ -5,10 +5,10 @@ import {
   input,
   OnDestroy,
   viewChild,
-} from '@angular/core';
+} from "@angular/core";
 
 @Component({
-  selector: 'ngx-voyage-pdf',
+  selector: "ngx-voyage-pdf",
   template: `
     <iframe
       #iframe
@@ -20,7 +20,7 @@ import {
 })
 export class PdfComponent implements AfterViewInit, OnDestroy {
   data = input.required<Blob>();
-  iframe = viewChild<ElementRef<HTMLIFrameElement>>('iframe');
+  iframe = viewChild<ElementRef<HTMLIFrameElement>>("iframe");
   objectUrl?: string;
 
   ngAfterViewInit(): void {

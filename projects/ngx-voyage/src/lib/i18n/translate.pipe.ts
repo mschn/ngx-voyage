@@ -1,9 +1,9 @@
-import { Pipe, PipeTransform } from '@angular/core';
-import { Messages } from '../i18n/en';
-import { getMessages } from './i18n';
+import { Pipe, PipeTransform } from "@angular/core";
+import { Messages } from "../i18n/en";
+import { getMessages } from "./i18n";
 
 @Pipe({
-  name: 'translate',
+  name: "translate",
   standalone: true,
 })
 export class TranslatePipe implements PipeTransform {

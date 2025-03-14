@@ -1,8 +1,8 @@
 export interface Message {
   text: string;
-  type: 'info' | 'warn' | 'error';
+  type: "info" | "warn" | "error";
 }
 
-export function isMessage(m: any): m is Message {
-  return m?.text && m?.type;
+export function isMessage(m: unknown): m is Message {
+  return m != null && typeof m === "object" && "text" in m && "type" in m;
 }

@@ -1,9 +1,5 @@
 import { AfterViewInit, Component, input, signal } from "@angular/core";
-import {
-  getLanguageClass,
-  highlight,
-  highlightTypes,
-} from "../model/highlight";
+import { getLanguageClass, highlight } from "../model/highlight";
 
 @Component({
   selector: "ngx-voyage-text",
@@ -22,7 +18,7 @@ export class TextComponent implements AfterViewInit {
   codeClass = signal("");
 
   ngAfterViewInit(): void {
-    var reader = new FileReader();
+    const reader = new FileReader();
     reader.onload = () => {
       this.text.set(reader.result?.toString() ?? "");
       this.codeClass.set(getLanguageClass(this.name()));

@@ -5,11 +5,11 @@ import {
   input,
   OnDestroy,
   viewChild,
-} from '@angular/core';
+} from "@angular/core";
 
 @Component({
-  selector: 'ngx-voyage-img',
-  template: ` <img #img class="mx-auto" /> `,
+  selector: "ngx-voyage-img",
+  template: ` <img #img alt="image preview" class="mx-auto" /> `,
   styles: `
     img {
       max-width: 90vw;
@@ -19,7 +19,7 @@ import {
 })
 export class ImgComponent implements AfterViewInit, OnDestroy {
   data = input.required<Blob>();
-  iframe = viewChild<ElementRef<HTMLIFrameElement>>('img');
+  iframe = viewChild<ElementRef<HTMLIFrameElement>>("img");
 
   objectUrl: string | undefined;
 

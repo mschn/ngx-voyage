@@ -10,9 +10,7 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "paths": {
-      "ngx-voyage": [
-        "./projects/ngx-voyage/src/public-api.ts"
-      ]
+      "ngx-voyage": ["./projects/ngx-voyage/src/public-api.ts"]
     },
     "skipLibCheck": true,
     "isolatedModules": true,

@@ -28,7 +28,7 @@ export function getSortFieldFromLocalstorage(): FileSortFields | undefined {
 
 export function writeSortToLocalstorage(
   order: number | undefined,
-  field: string | undefined
+  field: string | undefined,
 ) {
   localStorage.setItem(LocalstorageKeys.field, `${field}`);
   localStorage.setItem(LocalstorageKeys.sort, `${order}`);

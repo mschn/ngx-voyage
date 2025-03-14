@@ -9,12 +9,13 @@ export interface Bookmark {
 }
 
 export function isBookmarks(
-  bookmarks: any | undefined
+  bookmarks: unknown | undefined,
 ): bookmarks is Bookmark[] {
   if (Array.isArray(bookmarks)) {
     return bookmarks.every(
       (bookmark) =>
-        typeof bookmark?.name === "string" && typeof bookmark?.path === "string"
+        typeof bookmark?.name === "string" &&
+        typeof bookmark?.path === "string",
     );
   }
   return false;

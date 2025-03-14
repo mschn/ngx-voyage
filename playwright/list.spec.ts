@@ -23,10 +23,10 @@ test.describe("list view", () => {
     ]);
 
     expect(page.getByTestId("files-list-date").first()).toContainText(
-      "Today at"
+      "Today at",
     );
     expect(page.getByTestId("files-list-date").nth(1)).toContainText(
-      "Yesterday at"
+      "Yesterday at",
     );
   });
 

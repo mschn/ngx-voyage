@@ -12,7 +12,7 @@ test.describe("french lang", () => {
     ]);
 
     expect(page.getByTestId("files-list-date").first()).toContainText(
-      "Aujourd'hui à"
+      "Aujourd'hui à",
     );
     expect(page.getByTestId("files-list-date").nth(1)).toContainText("Hier à");
   });

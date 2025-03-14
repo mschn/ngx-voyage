@@ -6,5 +6,5 @@
     "outDir": "./out-tsc/spec",
     "types": ["jest"]
   },
-  "include": ["projects/ngx-voyage/**/*.spec.ts"],
+  "include": ["projects/ngx-voyage/**/*.spec.ts"]
 }

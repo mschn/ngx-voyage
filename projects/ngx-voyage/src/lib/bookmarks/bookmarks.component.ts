@@ -1,4 +1,4 @@
-import { Component, computed, inject, model } from "@angular/core";
+import { Component, inject, model } from "@angular/core";
 import { ButtonModule } from "primeng/button";
 import { VoyageIconComponent } from "../icon";
 import { Bookmark } from "../model/bookmark";
@@ -14,7 +14,6 @@ export class BookmarksComponent {
 
   path = model.required<string>();
   bookmarks = this.#store.bookmarks;
-
 
   open(bookmark: Bookmark) {
     this.path.set(bookmark.path);

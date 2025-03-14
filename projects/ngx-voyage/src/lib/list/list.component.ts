@@ -85,7 +85,7 @@ export class ListComponent implements OnChanges {
     return sortFiles(
       [...this.filteredFiles()],
       this.sortField(),
-      this.sortOrder()
+      this.sortOrder(),
     );
   });
 
@@ -99,7 +99,7 @@ export class ListComponent implements OnChanges {
   selectedFile = model<File | undefined>(undefined);
 
   showPreview = model(false);
-  previewData = signal<any | undefined>(undefined);
+  previewData = signal<Blob | undefined>(undefined);
 
   menuItems: MenuItem[] = [
     {
@@ -114,9 +114,11 @@ export class ListComponent implements OnChanges {
     },
     {
       label: "Open",
-      command: (event) => {
+      command: () => {
         const f = this.selectedFile();
-        f && this.openFileOrFolder(f);
+        if (f) {
+          this.openFileOrFolder(f);
+        }
       },
     },
   ];
@@ -245,7 +247,7 @@ export class ListComponent implements OnChanges {
       const f = this.sortedFiles()[i];
       if (isFileEqual(file, f)) {
         const fileDom = document.querySelector(
-          `tr[data-rowIndex="${i}"]`
+          `tr[data-rowIndex="${i}"]`,
         ) as HTMLTableRowElement;
         fileDom.focus();
       }

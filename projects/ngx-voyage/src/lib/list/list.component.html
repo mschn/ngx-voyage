@@ -16,7 +16,7 @@
 >
   <ng-template #header>
     <tr>
-      <th pResizableColumn pSortableColumn="name" class="max-w-0 ">
+      <th pResizableColumn pSortableColumn="name" class="max-w-0">
         {{ "NAME" | translate }} <p-sortIcon field="name" />
       </th>
       <th pResizableColumn pSortableColumn="size" class="w-1/5">
@@ -48,7 +48,7 @@
             @if (file.isDirectory) {
               <ngx-voyage-icon type="folder"></ngx-voyage-icon>
             } @else {
-              <ngx-voyage-icon [type]="getFileIcon(file)" ></ngx-voyage-icon>
+              <ngx-voyage-icon [type]="getFileIcon(file)"></ngx-voyage-icon>
             }
           </div>
           <span class="truncate" data-testid="files-list-name">{{
@@ -98,6 +98,6 @@
   <ngx-voyage-preview
     [name]="selectedFile()?.name ?? ''"
     [data]="data"
-    (close)="showPreview.set(false)"
+    (closed)="showPreview.set(false)"
   ></ngx-voyage-preview>
 }

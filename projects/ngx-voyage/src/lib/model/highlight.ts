@@ -32,7 +32,7 @@ export function highlight(filename: string) {
   if (ext && highlightTypes[ext]) {
     hljs.registerLanguage(
       highlightTypes[ext].languageName,
-      highlightTypes[ext].language
+      highlightTypes[ext].language,
     );
     hljs.highlightAll();
   }
