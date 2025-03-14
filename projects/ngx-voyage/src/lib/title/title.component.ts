@@ -1,6 +1,7 @@
 import {
   Component,
   computed,
+  inject,
   model,
   OnChanges,
   output,
@@ -11,6 +12,7 @@ import { ButtonModule } from "primeng/button";
 import { PopoverModule } from "primeng/popover";
 import { VoyageIconComponent } from "../icon";
 import { SettingsComponent } from "../settings/settings.component";
+import { Store } from "../model/store";
 
 @Component({
   selector: "ngx-voyage-title",
@@ -23,7 +25,14 @@ import { SettingsComponent } from "../settings/settings.component";
   ],
 })
 export class TitleComponent implements OnChanges {
+  #store = inject(Store);
+
   path = model.required<string>();
+
+  bookmarks = this.#store.bookmarks;
+  pathIsBookmarked = computed(() =>
+    this.bookmarks().some((bookmark) => bookmark.path === this.path())
+  );
 
   pathWithRoot = computed(() => {
     if (this.path() === "/") {
@@ -90,5 +99,14 @@ export class TitleComponent implements OnChanges {
       this.path.set(this.history()[this.historyPos() - 1]);
       this.navigate.emit(this.history()[this.historyPos() - 1]);
     }
+  }
+
+  onAddBookmark() {
+    const name = this.path().substring(this.path().lastIndexOf("/") + 1);
+    this.#store.addBookmark({
+      icon: "bookmark",
+      name,
+      path: this.path(),
+    });
   }
 }

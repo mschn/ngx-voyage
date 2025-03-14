@@ -1,0 +1,17 @@
+<div class="flex flex-col gap-1">
+  @for (bookmark of bookmarks(); track bookmark.path) {
+    <p-button
+      fluid="true"
+      text="true"
+      (onClick)="open(bookmark)"
+      [styleClass]="
+        (isActive(bookmark) ? 'bg-gray-200!' : '') + ' justify-start!'
+      "
+    >
+      <span class="text-gray-700 flex gap-2">
+        <ngx-voyage-icon [type]="bookmark.icon"></ngx-voyage-icon>
+        {{ bookmark.name }}
+      </span>
+    </p-button>
+  }
+</div>

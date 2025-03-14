@@ -1,11 +1,9 @@
 import {
   Component,
-  EventEmitter,
   inject,
   input,
   model,
   OnInit,
-  Output,
   output,
   ViewEncapsulation,
 } from "@angular/core";
@@ -13,12 +11,18 @@ import { ProgressBarModule } from "primeng/progressbar";
 import { ListComponent } from "../list/list.component";
 import { Message } from "../model/message";
 import { addType, File, FilePreviewOutput } from "../model/model";
-import { TitleComponent } from "../title/title.component";
 import { Store } from "../model/store";
+import { TitleComponent } from "../title/title.component";
+import { BookmarksComponent } from "../bookmarks/bookmarks.component";
 
 @Component({
   selector: "ngx-voyage",
-  imports: [TitleComponent, ListComponent, ProgressBarModule],
+  imports: [
+    TitleComponent,
+    ListComponent,
+    ProgressBarModule,
+    BookmarksComponent,
+  ],
   templateUrl: "./ngx-voyage.component.html",
   encapsulation: ViewEncapsulation.None,
   host: {
@@ -93,6 +97,14 @@ export class NgxVoyageComponent implements OnInit {
   ngOnInit() {
     const hasOpenFileOutput = this.openFile["listeners"]?.length > 0;
     this.#store.setShowOpenFile(hasOpenFileOutput);
+
+    if (this.#store.bookmarks().length === 0) {
+      this.#store.addBookmark({
+        icon: "home",
+        name: "Home",
+        path: this.path(),
+      });
+    }
   }
 
   onOpenFolder(folderPath: string) {

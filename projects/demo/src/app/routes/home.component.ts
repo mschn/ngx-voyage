@@ -6,7 +6,7 @@ import { FilePreviewOutput, NgxVoyageComponent, VoyageIconComponent } from "ngx-
 @Component({
   selector: "app-home",
   template: `
-    <div class=" max-w-[50rem] mx-auto flex flex-col gap-10  ">
+    <div class=" max-w-[60rem] mx-auto flex flex-col gap-10  ">
       <div class="text-center flex flex-col gap-3 ">
         <h1 class="text-4xl font-semibold">ngx-voyage</h1>
         <h2 class="text-2xl">

@@ -1,8 +1,9 @@
-import { FileSortFields, isFileSortField } from './model';
+import { FileSortFields, isFileSortField } from "./model";
 
 export const LocalstorageKeys = {
-  sort: 'VOYAGE_SORT_ORDER',
-  field: 'VOYAGE_SORT_FIELD',
+  sort: "VOYAGE_SORT_ORDER",
+  field: "VOYAGE_SORT_FIELD",
+  bookmarks: "VOYAGE_BOOKMARKS",
 };
 
 export function getSortOrderFromLocalstorage(): number {
@@ -27,7 +28,7 @@ export function getSortFieldFromLocalstorage(): FileSortFields | undefined {
 
 export function writeSortToLocalstorage(
   order: number | undefined,
-  field: string | undefined,
+  field: string | undefined
 ) {
   localStorage.setItem(LocalstorageKeys.field, `${field}`);
   localStorage.setItem(LocalstorageKeys.sort, `${order}`);
