@@ -10,3 +10,6 @@ dist
 /blob-report/
 /playwright/.cache/
 results.json
+
+# jest
+coverage
