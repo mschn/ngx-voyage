@@ -8,6 +8,6 @@ import { getMessages } from './i18n';
 })
 export class TranslatePipe implements PipeTransform {
   transform(value: keyof Messages): string {
-    return getMessages()[value] ?? '';
+    return getMessages()[value] ?? value;
   }
 }

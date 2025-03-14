@@ -56,7 +56,7 @@ export const fileTypes: Record<
   mpg: { icon: "file-video", description: "MPEG_MOVIE" },
   pdf: { icon: "file-pdf", description: "PDF_DOCUMENT" },
   png: { icon: "file-image", description: "PNG_IMAGE" },
-  py: { icon: "file-code", description: "PYTHON_DOCUMENT" },
+  py: { icon: "file-code", description: "PY_DOCUMENT" },
   sh: { icon: "file-code", description: "SHELL_SCRIPT" },
   svg: {
     icon: "file-image",
