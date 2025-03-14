@@ -12,10 +12,11 @@
   [sortField]="sortField()"
   [sortOrder]="sortOrder()"
   [resizableColumns]="true"
+  tableStyleClass="table-fixed"
 >
   <ng-template #header>
     <tr>
-      <th pResizableColumn pSortableColumn="name" class="max-w-0 w-3/5">
+      <th pResizableColumn pSortableColumn="name" class="max-w-0 ">
         {{ "NAME" | translate }} <p-sortIcon field="name" />
       </th>
       <th pResizableColumn pSortableColumn="size" class="w-1/5">

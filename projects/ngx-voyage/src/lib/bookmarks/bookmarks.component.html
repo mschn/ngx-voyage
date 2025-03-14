@@ -8,10 +8,10 @@
         (isActive(bookmark) ? 'bg-gray-200!' : '') + ' justify-start!'
       "
     >
-      <span class="text-gray-700 flex gap-2">
-        <ngx-voyage-icon [type]="bookmark.icon"></ngx-voyage-icon>
+      <div class="text-gray-700 truncate block">
+        <ngx-voyage-icon [type]="bookmark.icon" class="inline-block w-6"></ngx-voyage-icon>
         {{ bookmark.name }}
-      </span>
+      </div>
     </p-button>
   }
 </div>
