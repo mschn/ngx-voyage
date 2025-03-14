@@ -27,7 +27,7 @@
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch",
     "eslint": "npx eslint",
-    "eslint:ci": "npx eslint --fix --max-warnings 0 src",
+    "eslint:ci": "npx eslint --fix --max-warnings 0 projects",
     "prettier": "npx prettier --write"
   },
   "private": false,
