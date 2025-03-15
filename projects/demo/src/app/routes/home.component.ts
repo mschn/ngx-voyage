@@ -57,6 +57,12 @@ import {
           (previewFile)="preview($event)"
           class="border border-gray-400 dark:border-gray-500 rounded-lg shadow-2xl"
         >
+          <ng-template #header
+            ><div
+              class="p-3 whitespace-nowrap truncate font-semibold text-gray-700 dark:text-gray-300"
+              >ngx-voyage</div
+            ><hr class="mb-3 border-gray-400 dark:border-gray-600"
+          /></ng-template>
         </ngx-voyage>
       </div>
     </div>

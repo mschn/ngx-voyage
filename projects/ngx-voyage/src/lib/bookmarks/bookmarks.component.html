@@ -5,11 +5,11 @@
       text="true"
       (onClick)="open(bookmark)"
       [styleClass]="
-        (isActive(bookmark) ? 'bg-gray-200!' : '') + ' justify-start!'
+        (isActive(bookmark) ? 'bg-gray-200! dark:bg-gray-600!' : '') + ' justify-start!'
       "
       data-testid="bookmark"
     >
-      <div class="text-gray-700 truncate block">
+      <div class="text-gray-700 dark:text-gray-300 truncate block">
         <ngx-voyage-icon
           [type]="bookmark.icon"
           class="inline-block w-6"

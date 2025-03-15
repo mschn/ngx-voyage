@@ -1,19 +1,22 @@
+import { CommonModule, NgTemplateOutlet } from "@angular/common";
 import {
   Component,
+  contentChild,
   inject,
   input,
   model,
   OnInit,
   output,
+  TemplateRef,
   ViewEncapsulation,
 } from "@angular/core";
 import { ProgressBarModule } from "primeng/progressbar";
+import { BookmarksComponent } from "../bookmarks/bookmarks.component";
 import { ListComponent } from "../list/list.component";
 import { Message } from "../model/message";
 import { addType, File, FilePreviewOutput } from "../model/model";
 import { Store } from "../model/store";
 import { TitleComponent } from "../title/title.component";
-import { BookmarksComponent } from "../bookmarks/bookmarks.component";
 
 @Component({
   selector: "ngx-voyage",
@@ -22,6 +25,8 @@ import { BookmarksComponent } from "../bookmarks/bookmarks.component";
     ListComponent,
     ProgressBarModule,
     BookmarksComponent,
+    NgTemplateOutlet,
+    CommonModule,
   ],
   templateUrl: "./ngx-voyage.component.html",
   encapsulation: ViewEncapsulation.None,
@@ -93,6 +98,9 @@ export class NgxVoyageComponent implements OnInit {
    * Preview the content of a file
    */
   previewFile = output<FilePreviewOutput>();
+
+  header = contentChild<TemplateRef<Element>>("header");
+  footer = contentChild<TemplateRef<Element>>("footer");
 
   ngOnInit() {
     const hasOpenFileOutput = this.openFile["listeners"]?.length > 0;
