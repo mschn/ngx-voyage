@@ -57,6 +57,7 @@
     "@angular/cli": "^19.1.8",
     "@angular/compiler-cli": "^19.1.7",
     "@playwright/test": "^1.51.0",
+    "@testing-library/dom": "^10.4.0",
     "@types/jest": "^29.5.14",
     "@types/node": "^22.13.10",
     "angular-eslint": "^19.2.1",
