@@ -1,6 +1,6 @@
 import { enUS, fr, Locale } from "date-fns/locale";
-import { messages as messagesEn, Messages } from "./en";
-import { messages as messagesFr } from "./fr";
+import { messages as messagesEn, Messages } from "./en.messages";
+import { messages as messagesFr } from "./fr.messages";
 
 export function getMessages(): Messages {
   if (navigator.language.startsWith("fr")) {

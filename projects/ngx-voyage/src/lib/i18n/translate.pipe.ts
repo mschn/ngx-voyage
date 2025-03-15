@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from "@angular/core";
-import { Messages } from "../i18n/en";
+import { Messages } from "../i18n/en.messages";
 import { getMessages } from "./i18n";
 
 @Pipe({

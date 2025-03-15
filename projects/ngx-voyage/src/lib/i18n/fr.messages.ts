@@ -1,4 +1,4 @@
-import { Messages } from "./en";
+import { Messages } from "./en.messages";
 
 export const messages: Messages = {
   CLOSE: "Fermer",

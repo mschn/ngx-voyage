@@ -9,7 +9,7 @@
 Demo and docs: https://mschn.github.io/ngx-voyage/
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/mschn/ngx-voyage/refs/heads/main/projects/demo/public/readme.png" />
+  <img src="https://raw.githubusercontent.com/mschn/ngx-voyage/refs/heads/main/projects/demo/public/light.png" />
 </p>
 
 ## Quickstart
