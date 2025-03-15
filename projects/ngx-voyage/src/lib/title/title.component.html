@@ -26,8 +26,12 @@
   <div
     class="flex items-center bg-white dark:bg-gray-900 rounded-lg w-full p-1 border border-gray-300 dark:border-gray-700 h-[3.2rem] content-center"
   >
-    @for (fragment of pathWithRoot(); track fragment; let isLast = $last) {
-      <p-button (onClick)="navigate.emit(fragment.path)" variant="text">
+    @for (fragment of pathFragments(); track fragment; let isLast = $last) {
+      <p-button
+        (onClick)="navigate.emit(fragment.path)"
+        variant="text"
+        data-testid="title-fragment"
+      >
         @if (fragment.path === "/") {
           <ngx-voyage-icon
             type="desktop"
@@ -51,7 +55,12 @@
         ></ngx-voyage-icon>
       </p-button>
     } @else if (path() !== "/") {
-      <p-button variant="text" class="ml-auto" (onClick)="onAddBookmark()" data-testid="add-bookmark">
+      <p-button
+        variant="text"
+        class="ml-auto"
+        (onClick)="onAddBookmark()"
+        data-testid="add-bookmark"
+      >
         <ngx-voyage-icon
           type="star"
           class="text-gray-600 dark:text-gray-300"

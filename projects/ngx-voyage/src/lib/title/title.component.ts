@@ -34,7 +34,7 @@ export class TitleComponent implements OnChanges {
     this.bookmarks().some((bookmark) => bookmark.path === this.path()),
   );
 
-  pathWithRoot = computed(() => {
+  pathFragments = computed(() => {
     if (this.path() === "/") {
       return [{ name: "/", path: "/" }];
     }
@@ -44,11 +44,13 @@ export class TitleComponent implements OnChanges {
         if (i === 0) {
           return [{ name: "/", path: "/" }];
         }
-        const prevPath = acc[acc.length - 1].path;
-        acc.push({
-          path: `${prevPath !== "/" ? prevPath : ""}/${cur}`,
-          name: cur,
-        });
+        if (cur.length > 0) {
+          const prevPath = acc[acc.length - 1].path;
+          acc.push({
+            path: `${prevPath !== "/" ? prevPath : ""}/${cur}`,
+            name: cur,
+          });
+        }
         return acc;
       }, []);
   });
