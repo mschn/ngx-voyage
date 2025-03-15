@@ -3,7 +3,7 @@
 [![npmjs](https://img.shields.io/npm/v/ngx-voyage?color=blue)](https://www.npmjs.com/package/ngx-voyage)
 [![E2E tests](https://github.com/mschn/ngx-voyage/actions/workflows/e2e_tests.yml/badge.svg)](https://github.com/mschn/ngx-voyage/actions/workflows/e2e_tests.yml)
 [![Unit tests](https://github.com/mschn/ngx-voyage/actions/workflows/unit_tests.yml/badge.svg)](https://github.com/mschn/ngx-voyage/actions/workflows/unit_tests.yml)
-
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=mschn_ngx-voyage&metric=coverage)](https://sonarcloud.io/summary/new_code?id=mschn_ngx-voyage)
 
 `ngx-voyage` is a File Explorer component for [Angular](https://angular.dev/) and [PrimeNG](https://primeng.org/).\
 Demo and docs: https://mschn.github.io/ngx-voyage/
