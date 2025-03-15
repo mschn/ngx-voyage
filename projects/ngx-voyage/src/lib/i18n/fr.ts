@@ -37,5 +37,5 @@ export const messages: Messages = {
   EXCEL_DOCUMENT: "Document Excel",
   XML_DOCUMENT: "Document XML",
   YAML_DOCUMENT: "Document YAML",
-  Archive: "Archive",
+  HOME: "Accueil",
 };

@@ -17,6 +17,7 @@ import { Message } from "../model/message";
 import { addType, File, FilePreviewOutput } from "../model/model";
 import { Store } from "../model/store";
 import { TitleComponent } from "../title/title.component";
+import { getMessages } from "../i18n/i18n";
 
 @Component({
   selector: "ngx-voyage",
@@ -109,7 +110,7 @@ export class NgxVoyageComponent implements OnInit {
     if (this.#store.bookmarks().length === 0) {
       this.#store.addBookmark({
         icon: "home",
-        name: "Home",
+        name: getMessages().HOME,
         path: this.path(),
       });
     }
