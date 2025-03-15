@@ -51,7 +51,7 @@
         ></ngx-voyage-icon>
       </p-button>
     } @else if (path() !== "/") {
-      <p-button variant="text" class="ml-auto" (onClick)="onAddBookmark()">
+      <p-button variant="text" class="ml-auto" (onClick)="onAddBookmark()" data-testid="add-bookmark">
         <ngx-voyage-icon
           type="star"
           class="text-gray-600 dark:text-gray-300"
