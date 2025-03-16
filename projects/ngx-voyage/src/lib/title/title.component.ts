@@ -30,9 +30,10 @@ export class TitleComponent implements OnChanges {
   path = model.required<string>();
 
   bookmarks = this.#store.bookmarks;
-  pathIsBookmarked = computed(() =>
-    this.bookmarks().some((bookmark) => bookmark.path === this.path()),
+  bookmark = computed(() =>
+    this.bookmarks().find((bookmark) => bookmark.path === this.path()),
   );
+  pathIsBookmarked = computed(() => this.bookmark() != undefined);
 
   pathFragments = computed(() => {
     if (this.path() === "/") {
@@ -111,5 +112,12 @@ export class TitleComponent implements OnChanges {
       name,
       path: this.path(),
     });
+  }
+
+  onRemoveBookmark() {
+    const b = this.bookmark();
+    if (b != undefined) {
+      this.#store.removeBookmark(this.path());
+    }
   }
 }

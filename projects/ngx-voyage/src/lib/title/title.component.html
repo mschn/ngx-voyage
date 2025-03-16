@@ -47,8 +47,7 @@
     }
 
     @if (pathIsBookmarked()) {
-      <!-- TODO un-bookmark with this button -->
-      <p-button variant="text" class="ml-auto">
+      <p-button variant="text" class="ml-auto" (onClick)="onRemoveBookmark()">
         <ngx-voyage-icon
           type="star-solid"
           class="text-yellow-500"

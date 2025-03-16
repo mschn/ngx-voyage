@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { TitleComponent } from "./title.component";
 import { getAllByTestId } from "@testing-library/dom";
 import { Store } from "../model/store";
+import { TitleComponent } from "./title.component";
 
 describe("TitleComponent", () => {
   let component: TitleComponent;
@@ -55,6 +55,16 @@ describe("TitleComponent", () => {
     expect(component.pathIsBookmarked()).toBe(false);
     component.onAddBookmark();
     expect(component.pathIsBookmarked()).toBe(true);
+  });
+
+  it("should remove a bookmark", () => {
+    const store = TestBed.inject(Store);
+    store.addBookmark({ icon: "home", name: "oink", path: "/oink" });
+    fixture.componentRef.setInput("path", "/oink");
+    fixture.detectChanges();
+    expect(component.pathIsBookmarked()).toBe(true);
+    component.onRemoveBookmark();
+    expect(component.pathIsBookmarked()).toBe(false);
   });
 
   it("should go back and forward", () => {

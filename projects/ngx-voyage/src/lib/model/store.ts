@@ -44,5 +44,16 @@ export const Store = signalStore(
         bookmarks,
       }));
     },
+
+    removeBookmark: (path: string) => {
+      const bookmarks = getState(store).bookmarks.filter(
+        (b) => b.path !== path,
+      );
+      writeBookmarksToLocalstorage(bookmarks);
+      patchState(store, (state) => ({
+        ...state,
+        bookmarks,
+      }));
+    },
   })),
 );
