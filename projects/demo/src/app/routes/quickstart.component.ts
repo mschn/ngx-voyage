@@ -32,7 +32,7 @@ export class AppComponent {
       <code>ngx-voyage</code> has peer dependencies on the following libraries:
     </p>
     <ul class="list-disc ml-5">
-      <li>Angular <code>^19.1.0</code></li>
+      <li>Angular <code>^19.2.0</code></li>
       <li>PrimeNG <code>^19.0.0</code></li>
     </ul>
   </div>`,
