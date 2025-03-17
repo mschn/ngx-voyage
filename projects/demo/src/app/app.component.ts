@@ -24,13 +24,31 @@ import { VoyageIconComponent } from "ngx-voyage";
         <app-nav></app-nav>
       </p-drawer>
 
-      <div class="container mx-auto p-3">
+      <div class="container mx-auto p-3 max-w-[64rem]">
         <div class="md:hidden ">
           <p-button (click)="showMenu.set(true)" outlined="true">
             <ngx-voyage-icon type="bars"></ngx-voyage-icon>
           </p-button>
         </div>
-        <router-outlet></router-outlet>
+
+        <div class="flex flex-col justify-between h-full ">
+          <div>
+            <router-outlet></router-outlet>
+          </div>
+          <div
+            class="my-2 text-gray-600 dark:text-gray-400 text-sm text-center"
+          >
+            &copy;
+            <a
+              href="https://github.com/mschn"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Mathieu Schnoor</a
+            >
+            2025
+            <div class="h-2"></div>
+          </div>
+        </div>
       </div>
     </div>
   `,

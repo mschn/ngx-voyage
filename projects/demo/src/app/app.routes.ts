@@ -17,4 +17,11 @@ export const routes: Routes = [
         (c) => c.QuickstartComponent,
       ),
   },
+  {
+    title: "ngx-voyage - Guide",
+    path: "guide",
+    data: { name: "Howto Guide" },
+    loadComponent: () =>
+      import("./routes/guide.component").then((c) => c.GuideComponent),
+  },
 ];

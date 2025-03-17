@@ -39,15 +39,6 @@ import { routes } from "./app.routes";
           <ngx-voyage-icon type="npm"></ngx-voyage-icon>
         </a>
       </div>
-      <div class="mt-auto text-gray-600 dark:text-gray-400 text-sm">
-        <a
-          href="https://github.com/mschn"
-          target="_blank"
-          rel="noopener noreferrer"
-          >Mathieu Schnoor</a
-        >
-        - 2025
-      </div>
     </div>
   `,
 })

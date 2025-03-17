@@ -43,7 +43,7 @@ import {
             href="https://github.com/mschn/ngx-voyage"
             target="_blank"
             rel="noopener noreferrer"
-            class="p-button p-button-secondary p-button-outlined"
+            class="p-button p-button-secondary p-button-outlined bg-white! dark:bg-gray-900!"
           >
             <ngx-voyage-icon type="github" class="text-xl"></ngx-voyage-icon>
             Github
