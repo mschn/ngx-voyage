@@ -1,59 +1,33 @@
-import {
-  getState,
-  patchState,
-  signalStore,
-  withMethods,
-  withState,
-} from "@ngrx/signals";
+import { Injectable, signal } from "@angular/core";
 import {
   Bookmark,
   getBookmarksFromLocalstorage,
   writeBookmarksToLocalstorage,
 } from "./bookmark";
 
-interface State {
-  showHiddenFiles: boolean;
-  showOpenFile: boolean;
-  bookmarks: Bookmark[];
+@Injectable({ providedIn: "root" })
+export class Store {
+  readonly bookmarks = signal<Bookmark[]>([]);
+  readonly showHiddenFiles = signal(false);
+  readonly showOpenFile = signal(false);
+
+  constructor() {
+    this.bookmarks.set(getBookmarksFromLocalstorage());
+  }
+
+  toggleHiddenFiles() {
+    this.showHiddenFiles.set(!this.showHiddenFiles());
+  }
+
+  addBookmark(bookmark: Bookmark) {
+    const bookmarks = [...this.bookmarks(), bookmark];
+    writeBookmarksToLocalstorage(bookmarks);
+    this.bookmarks.set(bookmarks);
+  }
+
+  removeBookmark(path: string) {
+    const bookmarks = this.bookmarks().filter((b) => b.path !== path);
+    writeBookmarksToLocalstorage(bookmarks);
+    this.bookmarks.set(bookmarks);
+  }
 }
-
-const initialState: State = {
-  showHiddenFiles: false,
-  showOpenFile: true,
-  bookmarks: getBookmarksFromLocalstorage(),
-};
-
-export const Store = signalStore(
-  { providedIn: "root" },
-  withState(initialState),
-  withMethods((store) => ({
-    toggleHiddenFiles: () =>
-      patchState(store, (state) => ({
-        ...state,
-        showHiddenFiles: !state.showHiddenFiles,
-      })),
-
-    setShowOpenFile: (showOpenFile: boolean) =>
-      patchState(store, (state) => ({ ...state, showOpenFile })),
-
-    addBookmark: (bookmark: Bookmark) => {
-      const bookmarks = [...getState(store).bookmarks, bookmark];
-      writeBookmarksToLocalstorage(bookmarks);
-      patchState(store, (state) => ({
-        ...state,
-        bookmarks,
-      }));
-    },
-
-    removeBookmark: (path: string) => {
-      const bookmarks = getState(store).bookmarks.filter(
-        (b) => b.path !== path,
-      );
-      writeBookmarksToLocalstorage(bookmarks);
-      patchState(store, (state) => ({
-        ...state,
-        bookmarks,
-      }));
-    },
-  })),
-);

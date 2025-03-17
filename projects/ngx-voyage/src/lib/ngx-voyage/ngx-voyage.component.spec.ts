@@ -56,6 +56,8 @@ describe("NgxVoyageComponent", () => {
     fixture.componentRef.setInput("files", []);
   });
 
+  afterEach(() => localStorage.clear());
+
   it("should create", () => {
     fixture.detectChanges();
     expect(component).toBeTruthy();
