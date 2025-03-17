@@ -18,10 +18,11 @@ import { ContextMenu, ContextMenuModule } from "primeng/contextmenu";
 import { DialogModule } from "primeng/dialog";
 import { ProgressBarModule } from "primeng/progressbar";
 import { Table, TableModule } from "primeng/table";
-import { getMessages, isToday, isYesterday } from "../i18n/i18n";
+import { getMessages } from "../i18n/i18n";
 import { TranslatePipe } from "../i18n/translate.pipe";
 import { VoyageIconComponent } from "../icon";
 import { MessageComponent } from "../message/message.component";
+import { isToday, isYesterday } from "../model/dates";
 import { canPreviewFile, getFileIcon } from "../model/file-types";
 import {
   getSortFieldFromLocalstorage,
