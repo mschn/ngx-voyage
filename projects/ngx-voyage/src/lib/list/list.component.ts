@@ -1,4 +1,4 @@
-import { NgClass } from "@angular/common";
+import { DatePipe, NgClass } from "@angular/common";
 import {
   Component,
   computed,
@@ -13,13 +13,12 @@ import {
   SimpleChanges,
   viewChild,
 } from "@angular/core";
-import { format, isToday, isYesterday } from "date-fns";
 import { MenuItem, SortEvent } from "primeng/api";
 import { ContextMenu, ContextMenuModule } from "primeng/contextmenu";
 import { DialogModule } from "primeng/dialog";
 import { ProgressBarModule } from "primeng/progressbar";
 import { Table, TableModule } from "primeng/table";
-import { getDateFnsLocale, getMessages } from "../i18n/i18n";
+import { getMessages, isToday, isYesterday } from "../i18n/i18n";
 import { TranslatePipe } from "../i18n/translate.pipe";
 import { VoyageIconComponent } from "../icon";
 import { MessageComponent } from "../message/message.component";
@@ -57,9 +56,11 @@ import { PreviewComponent } from "../preview/preview.component";
     TranslatePipe,
     VoyageIconComponent,
   ],
+  providers: [DatePipe],
 })
 export class ListComponent implements OnChanges {
   #store = inject(Store);
+  datePipe = inject(DatePipe);
 
   contextMenu = viewChild<ContextMenu>("contextMenu");
   dataTable = viewChild<Table>("dataTable");
@@ -256,15 +257,23 @@ export class ListComponent implements OnChanges {
   }
 
   formatDate(file: File) {
-    const locale = getDateFnsLocale();
-    const time = format(file.modifiedDate, "H:mm", { locale });
+    const timeFormat = new Intl.DateTimeFormat(navigator.language, {
+      minute: "2-digit",
+      hour: "2-digit",
+    });
+    const time = timeFormat.format(file.modifiedDate);
     const messages = getMessages();
     if (isToday(file.modifiedDate)) {
       return `${messages.TODAY_AT} ${time}`;
     } else if (isYesterday(file.modifiedDate)) {
       return `${messages.YESTERDAY_AT} ${time}`;
     } else {
-      const date = format(file.modifiedDate, "d LLL yyyy", { locale });
+      const dateFormat = new Intl.DateTimeFormat(navigator.language, {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+      });
+      const date = dateFormat.format(file.modifiedDate);
       return `${date} ${messages.AT} ${time}`;
     }
   }

@@ -43,7 +43,6 @@
     "@ngrx/signals": "^19.0.1",
     "@primeng/themes": "^19.0.9",
     "@tailwindcss/postcss": "^4.0.0",
-    "date-fns": "^4.1.0",
     "highlight.js": "^11.11.1",
     "postcss": "^8.5.1",
     "primeng": "^19.0.9",
