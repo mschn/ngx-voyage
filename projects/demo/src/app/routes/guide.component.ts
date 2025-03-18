@@ -14,7 +14,7 @@ import css from "highlight.js/lib/languages/css";
         <li><a href="guide#bootstrap">1. Boostrap a new Angular app</a></li>
         <li><a href="guide#primeng">2. Install PrimeNG</a></li>
         <li><a href="guide#install">3. Install ngx-voyage</a></li>
-        <li><a href="guide#server">4. Fetch files from server</a></li>
+        <li><a href="guide#server">4. Fetch files from a server</a></li>
         <li><a href="guide#theme">5. Custom PrimeNG theme</a></li>
       </ul>
 
@@ -80,8 +80,13 @@ export class AppComponent {}]]></code></pre>
       <img src="guide/1.png" alt="ngx-voyage basic integration screenshot" />
 
       <a href="guide#server" id="server" class="text-2xl font-semibold"
-        >4. Fetch files from server</a
+        >4. Fetch files from a server</a
       >
+
+      <pre><code class="language-bash rounded-md"><![CDATA[mkdir server; cd server
+npm init
+npm install express
+]]></code></pre>
 
       <a href="guide#theme" id="theme" class="text-2xl font-semibold"
         >5. Custom PrimeNG theme</a

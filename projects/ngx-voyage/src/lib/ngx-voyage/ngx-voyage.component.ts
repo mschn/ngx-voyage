@@ -12,12 +12,12 @@ import {
 } from "@angular/core";
 import { ProgressBarModule } from "primeng/progressbar";
 import { BookmarksComponent } from "../bookmarks/bookmarks.component";
+import { getMessages } from "../i18n/i18n";
 import { ListComponent } from "../list/list.component";
 import { Message } from "../model/message";
-import { addType, File, FilePreviewOutput } from "../model/model";
+import { File, FilePreviewOutput, normalizeFile } from "../model/model";
 import { Store } from "../model/store";
 import { TitleComponent } from "../title/title.component";
-import { getMessages } from "../i18n/i18n";
 
 @Component({
   selector: "ngx-voyage",
@@ -49,10 +49,7 @@ export class NgxVoyageComponent implements OnInit {
    * list if files contained in the current folder
    */
   files = input.required<File[], File[]>({
-    transform: (files) => {
-      files.forEach((f) => addType(f));
-      return files;
-    },
+    transform: (files) => files.map((f) => normalizeFile(f)),
   });
 
   /**

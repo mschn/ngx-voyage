@@ -258,15 +258,20 @@ export class ListComponent implements OnChanges {
   }
 
   formatDate(file: File) {
+    const modifiedDate =
+      file.modifiedDate instanceof Date
+        ? file.modifiedDate
+        : new Date(file.modifiedDate);
+
     const timeFormat = new Intl.DateTimeFormat(navigator.language, {
       minute: "2-digit",
       hour: "2-digit",
     });
-    const time = timeFormat.format(file.modifiedDate);
+    const time = timeFormat.format(modifiedDate);
     const messages = getMessages();
-    if (isToday(file.modifiedDate)) {
+    if (isToday(modifiedDate)) {
       return `${messages.TODAY_AT} ${time}`;
-    } else if (isYesterday(file.modifiedDate)) {
+    } else if (isYesterday(modifiedDate)) {
       return `${messages.YESTERDAY_AT} ${time}`;
     } else {
       const dateFormat = new Intl.DateTimeFormat(navigator.language, {
@@ -274,7 +279,7 @@ export class ListComponent implements OnChanges {
         month: "short",
         day: "numeric",
       });
-      const date = dateFormat.format(file.modifiedDate);
+      const date = dateFormat.format(modifiedDate);
       return `${date} ${messages.AT} ${time}`;
     }
   }

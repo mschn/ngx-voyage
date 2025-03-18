@@ -6,7 +6,7 @@ export interface File {
   isSymbolicLink: boolean;
   name: string;
   size: number;
-  modifiedDate: Date;
+  modifiedDate: Date | string;
   type?: string;
 }
 
@@ -70,6 +70,14 @@ export function sortFiles(
     else result = value1! < value2! ? -1 : value1! > value2! ? 1 : 0;
     return order * result;
   });
+}
+
+export function normalizeFile(file: File): File {
+  addType(file);
+  if (typeof file.modifiedDate === "string") {
+    file.modifiedDate = new Date(file.modifiedDate);
+  }
+  return file;
 }
 
 export function addType(file: File) {
