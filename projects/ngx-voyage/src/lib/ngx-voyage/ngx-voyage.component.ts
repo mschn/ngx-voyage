@@ -69,12 +69,6 @@ export class NgxVoyageComponent implements OnInit {
   loading = input<boolean>(false);
 
   /**
-   * can be removed in favor of (onPath) model
-   * @deprecated
-   */
-  openFolder = output<string>();
-
-  /**
    * Fired when the user requests to open this file.
    * When this happens you should open the file with an external program,
    * ie a PDF viewer or a text editor, or a new browser tab.
@@ -115,6 +109,5 @@ export class NgxVoyageComponent implements OnInit {
 
   onOpenFolder(folderPath: string) {
     this.path.set(folderPath);
-    this.openFolder.emit(folderPath);
   }
 }
