@@ -15,6 +15,7 @@ import css from "highlight.js/lib/languages/css";
         <li><a href="guide#primeng">2. Install PrimeNG</a></li>
         <li><a href="guide#install">3. Install ngx-voyage</a></li>
         <li><a href="guide#server">4. Fetch files from a server</a></li>
+        <li><a href="guide#preview">5. File preview from a server</a></li>
         <li><a href="guide#theme">5. Custom PrimeNG theme</a></li>
       </ul>
 
@@ -87,6 +88,126 @@ export class AppComponent {}]]></code></pre>
 npm init
 npm install express
 ]]></code></pre>
+
+      <pre><code class="language-typescript rounded-md"><![CDATA[const express = require('express');
+const path = require('path');
+const fs = require('fs')
+const app = express();
+
+// disable CORS checks
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
+// list folder content
+app.get('/ls/:folder', (req, res) => {
+    const folderPath = decodeURIComponent(req.params.folder);
+    const files = fs
+        .readdirSync(folderPath)
+        .map((p) => {
+            try {
+                const filePath = path.join(folderPath, p);
+                const stat = fs.statSync(filePath);
+                return {
+                    isDirectory: stat.isDirectory(),
+                    isFile: stat.isFile(),
+                    name: p,
+                    size: stat.size,
+                    modifiedDate: stat.mtime,
+                };
+            } catch (e) {
+                return undefined
+            }
+        }).filter((file) => file != undefined)
+    res.send(files);
+});
+
+// start express server
+app.listen(3003, () => console.log(\`server listening on port 3003\`));
+]]></code></pre>
+
+      <pre><code class="language-typescript rounded-md"><![CDATA[import { Component, computed, model, resource } from '@angular/core';
+import { File, NgxVoyageComponent } from 'ngx-voyage';
+@Component({
+  selector: 'app-root',
+  imports: [NgxVoyageComponent],
+  template: \`<ngx-voyage
+    [(path)]="path"
+    [files]="files()"
+    [loading]="filesResource.isLoading()"
+  ></ngx-voyage>\`,
+})
+export class AppComponent {
+  filesResource = resource({
+    request: () => ({ path: encodeURIComponent(this.path()) }),
+    loader: async ({ request }) => {
+      const response = await fetch('http://localhost:3003/ls/' + request.path);
+      return (await response.json()) as File[];
+    },
+  });
+  path = model('/');
+  files = computed(() => this.filesResource.value() ?? []);
+}
+]]></code></pre>
+
+      <img src="guide/2.png" alt="ngx-voyage with server files" />
+
+      <a href="guide#preview" id="preview" class="text-2xl font-semibold"
+        >5. File preview from a server</a
+      >
+
+      <pre><code class="language-typescript rounded-md"><![CDATA[const mime = require('mime-types');
+
+app.get('/open/:file', async (req, res) => {
+  const filePath = decodeURIComponent(req.params.file);
+  const mimeType = mime.lookup(filePath);
+  res.set('Content-Type', mimeType);
+  const content = fs.readFileSync(filePath);
+  res.send(content);
+});
+]]></code></pre>
+
+      <pre><code class="language-typescript rounded-md"><![CDATA[import { Component, computed, model, resource } from '@angular/core';
+import { File, FilePreviewOutput, NgxVoyageComponent } from 'ngx-voyage';
+@Component({
+  selector: 'app-root',
+  imports: [NgxVoyageComponent],
+  template: \`<ngx-voyage
+    [(path)]="path"
+    [files]="files()"
+    [loading]="filesResource.isLoading()"
+    (previewFile)="getFileContent($event)"
+    (openFile)="openFile($event)"
+  ></ngx-voyage>\`,
+})
+export class AppComponent {
+  filesResource = resource({
+    request: () => ({ path: encodeURIComponent(this.path()) }),
+    loader: async ({ request }) => {
+      const response = await fetch('http://localhost:3003/ls/' + request.path);
+      return (await response.json()) as File[];
+    },
+  });
+  path = model('/');
+  files = computed(() => this.filesResource.value() ?? []);
+
+  openFile(path: string) {
+    const url = encodeURIComponent(path);
+    window.open('http://localhost:3003/open/' + url, '_blank')?.focus();
+  }
+
+  getFileContent({ path, cb }: FilePreviewOutput) {
+    const url = encodeURIComponent(path);
+    fetch('http://localhost:3003/open/' + url).then(async (value) => {
+      const blob = await value.blob();
+      cb(blob);
+    });
+  }
+}]]></code></pre>
+
+      <img src="guide/3.png" alt="ngx-voyage file preview" />
 
       <a href="guide#theme" id="theme" class="text-2xl font-semibold"
         >5. Custom PrimeNG theme</a
