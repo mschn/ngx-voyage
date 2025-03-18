@@ -17,7 +17,7 @@ import { VoyageIconComponent } from "ngx-voyage";
   ],
   template: `
     <div class="flex h-full w-full overflow-auto bg-gray-100 dark:bg-gray-800">
-      <div class="hidden md:block">
+      <div class="hidden md:block sticky top-0">
         <app-nav></app-nav>
       </div>
       <p-drawer [(visible)]="showMenu">

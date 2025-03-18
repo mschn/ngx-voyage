@@ -10,16 +10,19 @@ import css from "highlight.js/lib/languages/css";
     <div class="flex flex-col gap-3">
       <h1 class="text-4xl font-semibold">Howto Guide</h1>
 
-      <ul class="text-blue-500 ml-8">
+      <ul class="text-blue-500 ml-8 mt-8">
         <li><a href="guide#bootstrap">1. Boostrap a new Angular app</a></li>
         <li><a href="guide#primeng">2. Install PrimeNG</a></li>
         <li><a href="guide#install">3. Install ngx-voyage</a></li>
         <li><a href="guide#server">4. Fetch files from a server</a></li>
         <li><a href="guide#preview">5. File preview from a server</a></li>
-        <li><a href="guide#theme">5. Custom PrimeNG theme</a></li>
+        <li><a href="guide#theme">6. Custom PrimeNG theme</a></li>
       </ul>
 
-      <a href="guide#bootstrap" id="bootstrap" class="text-2xl font-semibold"
+      <a
+        href="guide#bootstrap"
+        id="bootstrap"
+        class="text-2xl font-semibold mt-8"
         >1. Bootstrap a new Angular app</a
       >
 
@@ -27,7 +30,7 @@ import css from "highlight.js/lib/languages/css";
 ng new ngx-voyage-demo
 cd ngx-voyage-demo]]></code></pre>
 
-      <a href="guide#primeng" id="primeng" class="text-2xl font-semibold"
+      <a href="guide#primeng" id="primeng" class="text-2xl font-semibold mt-8"
         >2. Install PrimeNG</a
       >
 
@@ -63,7 +66,7 @@ export const appConfig: ApplicationConfig = {
     height: 100%;
 }]]></code></pre>
 
-      <a href="guide#install" id="install" class="text-2xl font-semibold"
+      <a href="guide#install" id="install" class="text-2xl font-semibold mt-8"
         >3. Install ngx-voyage</a
       >
 
@@ -80,7 +83,7 @@ export class AppComponent {}]]></code></pre>
 
       <img src="guide/1.png" alt="ngx-voyage basic integration screenshot" />
 
-      <a href="guide#server" id="server" class="text-2xl font-semibold"
+      <a href="guide#server" id="server" class="text-2xl font-semibold mt-8"
         >4. Fetch files from a server</a
       >
 
@@ -154,7 +157,7 @@ export class AppComponent {
 
       <img src="guide/2.png" alt="ngx-voyage with server files" />
 
-      <a href="guide#preview" id="preview" class="text-2xl font-semibold"
+      <a href="guide#preview" id="preview" class="text-2xl font-semibold mt-8"
         >5. File preview from a server</a
       >
 
@@ -209,8 +212,8 @@ export class AppComponent {
 
       <img src="guide/3.png" alt="ngx-voyage file preview" />
 
-      <a href="guide#theme" id="theme" class="text-2xl font-semibold"
-        >5. Custom PrimeNG theme</a
+      <a href="guide#theme" id="theme" class="text-2xl font-semibold mt-8"
+        >6. Custom PrimeNG theme</a
       >
 
       <p>
