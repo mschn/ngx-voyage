@@ -13,28 +13,60 @@ import typescript from "highlight.js/lib/languages/typescript";
 
     <pre><code class="language-bash rounded-md">npm install ngx-voyage</code></pre>
 
-    <p>Use <code><![CDATA[<ngx-voyage>]]></code> in your app:</p>
+    <p>
+      <code>ngx-voyage</code> has peer dependencies on the following libraries,
+      that will need to be installed as well:
+    </p>
+    <ul class="list-disc ml-5">
+      <li
+        ><a class="text-blue-500" href="https://angular.dev/" target="_blank">
+          Angular
+        </a>
+        version <code>^19.2.0</code></li
+      >
+      <li
+        ><a class="text-blue-500" href="https://primeng.org/" target="_blank">
+          PrimeNG
+        </a>
+        version <code>^19.0.0</code>, used as UI widget toolkit</li
+      >
+      <li
+        ><a
+          class="text-blue-500"
+          href="https://highlightjs.org/"
+          target="_blank"
+        >
+          highlight.js
+        </a>
+        version <code>^11.11.1</code>, used to syntax highlight code files</li
+      >
+    </ul>
 
-    <pre><code class="language-typescript rounded-md"><![CDATA[import { File, NgxVoyageComponent } from "ngx-voyage";
+    <p>Then you can use <code><![CDATA[<ngx-voyage>]]></code> in your app:</p>
+
+    <pre><code class="language-typescript rounded-md"><![CDATA[import { NgxVoyageComponent, File } from "ngx-voyage";
 
 @Component({
   selector: "app-root",
   imports: [NgxVoyageComponent],
-  template: '<ngx-voyage [path]="path()" [files]="files()"></ngx-voyage>',
+  template: '<ngx-voyage path="/home" [files]="files"></ngx-voyage>',
 })
 export class AppComponent {
-  path = signal("/home/");
-  files = signal<File[]>([]);
+  files: File[] = [{
+    isDirectory: true,
+    isFile: false,
+    name: 'ngx-voyage',
+    size: 1,
+    modifiedDate: new Date(),
+  }]
 }
 ]]></code></pre>
 
     <p>
-      <code>ngx-voyage</code> has peer dependencies on the following libraries:
-    </p>
-    <ul class="list-disc ml-5">
-      <li>Angular <code>^19.2.0</code></li>
-      <li>PrimeNG <code>^19.0.0</code></li>
-    </ul>
+      <a class="text-blue-500 text-xl" href="guide">
+        Check out the full Howto Guide to get more detailed information!
+      </a></p
+    >
   </div>`,
 })
 export class QuickstartComponent implements OnInit {

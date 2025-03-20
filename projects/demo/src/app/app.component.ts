@@ -24,7 +24,7 @@ import { VoyageIconComponent } from "ngx-voyage";
         <app-nav></app-nav>
       </p-drawer>
 
-      <div class="container mx-auto p-3 max-w-[64rem]">
+      <div class="container mx-auto p-3 max-w-[72rem]">
         <div class="md:hidden ">
           <p-button (click)="showMenu.set(true)" outlined="true">
             <ngx-voyage-icon type="bars"></ngx-voyage-icon>
