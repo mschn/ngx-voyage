@@ -18,6 +18,6 @@ describe("QuickstartComponent", () => {
   it("should be truthy", () => {
     fixture.detectChanges();
     expect(component).toBeTruthy();
-    expect(getByText(fixture.nativeElement, "Howto Guide")).toBeTruthy();
+    expect(getByText(fixture.nativeElement, "Quickstart")).toBeTruthy();
   });
 });
