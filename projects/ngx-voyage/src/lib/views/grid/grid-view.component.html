@@ -5,6 +5,8 @@
   @for (file of filteredFiles(); track file.name) {
     <div
       class="w-24 justify-items-center hover:bg-gray-100 p-1 rounded-md cursor-pointer"
+      (dblclick)="onDoubleClick(file)"
+      (mousedown)="onMouseDown($event)"
     >
       @if (file.isDirectory) {
         <ngx-voyage-icon type="folder" class="text-4xl"></ngx-voyage-icon>
@@ -16,5 +18,17 @@
       }
       <div class="line-clamp-2 break-all text-sm">{{ file.name }}</div>
     </div>
+  }
+
+
+  <p-contextmenu #contextMenu [model]="menuItems"></p-contextmenu>
+
+  @let data = previewData();
+  @if (showPreview() && data) {
+    <ngx-voyage-preview
+      [name]="selectedFile()?.name ?? ''"
+      [data]="data"
+      (closed)="showPreview.set(false)"
+    ></ngx-voyage-preview>
   }
 </div>

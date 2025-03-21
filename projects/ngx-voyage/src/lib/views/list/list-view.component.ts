@@ -81,14 +81,6 @@ export class ListViewComponent extends BaseViewComponent {
     });
   }
 
-  onMouseDown(event: MouseEvent) {
-    // when using double click to open a file,
-    // prevent the text node of the file name to be selected
-    if (event.detail > 1) {
-      event.preventDefault();
-    }
-  }
-
   onSort(event: SortEvent) {
     if (
       event.order === 1 &&

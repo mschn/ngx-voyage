@@ -84,6 +84,14 @@ export abstract class BaseViewComponent implements OnChanges {
     }
   }
 
+  onMouseDown(event: MouseEvent) {
+    // when using double click to open a file,
+    // prevent the text node of the file name to be selected
+    if (event.detail > 1) {
+      event.preventDefault();
+    }
+  }
+
   openFilePreview(file: File) {
     const path = this.getTargetPath(file);
     this.previewFile.emit({
