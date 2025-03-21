@@ -79,6 +79,7 @@
   >
     <ng-template #item let-item>
       <ngx-voyage-icon
+        [attr.data-testid]="'select-view-' + item.type"
         [type]="item.icon"
         class="text-gray-600 dark:text-gray-300"
       ></ngx-voyage-icon>

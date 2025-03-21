@@ -3,6 +3,7 @@ import test, { expect } from "@playwright/test";
 test.describe("large viewport", () => {
   test("should show the bookmarks panel ", async ({ page }) => {
     await page.goto("http://localhost:4200/");
+    await page.getByTestId("select-view-list").click();
     await expect(page.getByTestId("files-list-name").first()).toHaveText(
       "screenshots",
     );
@@ -17,6 +18,7 @@ test.describe("small viewport", () => {
 
   test("should hide the bookmarks panel ", async ({ page }) => {
     await page.goto("http://localhost:4200/");
+    await page.getByTestId("select-view-list").click();
     await expect(page.getByTestId("files-list-name").first()).toHaveText(
       "screenshots",
     );

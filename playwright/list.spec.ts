@@ -3,6 +3,7 @@ import { test, expect } from "@playwright/test";
 test.describe("list view", () => {
   test("should display 4 files", async ({ page }) => {
     await page.goto("http://localhost:4200/");
+    await page.getByTestId("select-view-list").click();
     await expect(page.getByTestId("files-list-name")).toHaveText([
       "screenshots",
       "example.component.ts",
@@ -32,6 +33,7 @@ test.describe("list view", () => {
 
   test("should sort by name", async ({ page }) => {
     await page.goto("http://localhost:4200/");
+    await page.getByTestId("select-view-list").click();
     await page.getByRole("columnheader", { name: "Name" }).click();
     await expect(page.getByTestId("files-list-name")).toHaveText([
       "example.component.ts",

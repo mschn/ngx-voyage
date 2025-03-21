@@ -1,7 +1,7 @@
 <div
   class="flex gap-2 flex-wrap p-1 text-gray-700 dark:text-gray-200"
   data-testid="grid-view"
-  role=""
+  role="grid"
 >
   @for (file of filteredFiles(); track file.name; let index = $index) {
     <div
@@ -13,6 +13,7 @@
       (click)="selectedFile.set(file)"
       (keypress.enter)="onDoubleClick(file)"
       [tabindex]="0"
+      role="gridcell"
     >
       @if (file.isDirectory) {
         <ngx-voyage-icon type="folder" class="text-4xl"></ngx-voyage-icon>

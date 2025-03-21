@@ -4,6 +4,7 @@ test.describe("french lang", () => {
   test.use({ locale: "fr-FR" });
   test("should files list", async ({ page }) => {
     await page.goto("http://localhost:4200/");
+    await page.getByTestId("select-view-list").click();
     await expect(page.getByTestId("files-list-type")).toHaveText([
       "Dossier",
       "Document Typescript",
