@@ -3,7 +3,9 @@
     styleClass()
   }}"
 >
-  <div class="flex-col bg-gray-300 dark:bg-gray-700 p-3 w-1/5 hidden @lg:flex">
+  <div
+    class="flex-col bg-gray-300 dark:bg-gray-700 p-3 hidden max-w-32 lg:max-w-48 @lg:flex"
+  >
     @if (header()) {
       <ng-container *ngTemplateOutlet="header()!"></ng-container>
     }
