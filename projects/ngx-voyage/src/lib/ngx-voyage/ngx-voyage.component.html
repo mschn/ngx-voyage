@@ -24,15 +24,27 @@
     <div
       class="flex-1 pt-0 bg-white dark:bg-gray-900 overflow-y-auto overflow-x-hidden rounded-lg border border-gray-300 dark:border-gray-700"
     >
-      <ngx-voyage-list
-        [path]="path()"
-        [files]="files()"
-        [message]="message()"
-        [loading]="loading()"
-        (openFile)="openFile.emit($event)"
-        (openFolder)="onOpenFolder($event)"
-        (previewFile)="previewFile.emit($event)"
-      ></ngx-voyage-list>
+      @if (store.selectedView() === "grid") {
+        <ngx-voyage-grid-view
+          [path]="path()"
+          [files]="files()"
+          [message]="message()"
+          [loading]="loading()"
+          (openFile)="openFile.emit($event)"
+          (openFolder)="onOpenFolder($event)"
+          (previewFile)="previewFile.emit($event)"
+        ></ngx-voyage-grid-view>
+      } @else {
+        <ngx-voyage-list-view
+          [path]="path()"
+          [files]="files()"
+          [message]="message()"
+          [loading]="loading()"
+          (openFile)="openFile.emit($event)"
+          (openFolder)="onOpenFolder($event)"
+          (previewFile)="previewFile.emit($event)"
+        ></ngx-voyage-list-view>
+      }
     </div>
   </div>
 </div>

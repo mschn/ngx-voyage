@@ -10,9 +10,11 @@ import {
 } from "@angular/core";
 import { ButtonModule } from "primeng/button";
 import { PopoverModule } from "primeng/popover";
-import { VoyageIconComponent } from "../icon";
+import { IconType, VoyageIconComponent } from "../icon";
 import { SettingsComponent } from "../settings/settings.component";
-import { Store } from "../model/store";
+import { Store, ViewType } from "../model/store";
+import { SelectButtonModule } from "primeng/selectbutton";
+import { FormsModule } from "@angular/forms";
 
 @Component({
   selector: "ngx-voyage-title",
@@ -22,14 +24,16 @@ import { Store } from "../model/store";
     PopoverModule,
     SettingsComponent,
     VoyageIconComponent,
+    SelectButtonModule,
+    FormsModule,
   ],
 })
 export class TitleComponent implements OnChanges {
-  #store = inject(Store);
+  store = inject(Store);
 
   path = model.required<string>();
 
-  bookmarks = this.#store.bookmarks;
+  bookmarks = this.store.bookmarks;
   bookmark = computed(() =>
     this.bookmarks().find((bookmark) => bookmark.path === this.path()),
   );
@@ -72,6 +76,22 @@ export class TitleComponent implements OnChanges {
       this.historyPos() === this.history().length,
   );
 
+  selectedView = computed(() =>
+    this.viewOptions.find(
+      (option) => option.type === this.store.selectedView(),
+    ),
+  );
+  viewOptions: { icon: IconType; type: ViewType }[] = [
+    {
+      icon: "grid",
+      type: "grid",
+    },
+    {
+      icon: "list",
+      type: "list",
+    },
+  ];
+
   ngOnChanges(changes: SimpleChanges): void {
     if (changes["path"]) {
       if (this.history()[this.historyPos() - 1] === this.path()) {
@@ -107,7 +127,7 @@ export class TitleComponent implements OnChanges {
 
   onAddBookmark() {
     const name = this.path().substring(this.path().lastIndexOf("/") + 1);
-    this.#store.addBookmark({
+    this.store.addBookmark({
       icon: "bookmark",
       name,
       path: this.path(),
@@ -117,7 +137,11 @@ export class TitleComponent implements OnChanges {
   onRemoveBookmark() {
     const b = this.bookmark();
     if (b != undefined) {
-      this.#store.removeBookmark(this.path());
+      this.store.removeBookmark(this.path());
     }
+  }
+
+  setSelectedView(viewType: ViewType) {
+    this.store.setSelectedView(viewType);
   }
 }

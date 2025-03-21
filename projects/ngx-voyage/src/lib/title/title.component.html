@@ -70,6 +70,21 @@
     }
   </div>
 
+  <p-selectbutton
+    [options]="viewOptions"
+    [ngModel]="selectedView()"
+    (ngModelChange)="setSelectedView($event.type)"
+    size="small"
+    class="ml-3"
+  >
+    <ng-template #item let-item>
+      <ngx-voyage-icon
+        [type]="item.icon"
+        class="text-gray-600 dark:text-gray-300"
+      ></ngx-voyage-icon>
+    </ng-template>
+  </p-selectbutton>
+
   <p-button (click)="op.toggle($event)" icon="pi" text="true" class="ml-3">
     <ngx-voyage-icon
       type="bars"

@@ -1,0 +1,105 @@
+<div data-testid="list-view">
+  <p-table
+    #dataTable
+    [value]="sortedFiles()"
+    [scrollable]="true"
+    scrollHeight="flex"
+    stripedRows
+    selectionMode="single"
+    metaKeySelection="true"
+    [(selection)]="selectedFile"
+    [customSort]="true"
+    (sortFunction)="onSort($event)"
+    [sortField]="sortField()"
+    [sortOrder]="sortOrder()"
+    [resizableColumns]="true"
+    tableStyleClass="table-fixed"
+  >
+    <ng-template #header>
+      <tr>
+        <th pResizableColumn pSortableColumn="name" class="max-w-0">
+          {{ "NAME" | translate }} <p-sortIcon field="name" />
+        </th>
+        <th pResizableColumn pSortableColumn="size" class="w-1/5">
+          {{ "SIZE" | translate }} <p-sortIcon field="size" />
+        </th>
+        <th pResizableColumn pSortableColumn="type" class="w-1/5">
+          {{ "TYPE" | translate }} <p-sortIcon field="type" />
+        </th>
+        <th pResizableColumn pSortableColumn="modifiedDate" class="w-3/10">
+          {{ "DATE" | translate }} <p-sortIcon field="modifiedDate" />
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-file let-rowIndex="rowIndex">
+      <tr
+        class="cursor-pointer"
+        (contextmenu)="onContextMenu($event, file)"
+        [pSelectableRow]="file"
+        (dblclick)="onDoubleClick(file)"
+        (mousedown)="onMouseDown($event)"
+        [attr.data-rowIndex]="rowIndex"
+      >
+        <td>
+          <div
+            class="flex flex-row gap-3 items-center"
+            [ngClass]="{ 'text-gray-500': file.name.startsWith('.') }"
+          >
+            <div class="w-6" class="text-2xl">
+              @if (file.isDirectory) {
+                <ngx-voyage-icon type="folder"></ngx-voyage-icon>
+              } @else {
+                <ngx-voyage-icon [type]="getFileIcon(file)"></ngx-voyage-icon>
+              }
+            </div>
+            <span class="truncate" data-testid="files-list-name">{{
+              file.name
+            }}</span>
+          </div>
+        </td>
+        <td
+          class="truncate"
+          [ngClass]="{ 'text-gray-500': file.name.startsWith('.') }"
+          data-testid="files-list-size"
+        >
+          {{ prettyBytes(file.size) }}
+        </td>
+        <td class="truncate" data-testid="files-list-type">
+          {{ file.type | translate }}
+        </td>
+        <td>
+          <div class="truncate" data-testid="files-list-date">
+            {{ formatDate(file) }}
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template #emptymessage>
+      <tr>
+        <td colspan="4" class="bg-white dark:bg-gray-900 !border-b-0">
+          @if (message()) {
+            <ngx-voyage-message [message]="message()"></ngx-voyage-message>
+          } @else if (loading()) {
+            <p-progressbar mode="indeterminate" styleClass="!h-2" />
+          } @else {
+            <ngx-voyage-message
+              [message]="{ text: 'This folder is empty', type: 'info' }"
+            ></ngx-voyage-message>
+          }
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <p-contextmenu #contextMenu [model]="menuItems"></p-contextmenu>
+
+  @let data = previewData();
+  @if (showPreview() && data) {
+    <ngx-voyage-preview
+      [name]="selectedFile()?.name ?? ''"
+      [data]="data"
+      (closed)="showPreview.set(false)"
+    ></ngx-voyage-preview>
+  }
+</div>

@@ -5,21 +5,21 @@ import {
   getByText,
   queryByText,
 } from "@testing-library/dom";
-import { getFileMock } from "../model/model.mock";
-import { Store } from "../model/store";
-import { ListComponent } from "./list.component";
+import { getFileMock } from "../../model/model.mock";
+import { Store } from "../../model/store";
+import { ListViewComponent } from "./list-view.component";
 
-describe("ListComponent", () => {
-  let component: ListComponent;
-  let fixture: ComponentFixture<ListComponent>;
+describe("ListViewComponent", () => {
+  let component: ListViewComponent;
+  let fixture: ComponentFixture<ListViewComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ListComponent],
+      imports: [ListViewComponent],
       providers: [],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ListComponent);
+    fixture = TestBed.createComponent(ListViewComponent);
     component = fixture.componentInstance;
 
     fixture.componentRef.setInput("path", "/");

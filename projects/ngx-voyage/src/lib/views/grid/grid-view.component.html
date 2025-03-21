@@ -1,0 +1,20 @@
+<div
+  class="flex gap-2 flex-wrap p-1 text-gray-700 dark:text-gray-200"
+  data-testid="grid-view"
+>
+  @for (file of filteredFiles(); track file.name) {
+    <div
+      class="w-24 justify-items-center hover:bg-gray-100 p-1 rounded-md cursor-pointer"
+    >
+      @if (file.isDirectory) {
+        <ngx-voyage-icon type="folder" class="text-4xl"></ngx-voyage-icon>
+      } @else {
+        <ngx-voyage-icon
+          [type]="getFileIcon(file)"
+          class="text-4xl"
+        ></ngx-voyage-icon>
+      }
+      <div class="line-clamp-2 break-all text-sm">{{ file.name }}</div>
+    </div>
+  }
+</div>

@@ -13,17 +13,19 @@ import {
 import { ProgressBarModule } from "primeng/progressbar";
 import { BookmarksComponent } from "../bookmarks/bookmarks.component";
 import { getMessages } from "../i18n/i18n";
-import { ListComponent } from "../list/list.component";
 import { Message } from "../model/message";
 import { File, FilePreviewOutput, normalizeFile } from "../model/model";
 import { Store } from "../model/store";
 import { TitleComponent } from "../title/title.component";
+import { GridViewComponent } from "../views/grid/grid-view.component";
+import { ListViewComponent } from "../views/list/list-view.component";
 
 @Component({
   selector: "ngx-voyage",
   imports: [
     TitleComponent,
-    ListComponent,
+    ListViewComponent,
+    GridViewComponent,
     ProgressBarModule,
     BookmarksComponent,
     NgTemplateOutlet,
@@ -37,7 +39,7 @@ import { TitleComponent } from "../title/title.component";
   styleUrls: ["ngx-voyage.component.css"],
 })
 export class NgxVoyageComponent implements OnInit {
-  #store = inject(Store);
+  store = inject(Store);
 
   /**
    * current folder path to display in the title bar
@@ -96,10 +98,10 @@ export class NgxVoyageComponent implements OnInit {
 
   ngOnInit() {
     const hasOpenFileOutput = this.openFile["listeners"]?.length > 0;
-    this.#store.showOpenFile.set(hasOpenFileOutput);
+    this.store.showOpenFile.set(hasOpenFileOutput);
 
-    if (this.#store.bookmarks().length === 0) {
-      this.#store.addBookmark({
+    if (this.store.bookmarks().length === 0) {
+      this.store.addBookmark({
         icon: "home",
         name: getMessages().HOME,
         path: this.path(),
