@@ -126,4 +126,8 @@ export abstract class BaseViewComponent implements OnChanges {
   getTargetPath(file: File) {
     return `${this.path()}/${file.name}`.replaceAll("//", "/");
   }
+
+  isSelectedFile(file: File) {
+    return this.selectedFile() === file;
+  }
 }

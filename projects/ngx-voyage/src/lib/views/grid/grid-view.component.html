@@ -1,12 +1,18 @@
 <div
   class="flex gap-2 flex-wrap p-1 text-gray-700 dark:text-gray-200"
   data-testid="grid-view"
+  role=""
 >
-  @for (file of filteredFiles(); track file.name) {
+  @for (file of filteredFiles(); track file.name; let index = $index) {
     <div
-      class="w-24 justify-items-center hover:bg-gray-100 p-1 rounded-md cursor-pointer"
+      class="w-24 justify-items-center hover:bg-gray-100 p-1 rounded-md cursor-pointer h-fit"
+      [ngClass]="{ 'bg-(--p-primary-100) text-(--p-highlight-color)': isSelectedFile(file) }"
       (dblclick)="onDoubleClick(file)"
       (mousedown)="onMouseDown($event)"
+      (contextmenu)="onContextMenu($event, file)"
+      (click)="selectedFile.set(file)"
+      (keypress.enter)="onDoubleClick(file)"
+      [tabindex]="0"
     >
       @if (file.isDirectory) {
         <ngx-voyage-icon type="folder" class="text-4xl"></ngx-voyage-icon>
@@ -19,7 +25,6 @@
       <div class="line-clamp-2 break-all text-sm">{{ file.name }}</div>
     </div>
   }
-
 
   <p-contextmenu #contextMenu [model]="menuItems"></p-contextmenu>
 
