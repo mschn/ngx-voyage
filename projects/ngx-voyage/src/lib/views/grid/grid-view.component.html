@@ -4,7 +4,7 @@
 >
   @for (file of sortedFiles(); track file.name; let index = $index) {
     <div
-      class="w-24 justify-items-center hover:bg-gray-100 p-1 rounded-md cursor-pointer h-fit"
+      class="w-24 text-center hover:bg-gray-100 p-1 rounded-md cursor-pointer h-fit"
       [ngClass]="{
         'bg-(--p-primary-100) text-(--p-highlight-color)': isSelectedFile(file),
       }"

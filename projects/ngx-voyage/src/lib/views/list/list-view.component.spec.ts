@@ -1,10 +1,5 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import {
-  getAllByTestId,
-  getByTestId,
-  getByText,
-  queryByText,
-} from "@testing-library/dom";
+import { getAllByTestId, getByTestId, queryByText } from "@testing-library/dom";
 import { getFileMock } from "../../model/model.mock";
 import { Store } from "../../model/store";
 import { ListViewComponent } from "./list-view.component";
@@ -16,7 +11,7 @@ describe("ListViewComponent", () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ListViewComponent],
-      providers: [],
+      providers: [Store],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ListViewComponent);
@@ -27,39 +22,7 @@ describe("ListViewComponent", () => {
 
     jest.spyOn(component.previewFile, "emit");
     jest.spyOn(component.openFile, "emit");
-    jest.spyOn(component.openFolder, "emit");
-  });
-
-  it("should display an empty folder message", () => {
-    fixture.detectChanges();
-
-    expect(
-      getByText(fixture.nativeElement, "This folder is empty"),
-    ).toBeTruthy();
-  });
-
-  it("should display a loading state", () => {
-    fixture.componentRef.setInput("loading", true);
-    fixture.detectChanges();
-
-    expect(
-      queryByText(fixture.nativeElement, "This folder is empty"),
-    ).toBeFalsy();
-    expect(fixture.nativeElement.querySelector("p-progressbar")).toBeTruthy();
-  });
-
-  it("should display a message", () => {
-    fixture.componentRef.setInput("message", {
-      type: "info",
-      text: "Hello test",
-    });
-    fixture.detectChanges();
-
-    expect(
-      queryByText(fixture.nativeElement, "This folder is empty"),
-    ).toBeFalsy();
-    expect(fixture.nativeElement.querySelector("p-progressbar")).toBeFalsy();
-    expect(getByText(fixture.nativeElement, "Hello test")).toBeTruthy();
+    jest.spyOn(component.path, "set");
   });
 
   it("should not display hidden files", () => {
@@ -170,7 +133,7 @@ describe("ListViewComponent", () => {
     component.onDoubleClick(file);
     expect(component.previewFile.emit).toHaveBeenCalled();
     expect(component.openFile.emit).not.toHaveBeenCalled();
-    expect(component.openFolder.emit).not.toHaveBeenCalled();
+    expect(component.path.set).not.toHaveBeenCalled();
   });
 
   it("should open file on double click", () => {
@@ -180,7 +143,7 @@ describe("ListViewComponent", () => {
     component.onDoubleClick(file);
     expect(component.previewFile.emit).not.toHaveBeenCalled();
     expect(component.openFile.emit).toHaveBeenCalled();
-    expect(component.openFolder.emit).not.toHaveBeenCalled();
+    expect(component.path.set).not.toHaveBeenCalled();
   });
 
   it("should open folder on double click", () => {
@@ -190,7 +153,7 @@ describe("ListViewComponent", () => {
     component.onDoubleClick(file);
     expect(component.previewFile.emit).not.toHaveBeenCalled();
     expect(component.openFile.emit).not.toHaveBeenCalled();
-    expect(component.openFolder.emit).toHaveBeenCalled();
+    expect(component.path.set).toHaveBeenCalled();
   });
 
   it("should open folder on enter", () => {
@@ -202,7 +165,7 @@ describe("ListViewComponent", () => {
     component.onDoubleClick(file);
     expect(component.previewFile.emit).not.toHaveBeenCalled();
     expect(component.openFile.emit).not.toHaveBeenCalled();
-    expect(component.openFolder.emit).toHaveBeenCalled();
+    expect(component.path.set).toHaveBeenCalled();
   });
 
   it("should open the context menu for a folder", () => {

@@ -10,6 +10,7 @@ describe("TitleComponent", () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [TitleComponent],
+      providers: [Store],
     }).compileComponents();
 
     fixture = TestBed.createComponent(TitleComponent);

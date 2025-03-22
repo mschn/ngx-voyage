@@ -2,7 +2,6 @@ import { Component } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { getByTestId, getByText, queryByTestId } from "@testing-library/dom";
 import { getFileMock } from "../model/model.mock";
-import { Store } from "../model/store";
 import { NgxVoyageComponent } from "./ngx-voyage.component";
 
 @Component({
@@ -46,7 +45,6 @@ describe("NgxVoyageComponent", () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [NgxVoyageComponent],
-      providers: [],
     }).compileComponents();
 
     fixture = TestBed.createComponent(NgxVoyageComponent);
@@ -64,10 +62,9 @@ describe("NgxVoyageComponent", () => {
   });
 
   it("should add the home bookmark on init", () => {
-    const store = TestBed.inject(Store);
-    expect(store.bookmarks()).toEqual([]);
+    expect(component.store.bookmarks()).toEqual([]);
     fixture.detectChanges();
-    expect(store.bookmarks()).toEqual([
+    expect(component.store.bookmarks()).toEqual([
       { icon: "home", name: "Home", path: "/foo/bar" },
     ]);
   });
@@ -89,8 +86,7 @@ describe("NgxVoyageComponent", () => {
   });
 
   it("should show the grid view", () => {
-    const store = TestBed.inject(Store);
-    store.setSelectedView("list");
+    component.store.setSelectedView("list");
     fixture.detectChanges();
     expect(queryByTestId(fixture.nativeElement, "grid-view")).toBeFalsy();
     expect(getByTestId(fixture.nativeElement, "list-view")).toBeTruthy();

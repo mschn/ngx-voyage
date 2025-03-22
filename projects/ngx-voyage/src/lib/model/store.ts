@@ -7,7 +7,7 @@ import {
 
 export type ViewType = "list" | "grid";
 
-@Injectable({ providedIn: "root" })
+@Injectable()
 export class Store {
   readonly bookmarks = signal<Bookmark[]>([]);
   readonly showHiddenFiles = signal(false);

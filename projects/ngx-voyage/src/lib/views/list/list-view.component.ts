@@ -14,7 +14,6 @@ import { Table, TableModule } from "primeng/table";
 import { getMessages } from "../../i18n/i18n";
 import { TranslatePipe } from "../../i18n/translate.pipe";
 import { VoyageIconComponent } from "../../icon";
-import { MessageComponent } from "../../message/message.component";
 import { isToday, isYesterday } from "../../model/dates";
 import {
   getSortFieldFromLocalstorage,
@@ -36,7 +35,6 @@ import { BaseViewComponent } from "../base-view.component";
     ContextMenuModule,
     DialogModule,
     PreviewComponent,
-    MessageComponent,
     ProgressBarModule,
     TranslatePipe,
     VoyageIconComponent,

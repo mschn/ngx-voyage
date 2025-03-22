@@ -74,22 +74,6 @@
         </td>
       </tr>
     </ng-template>
-
-    <ng-template #emptymessage>
-      <tr>
-        <td colspan="4" class="bg-white dark:bg-gray-900 !border-b-0">
-          @if (message()) {
-            <ngx-voyage-message [message]="message()"></ngx-voyage-message>
-          } @else if (loading()) {
-            <p-progressbar mode="indeterminate" styleClass="!h-2" />
-          } @else {
-            <ngx-voyage-message
-              [message]="{ text: 'This folder is empty', type: 'info' }"
-            ></ngx-voyage-message>
-          }
-        </td>
-      </tr>
-    </ng-template>
   </p-table>
 
   <p-contextmenu #contextMenu [model]="menuItems"></p-contextmenu>

@@ -13,7 +13,6 @@ import {
 import { MenuItem } from "primeng/api";
 import { ContextMenu } from "primeng/contextmenu";
 import { canPreviewFile, getFileIcon } from "../model/file-types";
-import { Message } from "../model/message";
 import {
   File,
   FilePreviewOutput,
@@ -28,12 +27,9 @@ import { Store } from "../model/store";
 export abstract class BaseViewComponent implements OnChanges {
   store = inject(Store);
 
-  path = input.required<string>();
+  path = model.required<string>();
   files = input.required<File[]>();
-  message = input<Message>();
-  loading = input<boolean>(false);
 
-  openFolder = output<string>();
   openFile = output<string>();
   previewFile = output<FilePreviewOutput>();
 
@@ -124,7 +120,7 @@ export abstract class BaseViewComponent implements OnChanges {
   openFileOrFolder(file: File) {
     const targetPath = this.getTargetPath(file);
     if (file.isDirectory) {
-      this.openFolder.emit(targetPath);
+      this.path.set(targetPath);
     } else {
       this.openFile.emit(targetPath);
     }

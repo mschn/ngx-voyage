@@ -17,20 +17,19 @@ import { Message } from "../model/message";
 import { File, FilePreviewOutput, normalizeFile } from "../model/model";
 import { Store } from "../model/store";
 import { TitleComponent } from "../title/title.component";
-import { GridViewComponent } from "../views/grid/grid-view.component";
-import { ListViewComponent } from "../views/list/list-view.component";
+import { FilesViewComponent } from "../views/files-view.component";
 
 @Component({
   selector: "ngx-voyage",
   imports: [
     TitleComponent,
-    ListViewComponent,
-    GridViewComponent,
+    FilesViewComponent,
     ProgressBarModule,
     BookmarksComponent,
     NgTemplateOutlet,
     CommonModule,
   ],
+  providers: [Store],
   templateUrl: "./ngx-voyage.component.html",
   encapsulation: ViewEncapsulation.None,
   host: {
@@ -107,9 +106,5 @@ export class NgxVoyageComponent implements OnInit {
         path: this.path(),
       });
     }
-  }
-
-  onOpenFolder(folderPath: string) {
-    this.path.set(folderPath);
   }
 }

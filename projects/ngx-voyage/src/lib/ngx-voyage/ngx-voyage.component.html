@@ -18,33 +18,20 @@
   <div class="flex-1 flex flex-col gap-3 overflow-hidden p-3">
     <ngx-voyage-title
       [path]="path()"
-      (navigate)="onOpenFolder($event)"
+      (navigate)="path.set($event)"
     ></ngx-voyage-title>
 
     <div
-      class="flex-1 pt-0 bg-white dark:bg-gray-900 overflow-y-auto overflow-x-hidden rounded-lg border border-gray-300 dark:border-gray-700"
+      class="h-100 flex-1 pt-0 bg-white dark:bg-gray-900 overflow-y-auto overflow-x-hidden rounded-lg border border-gray-300 dark:border-gray-700"
     >
-      @if (store.selectedView() === "grid") {
-        <ngx-voyage-grid-view
-          [path]="path()"
-          [files]="files()"
-          [message]="message()"
-          [loading]="loading()"
-          (openFile)="openFile.emit($event)"
-          (openFolder)="onOpenFolder($event)"
-          (previewFile)="previewFile.emit($event)"
-        ></ngx-voyage-grid-view>
-      } @else {
-        <ngx-voyage-list-view
-          [path]="path()"
-          [files]="files()"
-          [message]="message()"
-          [loading]="loading()"
-          (openFile)="openFile.emit($event)"
-          (openFolder)="onOpenFolder($event)"
-          (previewFile)="previewFile.emit($event)"
-        ></ngx-voyage-list-view>
-      }
+      <ngx-voyage-files-view
+        [(path)]="path"
+        [files]="files()"
+        [message]="message()"
+        [loading]="loading()"
+        (openFile)="openFile.emit($event)"
+        (previewFile)="previewFile.emit($event)"
+      ></ngx-voyage-files-view>
     </div>
   </div>
 </div>
