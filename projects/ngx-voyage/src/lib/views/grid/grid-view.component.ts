@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, HostListener } from "@angular/core";
 import { BaseViewComponent } from "../base-view.component";
 import { VoyageIconComponent } from "../../icon";
 import { ContextMenuModule } from "primeng/contextmenu";
@@ -10,4 +10,18 @@ import { NgClass } from "@angular/common";
   templateUrl: "./grid-view.component.html",
   imports: [VoyageIconComponent, ContextMenuModule, PreviewComponent, NgClass],
 })
-export class GridViewComponent extends BaseViewComponent {}
+export class GridViewComponent extends BaseViewComponent {
+  @HostListener("window:keydown", ["$event"])
+  onKeydown(event: KeyboardEvent) {
+    const selected = this.selectedFile();
+    if (event.key === "ArrowLeft") {
+      this.selectNextOrPreviousFile(-1);
+    }
+    if (event.key === "ArrowRight") {
+      this.selectNextOrPreviousFile(1);
+    }
+    if (event.key === "Enter" && selected) {
+      this.onDoubleClick(selected);
+    }
+  }
+}

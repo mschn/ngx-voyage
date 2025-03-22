@@ -1,11 +1,9 @@
 import { DatePipe, NgClass } from "@angular/common";
 import {
   Component,
-  computed,
   effect,
   HostListener,
   inject,
-  signal,
   viewChild,
 } from "@angular/core";
 import { SortEvent } from "primeng/api";
@@ -23,13 +21,7 @@ import {
   getSortOrderFromLocalstorage,
   writeSortToLocalstorage,
 } from "../../model/localstorage";
-import {
-  File,
-  FileSortFields,
-  isFileEqual,
-  isFileSortField,
-  sortFiles,
-} from "../../model/model";
+import { File, isFileSortField } from "../../model/model";
 import { prettyBytes } from "../../model/utils";
 import { PreviewComponent } from "../../preview/preview.component";
 import { BaseViewComponent } from "../base-view.component";
@@ -55,19 +47,6 @@ export class ListViewComponent extends BaseViewComponent {
   datePipe = inject(DatePipe);
 
   dataTable = viewChild<Table>("dataTable");
-
-  sortOrder = signal<number>(0);
-  sortField = signal<FileSortFields | undefined>(undefined);
-  sortedFiles = computed(() => {
-    if (this.sortOrder() == undefined || this.sortField() == undefined) {
-      return this.filteredFiles();
-    }
-    return sortFiles(
-      [...this.filteredFiles()],
-      this.sortField(),
-      this.sortOrder(),
-    );
-  });
 
   prettyBytes = prettyBytes;
 
@@ -102,50 +81,14 @@ export class ListViewComponent extends BaseViewComponent {
   onKeydown(event: KeyboardEvent) {
     const selected = this.selectedFile();
     if (event.key === "ArrowUp") {
-      this.selectFileWithOffset(-1);
+      this.selectNextOrPreviousFile(-1);
     }
     if (event.key === "ArrowDown") {
-      this.selectFileWithOffset(1);
+      this.selectNextOrPreviousFile(1);
     }
     if (event.key === "Enter" && selected) {
       this.onDoubleClick(selected);
     }
-  }
-
-  selectFileWithOffset(offset: -1 | 1) {
-    const selected = this.selectedFile();
-    if (selected == undefined) {
-      this.selectFirstFile();
-    } else {
-      for (let i = 0; i < this.sortedFiles().length; i++) {
-        const file = this.sortedFiles()[i];
-        if (
-          isFileEqual(file, selected) &&
-          i + offset >= 0 &&
-          i + offset < this.sortedFiles().length
-        ) {
-          this.selectFile(this.sortedFiles()[i + offset]);
-          break;
-        }
-      }
-    }
-  }
-
-  selectFirstFile() {
-    this.selectFile(this.sortedFiles()[0]);
-  }
-
-  selectFile(file: File) {
-    for (let i = 0; i < this.sortedFiles().length; i++) {
-      const f = this.sortedFiles()[i];
-      if (isFileEqual(file, f)) {
-        const fileDom = document.querySelector(
-          `tr[data-rowIndex="${i}"]`,
-        ) as HTMLTableRowElement;
-        fileDom.focus();
-      }
-    }
-    this.selectedFile.set(file);
   }
 
   formatDate(file: File) {
