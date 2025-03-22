@@ -1,4 +1,4 @@
-<div class="flex flex-row items-center @container">
+<div class="flex flex-row items-center">
   <p-button
     icon="pi"
     text="true"
@@ -50,7 +50,7 @@
       <p-button variant="text" class="ml-auto" (onClick)="onRemoveBookmark()">
         <ngx-voyage-icon
           type="star-solid"
-          class="text-yellow-500"
+          class="text-yellow-500 hidden @md:inline-block"
         ></ngx-voyage-icon>
       </p-button>
     } @else if (path() === "/") {
@@ -58,7 +58,7 @@
     } @else {
       <p-button
         variant="text"
-        class="ml-auto"
+        class="ml-auto hidden @md:inline-block"
         (onClick)="onAddBookmark()"
         data-testid="add-bookmark"
       >
@@ -76,7 +76,7 @@
     (ngModelChange)="setSelectedView($event.type)"
     allowEmpty="false"
     size="small"
-    class="ml-3"
+    class="ml-3 hidden! @md:inline-flex!"
   >
     <ng-template #item let-item>
       <ngx-voyage-icon
