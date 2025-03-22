@@ -8,9 +8,7 @@ export interface Bookmark {
   icon: IconType;
 }
 
-export function isBookmarks(
-  bookmarks: unknown | undefined,
-): bookmarks is Bookmark[] {
+export function isBookmarks(bookmarks: unknown): bookmarks is Bookmark[] {
   if (Array.isArray(bookmarks)) {
     return bookmarks.every(
       (bookmark) =>

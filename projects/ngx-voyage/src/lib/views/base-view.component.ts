@@ -14,7 +14,13 @@ import { MenuItem } from "primeng/api";
 import { ContextMenu } from "primeng/contextmenu";
 import { canPreviewFile, getFileIcon } from "../model/file-types";
 import { Message } from "../model/message";
-import { File, FilePreviewOutput } from "../model/model";
+import {
+  File,
+  FilePreviewOutput,
+  FileSortFields,
+  isFileEqual,
+  sortFiles,
+} from "../model/model";
 import { Store } from "../model/store";
 @Component({
   template: ``,
@@ -44,6 +50,18 @@ export abstract class BaseViewComponent implements OnChanges {
     } else {
       return this.files().filter(({ name }) => !name.startsWith("."));
     }
+  });
+  sortOrder = signal<number>(0);
+  sortField = signal<FileSortFields | undefined>(undefined);
+  sortedFiles = computed(() => {
+    if (this.sortOrder() == undefined || this.sortField() == undefined) {
+      return this.filteredFiles();
+    }
+    return sortFiles(
+      [...this.filteredFiles()],
+      this.sortField(),
+      this.sortOrder(),
+    );
   });
 
   menuItems: MenuItem[] = [
@@ -129,5 +147,41 @@ export abstract class BaseViewComponent implements OnChanges {
 
   isSelectedFile(file: File) {
     return this.selectedFile() === file;
+  }
+
+  selectNextOrPreviousFile(offset: -1 | 1) {
+    const selected = this.selectedFile();
+    if (selected == undefined) {
+      this.selectFirstFile();
+    } else {
+      for (let i = 0; i < this.sortedFiles().length; i++) {
+        const file = this.sortedFiles()[i];
+        if (
+          isFileEqual(file, selected) &&
+          i + offset >= 0 &&
+          i + offset < this.sortedFiles().length
+        ) {
+          this.selectFile(this.sortedFiles()[i + offset]);
+          break;
+        }
+      }
+    }
+  }
+
+  selectFirstFile() {
+    this.selectFile(this.sortedFiles()[0]);
+  }
+
+  selectFile(file: File) {
+    for (let i = 0; i < this.sortedFiles().length; i++) {
+      const f = this.sortedFiles()[i];
+      if (isFileEqual(file, f)) {
+        const fileDom = document.querySelector(
+          `[data-fileIndex="${i}"]`,
+        ) as HTMLTableRowElement;
+        fileDom.focus();
+      }
+    }
+    this.selectedFile.set(file);
   }
 }
