@@ -62,12 +62,21 @@ export function sortFiles(
     const value1 = f1[field];
     const value2 = f2[field];
     let result = null;
-    if (value1 == null && value2 != null) result = -1;
-    else if (value1 != null && value2 == null) result = 1;
-    else if (value1 == null && value2 == null) result = 0;
-    else if (typeof value1 === "string" && typeof value2 === "string")
+    if (value1 == null && value2 != null) {
+      result = -1;
+    } else if (value1 != null && value2 == null) {
+      result = 1;
+    } else if (value1 == null && value2 == null) {
+      result = 0;
+    } else if (typeof value1 === "string" && typeof value2 === "string") {
       result = value1.localeCompare(value2);
-    else result = value1! < value2! ? -1 : value1! > value2! ? 1 : 0;
+    } else if (value1! < value2!) {
+      result = -1;
+    } else if (value1! > value2!) {
+      result = 1;
+    } else {
+      result = 0;
+    }
     return order * result;
   });
 }

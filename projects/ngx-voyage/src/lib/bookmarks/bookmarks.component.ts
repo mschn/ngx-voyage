@@ -10,7 +10,7 @@ import { Store } from "../model/store";
   imports: [ButtonModule, VoyageIconComponent],
 })
 export class BookmarksComponent {
-  #store = inject(Store);
+  readonly #store = inject(Store);
 
   path = model.required<string>();
   bookmarks = this.#store.bookmarks;
