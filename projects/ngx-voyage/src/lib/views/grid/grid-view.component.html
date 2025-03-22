@@ -24,7 +24,11 @@
           class="text-4xl"
         ></ngx-voyage-icon>
       }
-      <div class="line-clamp-2 break-all text-sm">{{ file.name }}</div>
+      <div
+        class="line-clamp-2 break-all text-sm"
+        data-testid="files-grid-name"
+        >{{ file.name }}</div
+      >
     </div>
   }
 

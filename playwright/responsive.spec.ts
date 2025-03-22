@@ -18,10 +18,11 @@ test.describe("small viewport", () => {
 
   test("should hide the bookmarks panel ", async ({ page }) => {
     await page.goto("http://localhost:4200/");
-    await page.getByTestId("select-view-list").click();
-    await expect(page.getByTestId("files-list-name").first()).toHaveText(
+    await expect(page.getByTestId("files-grid-name").first()).toHaveText(
       "screenshots",
     );
+
+    await expect(page.getByTestId("select-view-list")).toBeHidden();
     await expect(page.getByTestId("bookmark")).toBeHidden();
   });
 });
