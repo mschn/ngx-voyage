@@ -1,4 +1,4 @@
-import { DatePipe, NgClass } from "@angular/common";
+import { DatePipe, NgClass, NgTemplateOutlet } from "@angular/common";
 import {
   Component,
   effect,
@@ -38,6 +38,7 @@ import { BaseViewComponent } from "../base-view.component";
     ProgressBarModule,
     TranslatePipe,
     VoyageIconComponent,
+    NgTemplateOutlet,
   ],
   providers: [DatePipe],
 })

@@ -74,6 +74,13 @@
         </td>
       </tr>
     </ng-template>
+    <ng-template #emptymessage>
+      <tr>
+        <td colspan="4">
+          <ng-container *ngTemplateOutlet="emptyFiles()!"></ng-container>
+        </td>
+      </tr>
+    </ng-template>
   </p-table>
 
   <p-contextmenu #contextMenu [model]="menuItems"></p-contextmenu>

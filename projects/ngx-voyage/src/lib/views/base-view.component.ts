@@ -1,6 +1,7 @@
 import {
   Component,
   computed,
+  contentChild,
   inject,
   input,
   model,
@@ -8,6 +9,7 @@ import {
   output,
   signal,
   SimpleChanges,
+  TemplateRef,
   viewChild,
 } from "@angular/core";
 import { MenuItem } from "primeng/api";
@@ -36,6 +38,8 @@ export abstract class BaseViewComponent implements OnChanges {
   selectedFile = model<File | undefined>(undefined);
   showPreview = model(false);
   previewData = signal<Blob | undefined>(undefined);
+
+  emptyFiles = contentChild<TemplateRef<Element>>("emptyFiles");
 
   contextMenu = viewChild<ContextMenu>("contextMenu");
   getFileIcon = getFileIcon;

@@ -6,26 +6,14 @@ import { File, FilePreviewOutput } from "../model/model";
 import { Store } from "../model/store";
 import { GridViewComponent } from "./grid/grid-view.component";
 import { ListViewComponent } from "./list/list-view.component";
+import { NgTemplateOutlet } from "@angular/common";
 @Component({
   selector: "ngx-voyage-files-view",
   template: `
-    @if (message()) {
-      <div class="p-1">
-        <ngx-voyage-message [message]="message()"></ngx-voyage-message>
-      </div>
-    } @else if (loading()) {
-      <div class="p-1">
-        <p-progressbar mode="indeterminate" styleClass="!h-2" />
-      </div>
-    } @else if (isEmpty()) {
-      <div class="p-1">
-        <ngx-voyage-message
-          [message]="{ text: 'This folder is empty', type: 'info' }"
-        ></ngx-voyage-message>
-      </div>
-    }
-
     @if (store.selectedView() === "grid") {
+      <div class="p-2">
+        <ng-container *ngTemplateOutlet="empty"></ng-container>
+      </div>
       <ngx-voyage-grid-view
         [(path)]="path"
         [files]="files()"
@@ -38,14 +26,35 @@ import { ListViewComponent } from "./list/list-view.component";
         [files]="files()"
         (openFile)="openFile.emit($event)"
         (previewFile)="previewFile.emit($event)"
-      ></ngx-voyage-list-view>
+      >
+        <ng-template #emptyFiles>
+          <ng-container *ngTemplateOutlet="empty"></ng-container>
+        </ng-template>
+      </ngx-voyage-list-view>
     }
+
+    <ng-template #empty>
+      @if (message()) {
+        <ngx-voyage-message [message]="message()"></ngx-voyage-message>
+      } @else if (loading()) {
+        <div class="p-1">
+          <p-progressbar mode="indeterminate" styleClass="!h-2" />
+        </div>
+      } @else if (isEmpty()) {
+        <div class="p-1">
+          <ngx-voyage-message
+            [message]="{ text: 'This folder is empty', type: 'info' }"
+          ></ngx-voyage-message>
+        </div>
+      }
+    </ng-template>
   `,
   imports: [
     GridViewComponent,
     ListViewComponent,
     MessageComponent,
     ProgressBarModule,
+    NgTemplateOutlet,
   ],
 })
 export class FilesViewComponent {
