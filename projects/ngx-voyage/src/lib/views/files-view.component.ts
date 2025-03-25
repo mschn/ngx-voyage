@@ -20,7 +20,7 @@ import { NgTemplateOutlet } from "@angular/common";
       ></ngx-voyage-grid-view>
     } @else {
       <ngx-voyage-list-view
-        [path]="path()"
+        [(path)]="path"
         [files]="files()"
         (openFile)="openFile.emit($event)"
         (previewFile)="previewFile.emit($event)"
