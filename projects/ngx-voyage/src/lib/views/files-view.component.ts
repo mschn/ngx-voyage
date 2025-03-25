@@ -11,9 +11,7 @@ import { NgTemplateOutlet } from "@angular/common";
   selector: "ngx-voyage-files-view",
   template: `
     @if (store.selectedView() === "grid") {
-      <div class="p-2">
-        <ng-container *ngTemplateOutlet="empty"></ng-container>
-      </div>
+      <ng-container *ngTemplateOutlet="empty"></ng-container>
       <ngx-voyage-grid-view
         [(path)]="path"
         [files]="files()"
@@ -35,13 +33,15 @@ import { NgTemplateOutlet } from "@angular/common";
 
     <ng-template #empty>
       @if (message()) {
-        <ngx-voyage-message [message]="message()"></ngx-voyage-message>
+        <div class="p-2">
+          <ngx-voyage-message [message]="message()"></ngx-voyage-message>
+        </div>
       } @else if (loading()) {
-        <div class="p-1">
+        <div class="p-2">
           <p-progressbar mode="indeterminate" styleClass="!h-2" />
         </div>
       } @else if (isEmpty()) {
-        <div class="p-1">
+        <div class="p-2">
           <ngx-voyage-message
             [message]="{ text: 'This folder is empty', type: 'info' }"
           ></ngx-voyage-message>
