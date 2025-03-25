@@ -42,4 +42,14 @@ test.describe("list view", () => {
       "screenshots",
     ]);
   });
+
+  test("should open a folder", async ({ page }) => {
+    await page.goto("http://localhost:4200/");
+    await page.getByTestId("select-view-list").click();
+    await page.getByText("screenshots").dblclick();
+    await expect(page.getByTestId("files-list-name")).toHaveText([
+      "light.png",
+      "dark.png",
+    ]);
+  });
 });
