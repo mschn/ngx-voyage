@@ -4,6 +4,7 @@ import {
   getBookmarksFromLocalstorage,
   writeBookmarksToLocalstorage,
 } from "./bookmark";
+import { File } from "./model";
 
 export type ViewType = "list" | "grid";
 
@@ -13,6 +14,7 @@ export class Store {
   readonly showHiddenFiles = signal(false);
   readonly showOpenFile = signal(false);
   readonly selectedView = signal<ViewType>("grid");
+  readonly selectedFile = signal<File | undefined>(undefined);
 
   constructor() {
     this.bookmarks.set(getBookmarksFromLocalstorage());

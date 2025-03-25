@@ -35,7 +35,7 @@ export abstract class BaseViewComponent implements OnChanges {
   openFile = output<string>();
   previewFile = output<FilePreviewOutput>();
 
-  selectedFile = model<File | undefined>(undefined);
+  selectedFile = this.store.selectedFile;
   showPreview = model(false);
   previewData = signal<Blob | undefined>(undefined);
 
@@ -87,7 +87,7 @@ export abstract class BaseViewComponent implements OnChanges {
   ];
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes["path"]) {
+    if (changes["path"] && !changes["path"].firstChange) {
       this.selectedFile.set(undefined);
       this.showPreview.set(false);
     }
