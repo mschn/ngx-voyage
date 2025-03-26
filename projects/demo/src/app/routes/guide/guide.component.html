@@ -376,16 +376,12 @@ providers: [
 };]]></code></pre>
   </div>
 
+
   <div class="w-[20rem] text-sm hidden xl:block">
-    <div class="sticky top-10">
-      <ul class="text-blue-500 ml-8 whitespace-nowrap">
-        <li class="p-1"><a href="guide#bootstrap">1. Boostrap a new Angular app</a></li>
-        <li class="p-1"><a href="guide#primeng">2. Install PrimeNG</a></li>
-        <li class="p-1"><a href="guide#install">3. Install ngx-voyage</a></li>
-        <li class="p-1"><a href="guide#server">4. Fetch files from a server</a></li>
-        <li class="p-1"><a href="guide#preview">5. File preview from a server</a></li>
-        <li class="p-1"><a href="guide#theme">6. Custom PrimeNG theme</a></li>
-      </ul></div
-    >
+    <nav class="sticky top-10">
+      <app-sidenav [sideNavLinks]="sideNavLinks"></app-sidenav>
+    </nav>
   </div>
+
+
 </div>

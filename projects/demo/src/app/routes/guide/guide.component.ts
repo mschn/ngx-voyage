@@ -3,12 +3,23 @@ import hljs from "highlight.js/lib/core";
 import typescript from "highlight.js/lib/languages/typescript";
 import bash from "highlight.js/lib/languages/bash";
 import css from "highlight.js/lib/languages/css";
+import { SideNavComponent } from "../sidenav.component";
 
 @Component({
   selector: "app-guide",
   templateUrl: "./guide.component.html",
+  imports: [SideNavComponent],
 })
 export class GuideComponent implements OnInit {
+  sideNavLinks = [
+    { href: "guide#bootstrap", text: "1. Boostrap a new Angular app" },
+    { href: "guide#primeng", text: "2. Install PrimeNG" },
+    { href: "guide#install", text: "3. Install ngx-voyage" },
+    { href: "guide#server", text: "4. Fetch files from a server" },
+    { href: "guide#preview", text: "5. File preview from a server" },
+    { href: "guide#theme", text: "6. Custom PrimeNG theme" },
+  ];
+
   ngOnInit() {
     hljs.registerLanguage("typescript", typescript);
     hljs.registerLanguage("bash", bash);

@@ -149,14 +149,7 @@ class AppDemoComponent {
 
   <div class="w-[20rem] text-sm hidden xl:block">
     <nav class="sticky top-10">
-      <ul class="text-blue-500 ml-8 whitespace-nowrap">
-        <li class="p-1"><a href="features#folders">Folder navigation</a></li>
-        <li class="p-1"><a href="features#loading">Loading</a></li>
-        <li class="p-1"><a href="features#messages">Messages</a></li>
-        <li class="p-1"
-          ><a href="features#templates">Header & footer templates</a></li
-        >
-      </ul></nav
-    >
+      <app-sidenav [sideNavLinks]="sideNavLinks"></app-sidenav>
+    </nav>
   </div>
 </div>

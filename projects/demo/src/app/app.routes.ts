@@ -6,14 +6,14 @@ export const routes: Routes = [
     path: "",
     data: { name: "ngx-voyage" },
     loadComponent: () =>
-      import("./routes/home.component").then((c) => c.HomeComponent),
+      import("./routes/home/home.component").then((c) => c.HomeComponent),
   },
   {
     title: "ngx-voyage - Quickstart",
     path: "quickstart",
     data: { name: "Quickstart" },
     loadComponent: () =>
-      import("./routes/quickstart.component").then(
+      import("./routes/quickstart/quickstart.component").then(
         (c) => c.QuickstartComponent,
       ),
   },
@@ -22,13 +22,15 @@ export const routes: Routes = [
     path: "features",
     data: { name: "Features" },
     loadComponent: () =>
-      import("./routes/features.component").then((c) => c.FeaturesComponent),
+      import("./routes/features/features.component").then(
+        (c) => c.FeaturesComponent,
+      ),
   },
   {
     title: "ngx-voyage - Guide",
     path: "guide",
     data: { name: "Howto Guide" },
     loadComponent: () =>
-      import("./routes/guide.component").then((c) => c.GuideComponent),
+      import("./routes/guide/guide.component").then((c) => c.GuideComponent),
   },
 ];

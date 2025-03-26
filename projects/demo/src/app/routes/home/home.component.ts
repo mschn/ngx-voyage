@@ -1,12 +1,13 @@
 import { Component, computed, model } from "@angular/core";
 import { RouterLink } from "@angular/router";
 import { ButtonModule } from "primeng/button";
-import { filesContentMock, filesMock } from "../mocks/files.mock";
+import { filesContentMock, filesMock } from "../../mocks/files.mock";
 import {
   FilePreviewOutput,
   NgxVoyageComponent,
   VoyageIconComponent,
-} from "ngx-voyage";
+} from "../../../../../ngx-voyage/src/public-api";
+
 @Component({
   selector: "app-home",
   template: `
