@@ -25,7 +25,7 @@ import { VoyageIconComponent } from "ngx-voyage";
           <app-nav></app-nav>
         </p-drawer>
 
-        <div class="flex flex-col justify-between h-full w-full  ">
+        <div class="flex flex-col h-full flex-1  ">
           <div class="md:hidden">
             <p-button
               (click)="showMenu.set(true)"
@@ -39,9 +39,7 @@ import { VoyageIconComponent } from "ngx-voyage";
           <div>
             <router-outlet></router-outlet>
           </div>
-          <div
-            class="my-2 text-gray-600 dark:text-gray-400 text-sm text-center"
-          >
+          <div class="my-2 mt-24 text-gray-500  text-sm text-center">
             &copy;
             <a
               href="https://github.com/mschn"
