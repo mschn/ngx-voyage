@@ -54,11 +54,6 @@ export class NgxVoyageComponent implements OnInit {
   });
 
   /**
-   * Style classes to append to the top DOM element
-   */
-  styleClass = input("");
-
-  /**
    * An error message to display instead of the file listing
    * example: a network or permission error prevents displaying files
    */
