@@ -6,6 +6,7 @@ import html from "highlight.js/lib/languages/xml";
 import {
   NgxVoyageComponent,
   File,
+  FilePreviewOutput,
 } from "../../../../../ngx-voyage/src/public-api";
 import { SideNavComponent, SideNavLink } from "../sidenav.component";
 
@@ -25,6 +26,14 @@ export class FeaturesComponent implements OnInit {
     {
       href: "features#folders",
       text: "Folder navigation",
+    },
+    {
+      href: "features#previewfile",
+      text: "Preview a file",
+    },
+    {
+      href: "features#openfile",
+      text: "Open a file",
     },
     {
       href: "features#loading",
@@ -59,9 +68,26 @@ export class FeaturesComponent implements OnInit {
     },
   ];
 
+  file: File = {
+    isDirectory: false,
+    isFile: true,
+    isSymbolicLink: false,
+    modifiedDate: new Date(),
+    name: "file.txt",
+    size: 1024,
+  };
+
   ngOnInit(): void {
     hljs.registerLanguage("html", html);
     hljs.registerLanguage("typescript", typescript);
     hljs.highlightAll();
+  }
+
+  openFile(path: string) {
+    alert(`Opening file ${path}`);
+  }
+
+  previewFile(preview: FilePreviewOutput) {
+    preview.cb(new Blob([`File content: ${preview.path}`]));
   }
 }

@@ -97,6 +97,84 @@ class AppDemoComponent {
     </div>
 
     <a
+      href="features#previewfile"
+      id="previewfile"
+      class="text-2xl font-semibold block mt-8"
+    >
+      Preview a file
+    </a>
+    <div class="flex flex-col gap-3">
+      <div class="">
+        File preview is when you open a file directly inside the file
+        explorer.<br />
+        <code>ngx-voyage</code> can preview test files, images, and PDF
+        files.<br />
+        To preview a file, you need to provide a handler for the
+        <code>(previewFile)</code> output, and then call the provided callback
+        with a <code>Blob</code> object that contains the file content.
+      </div>
+      <div class="w-full border border-gray-300 dark:border-gray-600">
+        <div class="h-[20rem]">
+          <ngx-voyage
+            path="/"
+            [files]="[file]"
+            (previewFile)="previewFile($event)"
+          ></ngx-voyage
+        ></div>
+        <pre><code class="language-typescript" ngNonBindable
+          ><![CDATA[import { NgxVoyageComponent, File } from 'ngx-voyage';
+
+@Component({
+  selector: 'app-demo'
+  imports: 'NgxVoyageComponent',
+  template: `<ngx-voyage path="/home" 
+    [files]="[file]"
+    (previewFile)="previewFile($event)"></ngx-voyage>`
+})
+class AppDemoComponent {
+  previewFile(preview: FilePreviewOutput) {
+    preview.cb(new Blob([`File content: ${preview.path}`]));
+  }
+}]]></code></pre>
+      </div>
+    </div>
+
+    <a
+      href="features#openfile"
+      id="openfile"
+      class="text-2xl font-semibold block mt-8"
+    >
+      Open a file
+    </a>
+    <div class="flex flex-col gap-3">
+      <div class=""> </div>
+      <div class="w-full border border-gray-300 dark:border-gray-600">
+        <div class="h-[20rem]">
+          <ngx-voyage
+            path="/"
+            [files]="[file]"
+            (openFile)="openFile($event)"
+          ></ngx-voyage
+        ></div>
+        <pre><code class="language-typescript" ngNonBindable
+          ><![CDATA[import { NgxVoyageComponent, File } from 'ngx-voyage';
+
+@Component({
+  selector: 'app-demo'
+  imports: 'NgxVoyageComponent',
+  template: `<ngx-voyage path="/home" 
+    [files]="[file]"
+    (openFile)="openFile($event)"></ngx-voyage>`
+})
+class AppDemoComponent {
+  openFile(path: string) {
+    alert(`Opening file ${path}`);
+  }
+}]]></code></pre>
+      </div>
+    </div>
+
+    <a
       href="features#loading"
       id="loading"
       class="text-2xl font-semibold block mt-8"
