@@ -15,3 +15,12 @@ Object.defineProperty(window, "matchMedia", {
     dispatchEvent: jest.fn(),
   })),
 });
+
+const intersectionObserverMock = () => ({
+  observe: jest.fn(),
+  unobserve: jest.fn(),
+  disconnect: jest.fn(),
+});
+window.IntersectionObserver = jest
+  .fn()
+  .mockImplementation(intersectionObserverMock);

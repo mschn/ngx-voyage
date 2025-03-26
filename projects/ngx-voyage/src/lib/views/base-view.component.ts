@@ -97,7 +97,7 @@ export abstract class BaseViewComponent implements OnChanges {
     if (canPreviewFile(file) && this.store.showPreviewFile()) {
       this.selectedFile.set(file);
       this.openFilePreview(file);
-    } else if (this.store.showOpenFile()) {
+    } else {
       this.openFileOrFolder(file);
     }
   }
@@ -125,7 +125,7 @@ export abstract class BaseViewComponent implements OnChanges {
     const targetPath = this.getTargetPath(file);
     if (file.isDirectory) {
       this.path.set(targetPath);
-    } else {
+    } else if (this.store.showOpenFile()) {
       this.openFile.emit(targetPath);
     }
   }

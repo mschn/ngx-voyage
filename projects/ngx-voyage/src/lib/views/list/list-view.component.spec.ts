@@ -127,6 +127,8 @@ describe("ListViewComponent", () => {
   });
 
   it("should preview file on double click", () => {
+    const store = TestBed.inject(Store);
+    store.showPreviewFile.set(true);
     const file = getFileMock({ name: "foo.png" });
     fixture.componentRef.setInput("files", [file]);
     fixture.detectChanges();
@@ -137,6 +139,8 @@ describe("ListViewComponent", () => {
   });
 
   it("should open file on double click", () => {
+    const store = TestBed.inject(Store);
+    store.showOpenFile.set(true);
     const file = getFileMock({ name: "foo.exe" });
     fixture.componentRef.setInput("files", [file]);
     fixture.detectChanges();
@@ -147,6 +151,8 @@ describe("ListViewComponent", () => {
   });
 
   it("should open folder on double click", () => {
+    const store = TestBed.inject(Store);
+    store.showPreviewFile.set(true);
     const file = getFileMock({ name: "foo", isDirectory: true, isFile: false });
     fixture.componentRef.setInput("files", [file]);
     fixture.detectChanges();
