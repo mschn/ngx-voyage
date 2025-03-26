@@ -15,8 +15,6 @@
       alt="ngx-voyage with server files"
     />
 
-
-
     <a
       href="guide#bootstrap"
       id="bootstrap"
@@ -107,12 +105,12 @@ export const appConfig: ApplicationConfig = {
       <code>app.component.ts</code>:
     </p>
 
-    <pre><code class="language-typescript rounded-md"><![CDATA[import { Component } from '@angular/core';
+    <pre><code class="language-typescript rounded-md" ngNonBindable><![CDATA[import { Component } from '@angular/core';
 import { NgxVoyageComponent } from 'ngx-voyage';
 @Component({
 selector: 'app-root',
 imports: [NgxVoyageComponent],
-template: \`<ngx-voyage path="/" [files]="[]"></ngx-voyage>\`,
+template: `<ngx-voyage path="/" [files]="[]"></ngx-voyage>`,
 })
 export class AppComponent {}]]></code></pre>
 
@@ -159,7 +157,7 @@ npm install express
       in that folder.
     </p>
 
-    <pre><code class="language-typescript rounded-md"><![CDATA[const express = require('express');
+    <pre><code class="language-typescript rounded-md" ngNonBindable><![CDATA[const express = require('express');
 const path = require('path');
 const fs = require('fs')
 const app = express();
@@ -209,16 +207,16 @@ app.listen(3003, () => console.log(\`server listening on port 3003\`));
       <code>resource</code> function:
     </p>
 
-    <pre><code class="language-typescript rounded-md"><![CDATA[import { Component, computed, model, resource } from '@angular/core';
+    <pre><code class="language-typescript rounded-md" ngNonBindable><![CDATA[import { Component, computed, model, resource } from '@angular/core';
 import { File, NgxVoyageComponent } from 'ngx-voyage';
 @Component({
 selector: 'app-root',
 imports: [NgxVoyageComponent],
-template: \`<ngx-voyage
+template: `<ngx-voyage
   [(path)]="path"
   [files]="files()"
   [loading]="filesResource.isLoading()"
-></ngx-voyage>\`,
+></ngx-voyage>`,
 })
 export class AppComponent {
 filesResource = resource({
@@ -283,18 +281,18 @@ res.send(content);
 });
 ]]></code></pre>
 
-    <pre><code class="language-typescript rounded-md"><![CDATA[import { Component, computed, model, resource } from '@angular/core';
+    <pre><code class="language-typescript rounded-md" ngNonBindable><![CDATA[import { Component, computed, model, resource } from '@angular/core';
 import { File, FilePreviewOutput, NgxVoyageComponent } from 'ngx-voyage';
 @Component({
 selector: 'app-root',
 imports: [NgxVoyageComponent],
-template: \`<ngx-voyage
+template: `<ngx-voyage
   [(path)]="path"
   [files]="files()"
   [loading]="filesResource.isLoading()"
   (previewFile)="getFileContent($event)"
   (openFile)="openFile($event)"
-></ngx-voyage>\`,
+></ngx-voyage>`,
 })
 export class AppComponent {
 filesResource = resource({
@@ -348,7 +346,7 @@ getFileContent({ path, cb }: FilePreviewOutput) {
       preset:
     </p>
 
-    <pre><code class="language-typescript rounded-md"><![CDATA[export const appConfig: ApplicationConfig = {
+    <pre><code class="language-typescript rounded-md" ngNonBindable><![CDATA[export const appConfig: ApplicationConfig = {
 providers: [
   provideAnimationsAsync(),
   providePrimeNG({
@@ -376,12 +374,9 @@ providers: [
 };]]></code></pre>
   </div>
 
-
   <div class="w-[20rem] text-sm hidden xl:block">
     <nav class="sticky top-10">
       <app-sidenav [sideNavLinks]="sideNavLinks"></app-sidenav>
     </nav>
   </div>
-
-
 </div>

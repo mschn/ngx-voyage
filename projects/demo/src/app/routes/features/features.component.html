@@ -3,6 +3,53 @@
     <h1 class="text-4xl font-semibold">Features</h1>
 
     <a
+      href="features#files"
+      id="files"
+      class="text-2xl font-semibold block mt-8"
+    >
+      Files & folders
+    </a>
+    <div class="flex flex-col gap-3">
+      <div class="">
+        Files and folders are provided using the <code>[file]</code> input.<br>
+        The <code>File</code> interface that describes the input type is exported by the <code>ngx-voyage</code> package.<br><br>
+      </div>
+      <div class="w-full border border-gray-300 dark:border-gray-600">
+        <div class="h-[20rem] flex flex-col">
+          <ngx-voyage path="/home" [files]="filesExample"></ngx-voyage>
+        </div>
+        <pre><code class="language-typescript" ngNonBindable
+            ><![CDATA[import { NgxVoyageComponent, File } from 'ngx-voyage';
+
+@Component({
+  selector: 'app-demo'
+  imports: 'NgxVoyageComponent',
+  template: `<ngx-voyage path="/home" [files]="filesExample"></ngx-voyage>`
+})
+class AppDemoComponent {
+  filesExample: File[] = [
+    {
+      isDirectory: false,
+      isFile: true,
+      isSymbolicLink: false,
+      modifiedDate: new Date(),
+      name: "file.txt",
+      size: 1024,
+    },
+    {
+      isDirectory: true,
+      isFile: false,
+      isSymbolicLink: false,
+      modifiedDate: new Date(),
+      name: "folder",
+      size: 1,
+    },
+  ];
+}]]></code></pre>
+      </div>
+    </div>
+
+    <a
       href="features#folders"
       id="folders"
       class="text-2xl font-semibold block mt-8"
@@ -11,11 +58,13 @@
     </a>
     <div class="flex flex-col gap-3">
       <div class="">
-        If you provide an array of empty files, then the file explorer will
-        display an empty message.
-        <code><![CDATA[[files]="[]"]]></code>
+        You can use the <code>path</code> input to provide an initial path to a folder,
+        but also to be notified when the path changes inside the component.<br><br>
+        <code>path</code> is a <a href="https://angular.dev/guide/templates/two-way-binding" target="_blank">two-way binding</a>,
+        allowing you to bind both input and output using the <code>[(path)]</code> syntax.<br>
+        You can either use a single <code>model</code> signal in a two way binding, or bind <code>[path]</code> and <code>(pathChange)</code> independently.
       </div>
-      <div class="max-w-[50rem] mx-auto">
+      <div class="w-full border border-gray-300 dark:border-gray-600">
         <div class="h-[20rem] flex flex-col">
           <ngx-voyage [(path)]="path" [files]="[]"></ngx-voyage>
           <div class="p-2"
@@ -53,7 +102,7 @@ class AppDemoComponent {
         In that case, instead of showing an empty files message you can show
         this loading indicator.
       </div>
-      <div class="max-w-[50rem] mx-auto">
+      <div class="w-full border border-gray-300 dark:border-gray-600">
         <div class="h-[20rem]">
           <ngx-voyage path="/" [files]="[]" [loading]="true"></ngx-voyage
         ></div>
@@ -85,7 +134,7 @@ class AppDemoComponent {
         </p>
         <p> </p>
       </div>
-      <div class="max-w-[50rem] mx-auto">
+      <div class="w-full border border-gray-300 dark:border-gray-600">
         <div class="h-[20rem]">
           <ngx-voyage
             path="/"
@@ -117,7 +166,7 @@ class AppDemoComponent {
         below the bookmarks in the left sidebar.<br />
         Use this to add your branding or some custom features.
       </div>
-      <div class="max-w-[50rem] mx-auto">
+      <div class="w-full border border-gray-300 dark:border-gray-600">
         <div class="h-[20rem]">
           <ngx-voyage path="/" [files]="[]">
             <ng-template #header
