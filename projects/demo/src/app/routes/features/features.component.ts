@@ -20,30 +20,37 @@ export class FeaturesComponent implements OnInit {
 
   sideNavLinks: SideNavLink[] = [
     {
+      id: "files",
       href: "features#files",
       text: "Files & folders",
     },
     {
+      id: "folders",
       href: "features#folders",
       text: "Folder navigation",
     },
     {
+      id: "previewfile",
       href: "features#previewfile",
       text: "Preview a file",
     },
     {
+      id: "openfile",
       href: "features#openfile",
       text: "Open a file",
     },
     {
+      id: "loading",
       href: "features#loading",
       text: "Loading",
     },
     {
+      id: "message",
       href: "features#message",
       text: "Messages",
     },
     {
+      id: "templates",
       href: "features#templates",
       text: "Header & footer templates",
     },

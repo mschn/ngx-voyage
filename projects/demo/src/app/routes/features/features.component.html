@@ -2,14 +2,10 @@
   <div class="flex flex-col gap-3">
     <h1 class="text-4xl font-semibold">Features</h1>
 
-    <a
-      href="features#files"
-      id="files"
-      class="text-2xl font-semibold block mt-8"
-    >
-      Files & folders
-    </a>
-    <div class="flex flex-col gap-3">
+    <section class="flex flex-col gap-3" id="files">
+      <a href="features#files" class="text-2xl font-semibold block mt-8">
+        Files & folders
+      </a>
       <div class="">
         Files and folders are provided using the
         <code>[file]</code> input.<br />
@@ -49,16 +45,12 @@ class AppDemoComponent {
   ];
 }]]></code></pre>
       </div>
-    </div>
+    </section>
 
-    <a
-      href="features#folders"
-      id="folders"
-      class="text-2xl font-semibold block mt-8"
-    >
-      Folder navigation
-    </a>
-    <div class="flex flex-col gap-3">
+    <section class="flex flex-col gap-3" id="folders">
+      <a href="features#folders" class="text-2xl font-semibold block mt-8">
+        Folder navigation
+      </a>
       <div class="">
         You can use the <code>path</code> input to provide an initial path to a
         folder, but also to be notified when the path changes inside the
@@ -94,16 +86,12 @@ class AppDemoComponent {
   path = model('/path/to/nested/folder')}
 }]]></code></pre>
       </div>
-    </div>
+    </section>
 
-    <a
-      href="features#previewfile"
-      id="previewfile"
-      class="text-2xl font-semibold block mt-8"
-    >
-      Preview a file
-    </a>
-    <div class="flex flex-col gap-3">
+    <section class="flex flex-col gap-3" id="previewfile">
+      <a href="features#previewfile" class="text-2xl font-semibold block mt-8">
+        Preview a file
+      </a>
       <div class="">
         File preview is when you open a file directly inside the file
         explorer.<br />
@@ -137,16 +125,12 @@ class AppDemoComponent {
   }
 }]]></code></pre>
       </div>
-    </div>
+    </section>
 
-    <a
-      href="features#openfile"
-      id="openfile"
-      class="text-2xl font-semibold block mt-8"
-    >
-      Open a file
-    </a>
-    <div class="flex flex-col gap-3">
+    <section class="flex flex-col gap-3" id="openfile">
+      <a href="features#openfile" class="text-2xl font-semibold block mt-8">
+        Open a file
+      </a>
       <div class=""
         >Unlike file preview, which opens the file content inside the explorer,
         opening a file delegates opening the file to the application.<br /><br />
@@ -177,16 +161,12 @@ class AppDemoComponent {
   }
 }]]></code></pre>
       </div>
-    </div>
+    </section>
 
-    <a
-      href="features#loading"
-      id="loading"
-      class="text-2xl font-semibold block mt-8"
-    >
-      Loading
-    </a>
-    <div class="flex flex-col gap-3">
+    <section class="flex flex-col gap-3" id="loading">
+      <a href="features#loading" class="text-2xl font-semibold block mt-8">
+        Loading
+      </a>
       <div class="">
         You can show a loading indicator inside the file explorer with
         <code><![CDATA[[loading]="true"]]></code>
@@ -203,16 +183,12 @@ class AppDemoComponent {
       ><![CDATA[<ngx-voyage path="/" [files]="[]" [loading]="true"
 ></ngx-voyage>]]></code></pre>
       </div>
-    </div>
+    </section>
 
-    <a
-      href="features#message"
-      id="message"
-      class="text-2xl font-semibold block mt-8"
-    >
-      Messages
-    </a>
-    <div class="flex flex-col gap-3">
+    <section class="flex flex-col gap-3" id="message">
+      <a href="features#message" class="text-2xl font-semibold block mt-8">
+        Messages
+      </a>
       <div class="">
         You can display a message inside the file explorer with:
         <code
@@ -242,16 +218,12 @@ class AppDemoComponent {
   [message]="{ text: 'Watch out', type: 'warn' }"
 ></ngx-voyage>]]></code></pre>
       </div>
-    </div>
+    </section>
 
-    <a
-      href="features#templates"
-      id="templates"
-      class="text-2xl font-semibold block mt-8"
-    >
-      Header & footer templates
-    </a>
-    <div class="flex flex-col gap-3">
+    <section class="flex flex-col gap-3" id="templates">
+      <a href="features#templates" class="text-2xl font-semibold block mt-8">
+        Header & footer templates
+      </a>
       <div class="">
         You can customize the file explorer by providing a header and/or a
         footer template.<br />
@@ -286,10 +258,10 @@ class AppDemoComponent {
   </ng-template>
 </ngx-voyage>]]></code></pre>
       </div>
-    </div>
+    </section>
   </div>
 
-  <div class="text-sm hidden xl:block">
+  <div class="text-sm hidden lg:block">
     <nav class="sticky top-10">
       <app-sidenav [sideNavLinks]="sideNavLinks"></app-sidenav>
     </nav>

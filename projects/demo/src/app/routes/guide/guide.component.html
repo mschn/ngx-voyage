@@ -1,69 +1,70 @@
 <div class="flex">
   <div class="flex flex-col gap-3">
-    <h1 class="text-4xl font-semibold">Howto Guide</h1>
+    <section id="howto">
+      <h1 class="text-4xl font-semibold">Howto Guide</h1>
+      <p>
+        This guide will show you how to build a full Angular application with
+        <code>ngx-voyage</code> from scratch.<br />
+        we will build an Angular app that can browse the files of a remote
+        computer where the server is running.
+      </p>
 
-    <p>
-      This guide will show you how to build a full Angular application with
-      <code>ngx-voyage</code> from scratch.<br />
-      we will build an Angular app that can browse the files of a remote
-      computer where the server is running.
-    </p>
+      <img
+        src="guide/2.png"
+        class="w-fit mx-auto"
+        alt="ngx-voyage with server files"
+      />
+    </section>
 
-    <img
-      src="guide/2.png"
-      class="w-fit mx-auto"
-      alt="ngx-voyage with server files"
-    />
+    <section class="flex flex-col gap-3" id="bootstrap">
+      <a href="guide#bootstrap" class="text-2xl font-semibold mt-8">
+        1. Bootstrap a new Angular app
+      </a>
 
-    <a
-      href="guide#bootstrap"
-      id="bootstrap"
-      class="text-2xl font-semibold mt-8"
-    >
-      1. Bootstrap a new Angular app
-    </a>
+      <p>
+        First we will use the Angular CLI to create a new Angular application:
+      </p>
 
-    <p>
-      First we will use the Angular CLI to create a new Angular application:
-    </p>
-
-    <pre><code class="language-bash rounded-md"><![CDATA[npm install -g @angular/cli
+      <pre><code class="language-bash rounded-md"><![CDATA[npm install -g @angular/cli
 ng new ngx-voyage-demo
 cd ngx-voyage-demo]]></code></pre>
 
-    <p>
-      This will create all the Angular boilerplate for a new app.<br />
-      Edit <code>app.component.ts</code> to write the app code,<br />
-      and use <code>npm run start</code> to test it.
-    </p>
-    <a href="guide#primeng" id="primeng" class="text-2xl font-semibold mt-8">
-      2. Install PrimeNG
-    </a>
-    <p
-      ><code>ngx-voyage</code> uses UI widgets from
-      <a class="text-blue-500" href="https://primeng.org/" target="_blank"
-        >PrimeNG</a
-      >. We will need to install it as it's a peer dependency.</p
-    >
-    <p>
-      You can check out
-      <a
-        href="https://primeng.org/installation"
-        target="_blank"
-        class="text-blue-500"
+      <p>
+        This will create all the Angular boilerplate for a new app.<br />
+        Edit <code>app.component.ts</code> to write the app code,<br />
+        and use <code>npm run start</code> to test it.
+      </p>
+    </section>
+
+    <section class="flex flex-col gap-3" id="primeng">
+      <a href="guide#primeng" class="text-2xl font-semibold mt-8">
+        2. Install PrimeNG
+      </a>
+      <p
+        ><code>ngx-voyage</code> uses UI widgets from
+        <a class="text-blue-500" href="https://primeng.org/" target="_blank"
+          >PrimeNG</a
+        >. We will need to install it as it's a peer dependency.</p
       >
-        the official PrimeNG install guide</a
-      >, but it basically boils down to first installing the dependency:
-    </p>
+      <p>
+        You can check out
+        <a
+          href="https://primeng.org/installation"
+          target="_blank"
+          class="text-blue-500"
+        >
+          the official PrimeNG install guide</a
+        >, but it basically boils down to first installing the dependency:
+      </p>
 
-    <pre><code class="language-bash rounded-md"><![CDATA[npm install primeng @primeng/themes]]></code></pre>
+      <pre><code class="language-bash rounded-md"><![CDATA[npm install primeng @primeng/themes]]></code></pre>
 
-    <p>
-      Then edit <code>app.config.ts</code> in order to setup the required
-      <code>providers</code> and define the theme:
-    </p>
+      <p>
+        Then edit <code>app.config.ts</code> in order to setup the required
+        <code>providers</code> and define the theme:
+      </p>
 
-    <pre><code class="language-typescript rounded-md"><![CDATA[import { ApplicationConfig } from '@angular/core';
+      <pre><code class="language-typescript rounded-md"><![CDATA[import { ApplicationConfig } from '@angular/core';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeng/themes/aura';
@@ -79,33 +80,35 @@ export const appConfig: ApplicationConfig = {
   ]
 };]]></code></pre>
 
-    <p>
-      Lastly we can add this in our global <code>style.css</code> file to make
-      sure the components scales properly:
-    </p>
+      <p>
+        Lastly we can add this in our global <code>style.css</code> file to make
+        sure the components scales properly:
+      </p>
 
-    <pre><code class="language-css rounded-md"><![CDATA[html, body {
+      <pre><code class="language-css rounded-md"><![CDATA[html, body {
   height: 100%;
 }]]></code></pre>
+    </section>
+    
+    <section class="flex flex-col gap-3" id="install">
+      <a href="guide#install" class="text-2xl font-semibold mt-8">
+        3. Install ngx-voyage
+      </a>
 
-    <a href="guide#install" id="install" class="text-2xl font-semibold mt-8">
-      3. Install ngx-voyage
-    </a>
+      <p>
+        Now we can install <code>ngx-voyage</code> through npm.<br />
+        We need <code>highlight.js</code> as peer dependency in order to do code
+        highlighting when previewing files.
+      </p>
 
-    <p>
-      Now we can install <code>ngx-voyage</code> through npm.<br />
-      We need <code>highlight.js</code> as peer dependency in order to do code
-      highlighting when previewing files.
-    </p>
+      <pre><code class="language-bash rounded-md"><![CDATA[npm install ngx-voyage highlight.js]]></code></pre>
 
-    <pre><code class="language-bash rounded-md"><![CDATA[npm install ngx-voyage highlight.js]]></code></pre>
+      <p>
+        Now we simply need to use the component in
+        <code>app.component.ts</code>:
+      </p>
 
-    <p>
-      Now we simply need to use the component in
-      <code>app.component.ts</code>:
-    </p>
-
-    <pre><code class="language-typescript rounded-md" ngNonBindable><![CDATA[import { Component } from '@angular/core';
+      <pre><code class="language-typescript rounded-md" ngNonBindable><![CDATA[import { Component } from '@angular/core';
 import { NgxVoyageComponent } from 'ngx-voyage';
 @Component({
 selector: 'app-root',
@@ -114,50 +117,52 @@ template: `<ngx-voyage path="/" [files]="[]"></ngx-voyage>`,
 })
 export class AppComponent {}]]></code></pre>
 
-    <ul class="list-disc ml-4">
-      <li>
-        The <code>path="/"</code> input tells <code>ngx-voyage</code> what is
-        the folder path to show in the titlebar. </li
-      ><li>
-        The <code>[files]="[]"</code> input gives the list of files that are
-        displayed in the current <code>path</code>
-      </li></ul
-    >
-    <p>
-      For this example these are empty, later on we'll see how to provide actual
-      files there.<br />
-      You can run the code with <code>npm run start</code> and see the result:
-    </p>
+      <ul class="list-disc ml-4">
+        <li>
+          The <code>path="/"</code> input tells <code>ngx-voyage</code> what is
+          the folder path to show in the titlebar. </li
+        ><li>
+          The <code>[files]="[]"</code> input gives the list of files that are
+          displayed in the current <code>path</code>
+        </li></ul
+      >
+      <p>
+        For this example these are empty, later on we'll see how to provide
+        actual files there.<br />
+        You can run the code with <code>npm run start</code> and see the result:
+      </p>
 
-    <img
-      src="guide/1.png"
-      class="w-fit mx-auto"
-      alt="ngx-voyage basic integration screenshot"
-    />
+      <img
+        src="guide/1.png"
+        class="w-fit mx-auto"
+        alt="ngx-voyage basic integration screenshot"
+      />
+    </section>
 
-    <a href="guide#server" id="server" class="text-2xl font-semibold mt-8">
-      4. Fetch files from a server
-    </a>
+    <section class="flex flex-col gap-3" id="server">
+      <a href="guide#server" class="text-2xl font-semibold mt-8">
+        4. Fetch files from a server
+      </a>
 
-    <p>
-      In order to fetch some actual files to display in our file explorer, we
-      need to setup a server.<br />
-      For this example we will create a small <code>NodeJS</code> server that
-      uses <code>Express</code>:
-    </p>
+      <p>
+        In order to fetch some actual files to display in our file explorer, we
+        need to setup a server.<br />
+        For this example we will create a small <code>NodeJS</code> server that
+        uses <code>Express</code>:
+      </p>
 
-    <pre><code class="language-bash rounded-md"><![CDATA[mkdir server; cd server
+      <pre><code class="language-bash rounded-md"><![CDATA[mkdir server; cd server
 npm init
 npm install express
 ]]></code></pre>
 
-    <p>
-      The server code will be located in <code>index.js</code>. It will contains
-      a <code>GET /ls/:folder</code> endpoint that will return the list of files
-      in that folder.
-    </p>
+      <p>
+        The server code will be located in <code>index.js</code>. It will
+        contains a <code>GET /ls/:folder</code> endpoint that will return the
+        list of files in that folder.
+      </p>
 
-    <pre><code class="language-typescript rounded-md" ngNonBindable><![CDATA[const express = require('express');
+      <pre><code class="language-typescript rounded-md" ngNonBindable><![CDATA[const express = require('express');
 const path = require('path');
 const fs = require('fs')
 const app = express();
@@ -197,17 +202,17 @@ app.get('/ls/:folder', (req, res) => {
 app.listen(3003, () => console.log(\`server listening on port 3003\`));
 ]]></code></pre>
 
-    <p>
-      To start that server, simply run <code>node index.js</code> and express
-      will be listening on port <code>3003</code>.
-    </p>
+      <p>
+        To start that server, simply run <code>node index.js</code> and express
+        will be listening on port <code>3003</code>.
+      </p>
 
-    <p>
-      Finally we can integrate our new API call in the Angular app using the
-      <code>resource</code> function:
-    </p>
+      <p>
+        Finally we can integrate our new API call in the Angular app using the
+        <code>resource</code> function:
+      </p>
 
-    <pre><code class="language-typescript rounded-md" ngNonBindable><![CDATA[import { Component, computed, model, resource } from '@angular/core';
+      <pre><code class="language-typescript rounded-md" ngNonBindable><![CDATA[import { Component, computed, model, resource } from '@angular/core';
 import { File, NgxVoyageComponent } from 'ngx-voyage';
 @Component({
 selector: 'app-root',
@@ -231,46 +236,48 @@ files = computed(() => this.filesResource.value() ?? []);
 }
 ]]></code></pre>
 
-    <ul class="ml-4 list-disc">
-      <li>
-        <code>[(path)]="path"</code> is a two-way bound model. This means we
-        provide the initial path, and then when the user opens a folder inside
-        the file explorer, the <code>path</code> will change in our app
-        automatically.
-      </li>
-      <li>
-        The resource request URL is derived from the
-        <code>path()</code> signal. When the <code>path()</code> is updated,
-        then the request changes and this causes the <code>resource</code> to be
-        refetched automatically.
-      </li>
-      <li>
-        <code>[files]="files()"</code> are <code>computed</code> from the
-        resource value when it changes.
-      </li>
-      <li>
-        <code>[loading]="filesResource.isLoading()"</code> passes the http
-        resource loading state to ngx-voyage to display a loading indicator when
-        a folder content is being fetched.
-      </li>
-    </ul>
+      <ul class="ml-4 list-disc">
+        <li>
+          <code>[(path)]="path"</code> is a two-way bound model. This means we
+          provide the initial path, and then when the user opens a folder inside
+          the file explorer, the <code>path</code> will change in our app
+          automatically.
+        </li>
+        <li>
+          The resource request URL is derived from the
+          <code>path()</code> signal. When the <code>path()</code> is updated,
+          then the request changes and this causes the <code>resource</code> to
+          be refetched automatically.
+        </li>
+        <li>
+          <code>[files]="files()"</code> are <code>computed</code> from the
+          resource value when it changes.
+        </li>
+        <li>
+          <code>[loading]="filesResource.isLoading()"</code> passes the http
+          resource loading state to ngx-voyage to display a loading indicator
+          when a folder content is being fetched.
+        </li>
+      </ul>
 
-    <img
-      src="guide/2.png"
-      class="w-fit mx-auto"
-      alt="ngx-voyage with server files"
-    />
+      <img
+        src="guide/2.png"
+        class="w-fit mx-auto"
+        alt="ngx-voyage with server files"
+      />
+    </section>
 
-    <a href="guide#preview" id="preview" class="text-2xl font-semibold mt-8">
-      5. File preview from a server
-    </a>
+    <section class="flex flex-col gap-3" id="preview">
+      <a href="guide#preview" class="text-2xl font-semibold mt-8">
+        5. File preview from a server
+      </a>
 
-    <p>
-      Last we will add the ability to preview files inside the explorer.<br />
-      To do that we need to read the file content.
-    </p>
+      <p>
+        Last we will add the ability to preview files inside the explorer.<br />
+        To do that we need to read the file content.
+      </p>
 
-    <pre><code class="language-typescript rounded-md"><![CDATA[const mime = require('mime-types');
+      <pre><code class="language-typescript rounded-md"><![CDATA[const mime = require('mime-types');
 
 app.get('/open/:file', async (req, res) => {
 const filePath = decodeURIComponent(req.params.file);
@@ -281,7 +288,7 @@ res.send(content);
 });
 ]]></code></pre>
 
-    <pre><code class="language-typescript rounded-md" ngNonBindable><![CDATA[import { Component, computed, model, resource } from '@angular/core';
+      <pre><code class="language-typescript rounded-md" ngNonBindable><![CDATA[import { Component, computed, model, resource } from '@angular/core';
 import { File, FilePreviewOutput, NgxVoyageComponent } from 'ngx-voyage';
 @Component({
 selector: 'app-root',
@@ -319,34 +326,35 @@ getFileContent({ path, cb }: FilePreviewOutput) {
 }
 }]]></code></pre>
 
-    <img
-      src="guide/3.png"
-      class="w-fit mx-auto"
-      alt="ngx-voyage file preview"
-    />
+      <img
+        src="guide/3.png"
+        class="w-fit mx-auto"
+        alt="ngx-voyage file preview"
+      />
+    </section>
+    <section class="flex flex-col gap-3" id="theme">
+      <a href="guide#theme" class="text-2xl font-semibold mt-8">
+        6. Custom PrimeNG theme
+      </a>
 
-    <a href="guide#theme" id="theme" class="text-2xl font-semibold mt-8">
-      6. Custom PrimeNG theme
-    </a>
+      <p>
+        You can customize the look and feel using PrimeNG themes. <br />
+        Check out the full PrimeNG guide for all theming options:
+        <a
+          href="https://primeng.org/theming"
+          target="_blank"
+          class="text-blue-500"
+          >https://primeng.org/theming</a
+        >
+      </p>
 
-    <p>
-      You can customize the look and feel using PrimeNG themes. <br />
-      Check out the full PrimeNG guide for all theming options:
-      <a
-        href="https://primeng.org/theming"
-        target="_blank"
-        class="text-blue-500"
-        >https://primeng.org/theming</a
-      >
-    </p>
+      <p>
+        One of the first things you will want to change is the primary color of
+        the theme. You can apply a different one by registering a new theme
+        preset:
+      </p>
 
-    <p>
-      One of the first things you will want to change is the primary color of
-      the theme. You can apply a different one by registering a new theme
-      preset:
-    </p>
-
-    <pre><code class="language-typescript rounded-md" ngNonBindable><![CDATA[export const appConfig: ApplicationConfig = {
+      <pre><code class="language-typescript rounded-md" ngNonBindable><![CDATA[export const appConfig: ApplicationConfig = {
 providers: [
   provideAnimationsAsync(),
   providePrimeNG({
@@ -372,9 +380,10 @@ providers: [
   }),
 ],
 };]]></code></pre>
+    </section>
   </div>
 
-  <div class="text-sm hidden xl:block">
+  <div class="text-sm hidden lg:block">
     <nav class="sticky top-10">
       <app-sidenav [sideNavLinks]="sideNavLinks"></app-sidenav>
     </nav>
