@@ -17,7 +17,7 @@ import { VoyageIconComponent } from "ngx-voyage";
   ],
   template: `
     <div class="flex h-full w-full overflow-auto bg-gray-100 dark:bg-gray-800">
-      <div class="flex container mx-auto p-3 max-w-[72rem] gap-2">
+      <div class="flex container mx-auto p-2">
         <div class="hidden md:block sticky top-0">
           <app-nav></app-nav>
         </div>
@@ -25,13 +25,17 @@ import { VoyageIconComponent } from "ngx-voyage";
           <app-nav></app-nav>
         </p-drawer>
 
-        <div class="md:hidden ">
-          <p-button (click)="showMenu.set(true)" outlined="true">
-            <ngx-voyage-icon type="bars"></ngx-voyage-icon>
-          </p-button>
-        </div>
-
         <div class="flex flex-col justify-between h-full w-full  ">
+          <div class="md:hidden">
+            <p-button
+              (click)="showMenu.set(true)"
+              outlined="true"
+              severity="secondary"
+            >
+              <ngx-voyage-icon type="bars"></ngx-voyage-icon>
+            </p-button>
+          </div>
+
           <div>
             <router-outlet></router-outlet>
           </div>
