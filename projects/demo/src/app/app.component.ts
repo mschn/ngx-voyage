@@ -17,21 +17,21 @@ import { VoyageIconComponent } from "ngx-voyage";
   ],
   template: `
     <div class="flex h-full w-full overflow-auto bg-gray-100 dark:bg-gray-800">
-      <div class="hidden md:block sticky top-0">
-        <app-nav></app-nav>
-      </div>
-      <p-drawer [(visible)]="showMenu">
-        <app-nav></app-nav>
-      </p-drawer>
+      <div class="flex container mx-auto p-3 max-w-[72rem] gap-2">
+        <div class="hidden md:block sticky top-0">
+          <app-nav></app-nav>
+        </div>
+        <p-drawer [(visible)]="showMenu">
+          <app-nav></app-nav>
+        </p-drawer>
 
-      <div class="container mx-auto p-3 max-w-[72rem]">
         <div class="md:hidden ">
           <p-button (click)="showMenu.set(true)" outlined="true">
             <ngx-voyage-icon type="bars"></ngx-voyage-icon>
           </p-button>
         </div>
 
-        <div class="flex flex-col justify-between h-full ">
+        <div class="flex flex-col justify-between h-full w-full  ">
           <div>
             <router-outlet></router-outlet>
           </div>

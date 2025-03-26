@@ -7,7 +7,7 @@ import { routes } from "./app.routes";
   selector: "app-nav",
   imports: [RouterLink, RouterLinkActive, VoyageIconComponent],
   template: `
-    <div class="flex flex-col gap-3 py-3 px-5 h-full">
+    <nav class="flex flex-col gap-3  px-5 h-full">
       @for (route of routes; track route.path) {
         <a
           class="rounded-md px-3 py-2 text-nowrap dark:text-gray-200"
@@ -39,7 +39,7 @@ import { routes } from "./app.routes";
           <ngx-voyage-icon type="npm"></ngx-voyage-icon>
         </a>
       </div>
-    </div>
+    </nav>
   `,
 })
 export class NavComponent {

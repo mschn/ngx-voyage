@@ -1,27 +1,28 @@
-<div class="flex flex-col gap-3">
-  <h1 class="text-4xl font-semibold">Features</h1>
-
-  <a
-    href="features#folders"
-    id="folders"
-    class="text-2xl font-semibold block mt-8"
-  >
-    Folder navigation
-  </a>
+<div class="flex">
   <div class="flex flex-col gap-3">
-    <div class="">
-      If you provide an array of empty files, then the file explorer will
-      display an empty message.
-      <code><![CDATA[[files]="[]"]]></code>
-    </div>
-    <div class="max-w-[50rem] mx-auto">
-      <div class="h-[20rem] flex flex-col">
-        <ngx-voyage [(path)]="path" [files]="[]"></ngx-voyage>
-        <div class="p-2"
-          >Current path:<code>{{ path() }}</code></div
-        >
+    <h1 class="text-4xl font-semibold">Features</h1>
+
+    <a
+      href="features#folders"
+      id="folders"
+      class="text-2xl font-semibold block mt-8"
+    >
+      Folder navigation
+    </a>
+    <div class="flex flex-col gap-3">
+      <div class="">
+        If you provide an array of empty files, then the file explorer will
+        display an empty message.
+        <code><![CDATA[[files]="[]"]]></code>
       </div>
-      <pre><code class="language-typescript" ngNonBindable
+      <div class="max-w-[50rem] mx-auto">
+        <div class="h-[20rem] flex flex-col">
+          <ngx-voyage [(path)]="path" [files]="[]"></ngx-voyage>
+          <div class="p-2"
+            >Current path:<code>{{ path() }}</code></div
+          >
+        </div>
+        <pre><code class="language-typescript" ngNonBindable
             ><![CDATA[@Component({
   selector: 'app-demo'
   imports: 'NgxVoyageComponent',
@@ -33,99 +34,103 @@
 class AppDemoComponent {
   path = model('/path/to/nested/folder')}
 }]]></code></pre>
+      </div>
     </div>
-  </div>
 
-  <a
-    href="features#loading"
-    id="loading"
-    class="text-2xl font-semibold block mt-8"
-  >
-    Loading
-  </a>
-  <div class="flex flex-col gap-3">
-    <div class="">
-      You can show a loading indicator inside the file explorer with
-      <code><![CDATA[[loading]="true"]]></code>
-      This is useful if you are fetching files over the network, and loading
-      folders can take some time.<br />
-      In that case, instead of showing an empty files message you can show this
-      loading indicator.
-    </div>
-    <div class="max-w-[50rem] mx-auto">
-      <div class="h-[20rem]">
-        <ngx-voyage path="/" [files]="[]" [loading]="true"></ngx-voyage
-      ></div>
-      <pre><code class="language-html "
+    <a
+      href="features#loading"
+      id="loading"
+      class="text-2xl font-semibold block mt-8"
+    >
+      Loading
+    </a>
+    <div class="flex flex-col gap-3">
+      <div class="">
+        You can show a loading indicator inside the file explorer with
+        <code><![CDATA[[loading]="true"]]></code>
+        This is useful if you are fetching files over the network, and loading
+        folders can take some time.<br />
+        In that case, instead of showing an empty files message you can show
+        this loading indicator.
+      </div>
+      <div class="max-w-[50rem] mx-auto">
+        <div class="h-[20rem]">
+          <ngx-voyage path="/" [files]="[]" [loading]="true"></ngx-voyage
+        ></div>
+        <pre><code class="language-html "
       ><![CDATA[<ngx-voyage path="/" [files]="[]" [loading]="true"
 ></ngx-voyage>]]></code></pre>
+      </div>
     </div>
-  </div>
 
-  <a
-    href="features#message"
-    id="message"
-    class="text-2xl font-semibold block mt-8"
-  >
-    Messages
-  </a>
-  <div class="flex flex-col gap-3">
-    <div class="">
-      You can display a message inside the file explorer with:
-      <code><![CDATA[[message]="{ text: 'Message text', type: 'warn'}"]]></code>
-      <p>
-        You can use this to show a status when files cannot be fetched from the
-        network.<br />
-        A message can be of type <code>warn</code>, <code>info</code> or
-        <code>error</code>, and will be displayed with the according error and
-        color.
-      </p>
-      <p> </p>
-    </div>
-    <div class="max-w-[50rem] mx-auto">
-      <div class="h-[20rem]">
-        <ngx-voyage
-          path="/"
-          [files]="[]"
-          [message]="{ text: 'Watch out', type: 'warn' }"
-        ></ngx-voyage
-      ></div>
-      <pre><code class="language-html "
+    <a
+      href="features#message"
+      id="message"
+      class="text-2xl font-semibold block mt-8"
+    >
+      Messages
+    </a>
+    <div class="flex flex-col gap-3">
+      <div class="">
+        You can display a message inside the file explorer with:
+        <code
+          ><![CDATA[[message]="{ text: 'Message text', type: 'warn'}"]]></code
+        >
+        <p>
+          You can use this to show a status when files cannot be fetched from
+          the network.<br />
+          A message can be of type <code>warn</code>, <code>info</code> or
+          <code>error</code>, and will be displayed with the according error and
+          color.
+        </p>
+        <p> </p>
+      </div>
+      <div class="max-w-[50rem] mx-auto">
+        <div class="h-[20rem]">
+          <ngx-voyage
+            path="/"
+            [files]="[]"
+            [message]="{ text: 'Watch out', type: 'warn' }"
+          ></ngx-voyage
+        ></div>
+        <pre><code class="language-html "
       ><![CDATA[<ngx-voyage
   path="/"
   [files]="[]"
   [message]="{ text: 'Watch out', type: 'warn' }"
 ></ngx-voyage>]]></code></pre>
+      </div>
     </div>
-  </div>
 
-  <a
-    href="features#templates"
-    id="templates"
-    class="text-2xl font-semibold block mt-8"
-  >
-    Header & footer templates
-  </a>
-  <div class="flex flex-col gap-3">
-    <div class="">
-      You can customize the file explorer by providing a header and/or a footer
-      template.<br />
-      Your template will be projected inside the file explorer, above and below
-      the bookmarks in the left sidebar.<br />
-      Use this to add your branding or some custom features.
-    </div>
-    <div class="max-w-[50rem] mx-auto">
-      <div class="h-[20rem]">
-        <ngx-voyage path="/" [files]="[]">
-          <ng-template #header
-            ><span style="font-size: 18px; font-weight: bold">👻 My Files</span>
-          </ng-template>
-          <ng-template #footer
-            ><small>&copy; Umbrella corp. 2025</small></ng-template
-          >
-        </ngx-voyage></div
-      >
-      <pre><code class="language-html "
+    <a
+      href="features#templates"
+      id="templates"
+      class="text-2xl font-semibold block mt-8"
+    >
+      Header & footer templates
+    </a>
+    <div class="flex flex-col gap-3">
+      <div class="">
+        You can customize the file explorer by providing a header and/or a
+        footer template.<br />
+        Your template will be projected inside the file explorer, above and
+        below the bookmarks in the left sidebar.<br />
+        Use this to add your branding or some custom features.
+      </div>
+      <div class="max-w-[50rem] mx-auto">
+        <div class="h-[20rem]">
+          <ngx-voyage path="/" [files]="[]">
+            <ng-template #header
+              ><span style="font-size: 18px; font-weight: bold"
+                >👻 My Files</span
+              >
+            </ng-template>
+            <ng-template #footer
+              ><small>&copy; Umbrella corp. 2025</small></ng-template
+            >
+          </ngx-voyage></div
+        >
+        <pre><code class="language-html "
       ><![CDATA[<ngx-voyage path="/" [files]="[]">
   <ng-template #header>
     <span style="font-size: 18px; font-weight: bold">
@@ -138,6 +143,20 @@ class AppDemoComponent {
     </small>
   </ng-template>
 </ngx-voyage>]]></code></pre>
+      </div>
     </div>
+  </div>
+
+  <div class="w-[20rem] text-sm hidden xl:block">
+    <nav class="sticky top-10">
+      <ul class="text-blue-500 ml-8 whitespace-nowrap">
+        <li class="p-1"><a href="features#folders">Folder navigation</a></li>
+        <li class="p-1"><a href="features#loading">Loading</a></li>
+        <li class="p-1"><a href="features#messages">Messages</a></li>
+        <li class="p-1"
+          ><a href="features#templates">Header & footer templates</a></li
+        >
+      </ul></nav
+    >
   </div>
 </div>
