@@ -40,7 +40,7 @@ export class FeaturesComponent implements OnInit {
       text: "Loading",
     },
     {
-      href: "features#messages",
+      href: "features#message",
       text: "Messages",
     },
     {

@@ -13,6 +13,7 @@ export class Store {
   readonly bookmarks = signal<Bookmark[]>([]);
   readonly showHiddenFiles = signal(false);
   readonly showOpenFile = signal(false);
+  readonly showPreviewFile = signal(false);
   readonly selectedView = signal<ViewType>("grid");
   readonly selectedFile = signal<File | undefined>(undefined);
 

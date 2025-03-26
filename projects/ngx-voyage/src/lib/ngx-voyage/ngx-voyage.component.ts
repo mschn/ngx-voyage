@@ -92,7 +92,9 @@ export class NgxVoyageComponent implements OnInit {
 
   ngOnInit() {
     const hasOpenFileOutput = this.openFile["listeners"]?.length > 0;
+    const hasPreviewFileOutput = this.previewFile["listeners"]?.length > 0;
     this.store.showOpenFile.set(hasOpenFileOutput);
+    this.store.showPreviewFile.set(hasPreviewFileOutput);
 
     if (this.store.bookmarks().length === 0) {
       this.store.addBookmark({

@@ -94,10 +94,10 @@ export abstract class BaseViewComponent implements OnChanges {
   }
 
   onDoubleClick(file: File) {
-    if (canPreviewFile(file)) {
+    if (canPreviewFile(file) && this.store.showPreviewFile()) {
       this.selectedFile.set(file);
       this.openFilePreview(file);
-    } else {
+    } else if (this.store.showOpenFile()) {
       this.openFileOrFolder(file);
     }
   }
@@ -134,8 +134,12 @@ export abstract class BaseViewComponent implements OnChanges {
     const cm = this.contextMenu();
     if (cm && event?.currentTarget && file) {
       this.selectedFile.set(file);
-      this.menuItems[0].visible = canPreviewFile(file);
+      this.menuItems[0].visible =
+        this.store.showPreviewFile() && canPreviewFile(file);
       this.menuItems[1].visible = this.store.showOpenFile() || file.isDirectory;
+      if (!this.menuItems[0].visible && !this.menuItems[1].visible) {
+        return;
+      }
       cm.target = event.currentTarget as HTMLElement;
       cm.show(event);
     }
