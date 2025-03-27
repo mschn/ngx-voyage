@@ -18,12 +18,12 @@ export const routes: Routes = [
       ),
   },
   {
-    title: "ngx-voyage - Features",
-    path: "features",
-    data: { name: "Features" },
+    title: "ngx-voyage - Reference",
+    path: "reference",
+    data: { name: "Reference" },
     loadComponent: () =>
-      import("./routes/features/features.component").then(
-        (c) => c.FeaturesComponent,
+      import("./routes/reference/ref.component").then(
+        (c) => c.ReferenceComponent,
       ),
   },
   {

@@ -11,47 +11,47 @@ import {
 import { SideNavComponent, SideNavLink } from "../sidenav.component";
 
 @Component({
-  selector: "app-features",
+  selector: "app-reference",
   imports: [NgxVoyageComponent, SideNavComponent],
-  templateUrl: "./features.component.html",
+  templateUrl: "./ref.component.html",
 })
-export class FeaturesComponent implements OnInit {
+export class ReferenceComponent implements OnInit {
   path = model("/path/to/nested/folder");
 
   sideNavLinks: SideNavLink[] = [
     {
       id: "files",
-      href: "features#files",
+      href: "reference#files",
       text: "Files & folders",
     },
     {
       id: "folders",
-      href: "features#folders",
+      href: "reference#folders",
       text: "Folder navigation",
     },
     {
       id: "previewfile",
-      href: "features#previewfile",
+      href: "reference#previewfile",
       text: "Preview a file",
     },
     {
       id: "openfile",
-      href: "features#openfile",
+      href: "reference#openfile",
       text: "Open a file",
     },
     {
       id: "loading",
-      href: "features#loading",
+      href: "reference#loading",
       text: "Loading",
     },
     {
       id: "message",
-      href: "features#message",
+      href: "reference#message",
       text: "Messages",
     },
     {
       id: "templates",
-      href: "features#templates",
+      href: "reference#templates",
       text: "Header & footer templates",
     },
   ];
