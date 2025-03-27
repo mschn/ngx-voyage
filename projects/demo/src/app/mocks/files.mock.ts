@@ -1,4 +1,4 @@
-import { File } from "../../../../../dist/ngx-voyage";
+import { File } from "../../../../ngx-voyage/src/public-api";
 
 export const filesMock: Record<string, File[]> = {
   "/": [
