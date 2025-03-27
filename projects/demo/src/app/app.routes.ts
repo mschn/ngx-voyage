@@ -33,4 +33,13 @@ export const routes: Routes = [
     loadComponent: () =>
       import("./routes/guide/guide.component").then((c) => c.GuideComponent),
   },
+  {
+    title: "ngx-voyage - Theming",
+    path: "theming",
+    data: { name: "Theming" },
+    loadComponent: () =>
+      import("./routes/theming/theming.component").then(
+        (c) => c.ThemingComponent,
+      ),
+  },
 ];

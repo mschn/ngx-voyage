@@ -8,4 +8,7 @@ export default {
   coverageReporters: ["json", "text", "lcov"],
   coverageDirectory: "coverage",
   coverageProvider: "v8",
+  moduleNameMapper: {
+    "@primeng/themes": "<rootDir>/node_modules/@primeng/themes/index.mjs",
+  },
 } satisfies Config;

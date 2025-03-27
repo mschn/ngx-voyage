@@ -1,0 +1,55 @@
+<div class="flex flex-col">
+  <h1 class="text-4xl font-semibold">Theming</h1>
+
+  <p class="mt-8"
+    >The appearance of <code>ngx-voyage</code> can be customized using the
+    PrimeNG theme configuration.<br />
+    <a
+      class="text-blue-500"
+      href="https://primeng.org/theming#updatepreset"
+      target="_blank"
+      >Check the PrimeNG docs on theming for more details.</a
+    >
+    <br><br>
+    You can easily define your own theme presets starting from the following examples:
+  </p>
+
+  <span class="font-semibold mt-3">Theme</span>
+  <p-selectbutton
+    [options]="themeOptions"
+    [(ngModel)]="selectedTheme"
+    (ngModelChange)="changeTheme()"
+    optionLabel="name"
+    optionValue="value"
+  />
+
+  <span class="font-semibold mt-3">Primary color</span>
+  <p-selectbutton
+    [options]="colorOptions"
+    [(ngModel)]="selectedColor"
+    (ngModelChange)="changeColor()"
+    optionLabel="name"
+    optionValue="value"
+  >
+    <ng-template #item let-item>
+      <span
+        class="rounded-4xl w-4 h-4 inline-block"
+        [ngClass]="{
+          'bg-red-500': item.value === 'red',
+          'bg-blue-500': item.value === 'blue',
+          'bg-green-500': item.value === 'green',
+          'bg-indigo-500': item.value === 'indigo',
+          'bg-zinc-500': item.value === 'zinc',
+        }"
+      ></span>
+      {{ item.name }}
+    </ng-template>
+  </p-selectbutton>
+
+  <div class="mt-3 max-w-[50rem] border border-gray-300 dark:border-gray-600">
+    <div class="h-[20rem]">
+      <ngx-voyage path="/home/ngx-voyage" [files]="files"></ngx-voyage>
+    </div>
+    <pre><code class="hljs language-typescript" [innerHTML]="themeCodeHighlighted()"></code></pre>
+  </div>
+</div>
