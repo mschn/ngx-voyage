@@ -3,7 +3,7 @@ import {
   provideExperimentalZonelessChangeDetection,
 } from "@angular/core";
 import { provideAnimationsAsync } from "@angular/platform-browser/animations/async";
-import { provideRouter } from "@angular/router";
+import { provideRouter, withInMemoryScrolling } from "@angular/router";
 import { definePreset } from "@primeng/themes";
 import Aura from "@primeng/themes/aura";
 import { providePrimeNG } from "primeng/config";
@@ -12,7 +12,12 @@ import { routes } from "./app.routes";
 export const appConfig: ApplicationConfig = {
   providers: [
     provideExperimentalZonelessChangeDetection(),
-    provideRouter(routes),
+    provideRouter(
+      routes,
+      withInMemoryScrolling({
+        scrollPositionRestoration: "disabled",
+      }),
+    ),
     providePrimeNG({
       theme: {
         preset: definePreset(Aura, {

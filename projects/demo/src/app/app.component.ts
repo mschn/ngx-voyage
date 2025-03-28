@@ -16,7 +16,10 @@ import { VoyageIconComponent } from "ngx-voyage";
     VoyageIconComponent,
   ],
   template: `
-    <div class="flex h-full w-full overflow-auto bg-gray-100 dark:bg-gray-800">
+    <div
+      class="flex h-full w-full overflow-auto bg-gray-100 dark:bg-gray-800"
+      id="scroll-container"
+    >
       <div class="flex container mx-auto p-2 h-fit">
         <div class="hidden md:block sticky top-0">
           <div class="sticky top-0">

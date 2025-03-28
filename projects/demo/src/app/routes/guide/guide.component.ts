@@ -1,8 +1,9 @@
-import { Component, OnInit } from "@angular/core";
+import { AfterViewInit, Component, inject, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
 import hljs from "highlight.js/lib/core";
-import typescript from "highlight.js/lib/languages/typescript";
 import bash from "highlight.js/lib/languages/bash";
 import css from "highlight.js/lib/languages/css";
+import typescript from "highlight.js/lib/languages/typescript";
 import { SideNavComponent } from "../sidenav.component";
 
 @Component({
@@ -10,7 +11,9 @@ import { SideNavComponent } from "../sidenav.component";
   templateUrl: "./guide.component.html",
   imports: [SideNavComponent],
 })
-export class GuideComponent implements OnInit {
+export class GuideComponent implements OnInit, AfterViewInit {
+  route = inject(ActivatedRoute);
+
   sideNavLinks = [
     {
       href: "guide#howto",
@@ -41,5 +44,14 @@ export class GuideComponent implements OnInit {
     hljs.registerLanguage("bash", bash);
     hljs.registerLanguage("css", css);
     hljs.highlightAll();
+  }
+
+  ngAfterViewInit(): void {
+    const elt = document.querySelector("#" + this.route.snapshot.fragment);
+    if (elt) {
+      elt.scrollIntoView();
+    } else {
+      document.querySelector("#scroll-container")?.scrollTo(0, 0);
+    }
   }
 }

@@ -1,12 +1,12 @@
-import { Component, model, OnInit } from "@angular/core";
+import { AfterViewInit, Component, inject, model, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
 import hljs from "highlight.js/lib/core";
 import typescript from "highlight.js/lib/languages/typescript";
 import html from "highlight.js/lib/languages/xml";
-
 import {
-  NgxVoyageComponent,
   File,
   FilePreviewOutput,
+  NgxVoyageComponent,
 } from "../../../../../ngx-voyage/src/public-api";
 import { SideNavComponent, SideNavLink } from "../sidenav.component";
 
@@ -15,7 +15,8 @@ import { SideNavComponent, SideNavLink } from "../sidenav.component";
   imports: [NgxVoyageComponent, SideNavComponent],
   templateUrl: "./ref.component.html",
 })
-export class ReferenceComponent implements OnInit {
+export class ReferenceComponent implements OnInit, AfterViewInit {
+  route = inject(ActivatedRoute);
   path = model("/path/to/nested/folder");
 
   sideNavLinks: SideNavLink[] = [
@@ -88,6 +89,15 @@ export class ReferenceComponent implements OnInit {
     hljs.registerLanguage("html", html);
     hljs.registerLanguage("typescript", typescript);
     hljs.highlightAll();
+  }
+
+  ngAfterViewInit(): void {
+    const elt = document.querySelector("#" + this.route.snapshot.fragment);
+    if (elt) {
+      elt.scrollIntoView();
+    } else {
+      document.querySelector("#scroll-container")?.scrollTo(0, 0);
+    }
   }
 
   openFile(path: string) {
