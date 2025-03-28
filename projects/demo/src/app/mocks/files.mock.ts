@@ -21,7 +21,7 @@ export const filesMock: Record<string, File[]> = {
       size: 43,
     },
   ],
-  "/home/voyage": [
+  "/home/ngx-voyage": [
     {
       isFile: false,
       isDirectory: true,

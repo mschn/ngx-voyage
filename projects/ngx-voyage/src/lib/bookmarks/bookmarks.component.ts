@@ -3,11 +3,13 @@ import { ButtonModule } from "primeng/button";
 import { VoyageIconComponent } from "../icon";
 import { Bookmark } from "../model/bookmark";
 import { Store } from "../model/store";
+import { NgClass } from "@angular/common";
 
 @Component({
   selector: "ngx-voyage-bookmarks",
   templateUrl: "./bookmarks.component.html",
-  imports: [ButtonModule, VoyageIconComponent],
+  styleUrl: "./bookmarks.component.css",
+  imports: [ButtonModule, VoyageIconComponent, NgClass],
 })
 export class BookmarksComponent {
   readonly #store = inject(Store);

@@ -20,11 +20,11 @@
     display: none;
     flex-direction: column;
 
-    padding: 1rem;
-    max-width: 32rem;
+    padding: 0.75rem;
+    width: 12rem;
 
     @container (width >= 64rem) {
-      max-width: 48rem;
+      width: 16rem;
     }
 
     @container (width >= 28rem) {

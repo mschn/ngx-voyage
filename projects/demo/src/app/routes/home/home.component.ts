@@ -14,7 +14,7 @@ import { filesContentMock, filesMock } from "../../mocks/files.mock";
   imports: [NgxVoyageComponent, ButtonModule, RouterLink, VoyageIconComponent],
 })
 export class HomeComponent {
-  path = model("/home/voyage");
+  path = model("/home/ngx-voyage");
   files = computed(() => filesMock[this.path()]);
 
   preview({ path, cb }: FilePreviewOutput) {

@@ -1,0 +1,29 @@
+.bookmarks {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+
+  .bookmark {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: start;
+    cursor: pointer;
+
+    padding: var(--p-togglebutton-sm-padding);
+    border-radius: var(--p-togglebutton-border-radius);
+    color: var(--p-togglebutton-color);
+
+    &.active {
+      background: var(--p-togglebutton-checked-background);
+      color: var(--p-togglebutton-checked-color);
+      border: 1px solid var(--p-togglebutton-checked-border-color);
+    }
+
+    ngx-voyage-icon {
+      display: inline-block;
+      width: 1.5rem;
+    }
+  }
+}

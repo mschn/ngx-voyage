@@ -28,7 +28,7 @@ type Theme = "aura" | "lara" | "nora" | "material";
   ],
 })
 export class ThemingComponent {
-  files = filesMock["/home/voyage"];
+  files = filesMock["/home/ngx-voyage"];
 
   selectedTheme = model<Theme>("aura");
   themeOptions: { value: Theme; name: string }[] = [
