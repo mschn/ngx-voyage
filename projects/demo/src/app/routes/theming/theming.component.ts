@@ -14,6 +14,7 @@ import { NgxVoyageComponent } from "../../../../../ngx-voyage/src/public-api";
 import { filesMock } from "../../mocks/files.mock";
 
 type Color = "blue" | "red" | "indigo" | "green" | "zinc";
+type SurfaceColor = "gray" | "zinc" | "stone" | "slate";
 type Theme = "aura" | "lara" | "nora" | "material";
 
 @Component({
@@ -70,12 +71,36 @@ export class ThemingComponent {
     },
   ];
 
+  selectedSurfaceColor = model<SurfaceColor>("slate");
+  surfaceColorOptions: { value: SurfaceColor; name: string }[] = [
+    {
+      value: "slate",
+      name: "Slate",
+    },
+    {
+      value: "gray",
+      name: "Gray",
+    },
+    {
+      value: "zinc",
+      name: "Zinc",
+    },
+    {
+      value: "stone",
+      name: "Stone",
+    },
+  ];
+
   constructor() {
     hljs.registerLanguage("typescript", typescript);
   }
 
   changeColor() {
     this.setColor(this.selectedColor());
+  }
+
+  changeSurfaceColor() {
+    this.setSurfaceColor(this.selectedSurfaceColor());
   }
 
   changeTheme() {
@@ -111,6 +136,45 @@ export class ThemingComponent {
     });
   }
 
+  setSurfaceColor(color: SurfaceColor) {
+    updatePreset({
+      semantic: {
+        colorScheme: {
+          dark: {
+            surface: {
+              50: `{${color}.50}`,
+              100: `{${color}.100}`,
+              200: `{${color}.200}`,
+              300: `{${color}.300}`,
+              400: `{${color}.400}`,
+              500: `{${color}.500}`,
+              600: `{${color}.600}`,
+              700: `{${color}.700}`,
+              800: `{${color}.800}`,
+              900: `{${color}.900}`,
+              950: `{${color}.950}`,
+            },
+          },
+          light: {
+            surface: {
+              50: `{${color}.50}`,
+              100: `{${color}.100}`,
+              200: `{${color}.200}`,
+              300: `{${color}.300}`,
+              400: `{${color}.400}`,
+              500: `{${color}.500}`,
+              600: `{${color}.600}`,
+              700: `{${color}.700}`,
+              800: `{${color}.800}`,
+              900: `{${color}.900}`,
+              950: `{${color}.950}`,
+            },
+          },
+        },
+      },
+    });
+  }
+
   themeCode = computed(() => {
     if (!this.selectedTheme().length) {
       return "";
@@ -138,6 +202,38 @@ export const appConfig: ApplicationConfig = {
               800: "{${this.selectedColor()}.800}",
               900: "{${this.selectedColor()}.900}",
               950: "{${this.selectedColor()}.950}",
+            },
+            colorScheme: {
+              dark: {
+                surface: {
+                  50: "{${this.selectedSurfaceColor()}.50}",
+                  100: "{${this.selectedSurfaceColor()}.100}",
+                  200: "{${this.selectedSurfaceColor()}.200}",
+                  300: "{${this.selectedSurfaceColor()}.300}",
+                  400: "{${this.selectedSurfaceColor()}.400}",
+                  500: "{${this.selectedSurfaceColor()}.500}",
+                  600: "{${this.selectedSurfaceColor()}.600}",
+                  700: "{${this.selectedSurfaceColor()}.700}",
+                  800: "{${this.selectedSurfaceColor()}.800}",
+                  900: "{${this.selectedSurfaceColor()}.900}",
+                  950: "{${this.selectedSurfaceColor()}.950}",
+                },
+              },
+              light: {
+                surface: {
+                  50: "{${this.selectedSurfaceColor()}.50}",
+                  100: "{${this.selectedSurfaceColor()}.100}",
+                  200: "{${this.selectedSurfaceColor()}.200}",
+                  300: "{${this.selectedSurfaceColor()}.300}",
+                  400: "{${this.selectedSurfaceColor()}.400}",
+                  500: "{${this.selectedSurfaceColor()}.500}",
+                  600: "{${this.selectedSurfaceColor()}.600}",
+                  700: "{${this.selectedSurfaceColor()}.700}",
+                  800: "{${this.selectedSurfaceColor()}.800}",
+                  900: "{${this.selectedSurfaceColor()}.900}",
+                  950: "{${this.selectedSurfaceColor()}.950}",
+                },
+              },
             },
           },
         }),

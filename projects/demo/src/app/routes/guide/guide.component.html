@@ -332,55 +332,6 @@ getFileContent({ path, cb }: FilePreviewOutput) {
         alt="ngx-voyage file preview"
       />
     </section>
-    <section class="flex flex-col gap-3" id="theme">
-      <a href="guide#theme" class="text-2xl font-semibold mt-8">
-        6. Custom PrimeNG theme
-      </a>
-
-      <p>
-        You can customize the look and feel using PrimeNG themes. <br />
-        Check out the full PrimeNG guide for all theming options:
-        <a
-          href="https://primeng.org/theming"
-          target="_blank"
-          class="text-blue-500"
-          >https://primeng.org/theming</a
-        >
-      </p>
-
-      <p>
-        One of the first things you will want to change is the primary color of
-        the theme. You can apply a different one by registering a new theme
-        preset:
-      </p>
-
-      <pre><code class="language-typescript rounded-md" ngNonBindable><![CDATA[export const appConfig: ApplicationConfig = {
-providers: [
-  provideAnimationsAsync(),
-  providePrimeNG({
-    theme: {
-      preset: definePreset(Aura, {
-        semantic: {
-          primary: {
-            50: '{indigo.50}',
-            100: '{indigo.100}',
-            200: '{indigo.200}',
-            300: '{indigo.300}',
-            400: '{indigo.400}',
-            500: '{indigo.500}',
-            600: '{indigo.600}',
-            700: '{indigo.700}',
-            800: '{indigo.800}',
-            900: '{indigo.900}',
-            950: '{indigo.950}',
-          },
-        },
-      }),
-    },
-  }),
-],
-};]]></code></pre>
-    </section>
   </div>
 
   <div class="text-sm hidden lg:block">

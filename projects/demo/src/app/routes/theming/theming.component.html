@@ -38,10 +38,33 @@
       <span
         class="rounded-4xl w-4 h-4 inline-block"
         [ngClass]="{
-          'bg-red-500': item.value === 'red',
-          'bg-blue-500': item.value === 'blue',
-          'bg-green-500': item.value === 'green',
-          'bg-zinc-500': item.value === 'zinc',
+          'bg-(--p-red-500)': item.value === 'red',
+          'bg-(--p-blue-500)': item.value === 'blue',
+          'bg-(--p-green-500)': item.value === 'green',
+          'bg-(--p-zinc-500)': item.value === 'zinc',
+        }"
+      ></span>
+      {{ item.name }}
+    </ng-template>
+  </p-selectbutton>
+
+  <span class="font-semibold mt-3">Surface color</span>
+  <p-selectbutton
+    [options]="surfaceColorOptions"
+    [(ngModel)]="selectedSurfaceColor"
+    (ngModelChange)="changeSurfaceColor()"
+    optionLabel="name"
+    optionValue="value"
+    allowEmpty="false"
+  >
+    <ng-template #item let-item>
+      <span
+        class="rounded-4xl w-4 h-4 inline-block"
+        [ngClass]="{
+          'bg-(--p-gray-500)': item.value === 'gray',
+          'bg-(--p-zinc-500)': item.value === 'zinc',
+          'bg-(--p-stone-500)': item.value === 'stone',
+          'bg-(--p-slate-500)': item.value === 'slate',
         }"
       ></span>
       {{ item.name }}

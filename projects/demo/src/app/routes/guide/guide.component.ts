@@ -34,7 +34,6 @@ export class GuideComponent implements OnInit {
       id: "preview",
       text: "5. File preview from a server",
     },
-    { href: "guide#theme", id: "theme", text: "6. Custom PrimeNG theme" },
   ];
 
   ngOnInit() {
