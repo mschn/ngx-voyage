@@ -63,7 +63,7 @@ export const filesMock: Record<string, File[]> = {
       size: 1068,
     },
   ],
-  "/home/voyage/screenshots": [
+  "/home/ngx-voyage/screenshots": [
     {
       isFile: true,
       isDirectory: false,
@@ -84,12 +84,12 @@ export const filesMock: Record<string, File[]> = {
 };
 
 export const filesContentMock: Record<string, string> = {
-  "/home/voyage/.secrets.txt": `
+  "/home/ngx-voyage/.secrets.txt": `
 [secrets]
 password1 = very-secret-1234
 password2 = ( ͡° ͜ʖ ͡°)
   `,
-  "/home/voyage/example.component.ts": `
+  "/home/ngx-voyage/example.component.ts": `
 import { File, NgxVoyageComponent } from "ngx-voyage";
 
 @Component({
@@ -102,7 +102,7 @@ export class AppComponent {
   files = signal<File[]>([]);
 }
   `,
-  "/home/voyage/README.md": `
+  "/home/ngx-voyage/README.md": `
 # ngx-voyage
 
 ngx-voyage is an Angular File Explorer component built with PrimeNG.
@@ -138,7 +138,7 @@ export class AppComponent {
 - [Primeng](https://primeng.org/)
 
   `,
-  "/home/voyage/LICENSE.md": `
+  "/home/ngx-voyage/LICENSE.md": `
 MIT License
 
 Copyright 2025 Mathieu Schnoor

@@ -12,9 +12,11 @@ test.describe("french lang", () => {
       "Document Markdown",
     ]);
 
-    expect(page.getByTestId("files-list-date").first()).toContainText(
+    await expect(page.getByTestId("files-list-date").first()).toContainText(
       "Aujourd'hui à",
     );
-    expect(page.getByTestId("files-list-date").nth(1)).toContainText("Hier à");
+    await expect(page.getByTestId("files-list-date").nth(1)).toContainText(
+      "Hier à",
+    );
   });
 });
