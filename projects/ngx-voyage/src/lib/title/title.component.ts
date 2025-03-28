@@ -19,6 +19,7 @@ import { FormsModule } from "@angular/forms";
 @Component({
   selector: "ngx-voyage-title",
   templateUrl: "./title.component.html",
+  styleUrl: "./title.component.css",
   imports: [
     ButtonModule,
     PopoverModule,

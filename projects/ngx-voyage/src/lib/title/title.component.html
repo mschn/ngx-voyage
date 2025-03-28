@@ -1,31 +1,24 @@
-<div class="flex flex-row items-center">
-  <p-button
-    icon="pi"
-    text="true"
-    (click)="onBack()"
-    [disabled]="backButtonDisabled()"
-  >
-    <ngx-voyage-icon
-      type="chevron-left"
-      class="text-gray-600 dark:text-gray-300"
-    ></ngx-voyage-icon>
-  </p-button>
-  <p-button
-    icon="pi"
-    text="true"
-    class="mr-3"
-    (click)="onForward()"
-    [disabled]="forwardButtonDisabled()"
-  >
-    <ngx-voyage-icon
-      type="chevron-right"
-      class="text-gray-600 dark:text-gray-300"
-    ></ngx-voyage-icon>
-  </p-button>
+<div class="title">
+  <div class="nav-buttons">
+    <p-button
+      icon="pi"
+      text="true"
+      (click)="onBack()"
+      [disabled]="backButtonDisabled()"
+    >
+      <ngx-voyage-icon type="chevron-left"></ngx-voyage-icon>
+    </p-button>
+    <p-button
+      icon="pi"
+      text="true"
+      (click)="onForward()"
+      [disabled]="forwardButtonDisabled()"
+    >
+      <ngx-voyage-icon type="chevron-right"></ngx-voyage-icon>
+    </p-button>
+  </div>
 
-  <div
-    class="flex items-center overflow-hidden justify-end bg-white dark:bg-gray-900 rounded-lg w-full p-1 border border-gray-300 dark:border-gray-700 h-[3.2rem] content-center"
-  >
+  <div class="path">
     @for (fragment of pathFragments(); track fragment; let isLast = $last) {
       <p-button
         (onClick)="navigate.emit(fragment.path)"
@@ -33,41 +26,35 @@
         data-testid="title-fragment"
       >
         @if (fragment.path === "/") {
-          <ngx-voyage-icon
-            type="desktop"
-            class="text-gray-600 dark:text-gray-300"
-          ></ngx-voyage-icon>
+          <ngx-voyage-icon type="desktop"></ngx-voyage-icon>
         } @else {
-          {{ fragment.name }}
+          <span class="fragment">{{ fragment.name }}</span>
         }
       </p-button>
       @if (!isLast) {
-        <span class="text-gray-500">/</span>
+        <span class="separator">/</span>
       }
     }
 
     @if (pathIsBookmarked()) {
-      <p-button variant="text" class="ml-auto" (onClick)="onRemoveBookmark()">
-        <ngx-voyage-icon
-          type="star-solid"
-          class="text-yellow-500 hidden @md:inline-block"
-        ></ngx-voyage-icon>
+      <p-button
+        variant="text"
+        class="bookmark bookmarked"
+        (onClick)="onRemoveBookmark()"
+      >
+        <ngx-voyage-icon type="star-solid"></ngx-voyage-icon>
       </p-button>
-    } @else if (path() === "/") {
-      <div class="ml-auto"></div>
     } @else {
       <p-button
         variant="text"
-        class="ml-auto hidden @md:inline-block"
+        class="bookmark"
         (onClick)="onAddBookmark()"
         data-testid="add-bookmark"
       >
-        <ngx-voyage-icon
-          type="star"
-          class="text-gray-600 dark:text-gray-300"
-        ></ngx-voyage-icon>
+        <ngx-voyage-icon type="star"></ngx-voyage-icon>
       </p-button>
     }
+    <div class="no-bookmark"></div>
   </div>
 
   <p-selectbutton
@@ -76,22 +63,19 @@
     (ngModelChange)="setSelectedView($event.type)"
     allowEmpty="false"
     size="small"
-    class="ml-3 hidden! @md:inline-flex!"
+    class="view-select-button"
   >
     <ng-template #item let-item>
       <ngx-voyage-icon
         [attr.data-testid]="'select-view-' + item.type"
         [type]="item.icon"
-        class="text-gray-600 dark:text-gray-300"
+        class="view-icons"
       ></ngx-voyage-icon>
     </ng-template>
   </p-selectbutton>
 
-  <p-button (click)="op.toggle($event)" icon="pi" text="true" class="ml-3">
-    <ngx-voyage-icon
-      type="bars"
-      class="text-gray-600 dark:text-gray-300"
-    ></ngx-voyage-icon>
+  <p-button (click)="op.toggle($event)" icon="pi" text="true" class="bars-button">
+    <ngx-voyage-icon type="bars"></ngx-voyage-icon>
   </p-button>
 </div>
 <p-popover #op>

@@ -115,13 +115,16 @@ export class ThemingComponent {
     });
   }
 
-  themeCode = computed(
-    () =>
-      `export const appConfig: ApplicationConfig = {
+  themeCode = computed(() => {
+    const themeName =
+      this.selectedTheme()[0].toUpperCase() + this.selectedTheme().substring(1);
+    return `import ${themeName} from "@primeng/themes/${this.selectedTheme()}";
+    
+export const appConfig: ApplicationConfig = {
   providers: [
     providePrimeNG({
       theme: {
-        preset: definePreset(${this.selectedTheme()[0].toUpperCase()}${this.selectedTheme().substring(1)}, {
+        preset: definePreset(${themeName}, {
           semantic: {
             primary: {
               50: "{${this.selectedColor()}.50}",
@@ -141,8 +144,8 @@ export class ThemingComponent {
       },
     }),
   ],
-};`,
-  );
+};`;
+  });
 
   themeCodeHighlighted = computed(
     () => hljs.highlight(this.themeCode(), { language: "typescript" }).value,
