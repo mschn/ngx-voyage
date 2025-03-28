@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { getByText } from "@testing-library/dom";
 import { ReferenceComponent } from "./ref.component";
+import { ActivatedRoute } from "@angular/router";
 
 describe("ReferenceComponent", () => {
   let component: ReferenceComponent;
@@ -9,6 +10,9 @@ describe("ReferenceComponent", () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ReferenceComponent],
+      providers: [
+        { provide: ActivatedRoute, useValue: { snapshot: { fragment: "" } } },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ReferenceComponent);

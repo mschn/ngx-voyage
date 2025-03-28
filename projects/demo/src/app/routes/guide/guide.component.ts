@@ -4,6 +4,7 @@ import hljs from "highlight.js/lib/core";
 import bash from "highlight.js/lib/languages/bash";
 import css from "highlight.js/lib/languages/css";
 import typescript from "highlight.js/lib/languages/typescript";
+import { scrollOnInit } from "../scroll";
 import { SideNavComponent } from "../sidenav.component";
 
 @Component({
@@ -47,11 +48,6 @@ export class GuideComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    const elt = document.querySelector("#" + this.route.snapshot.fragment);
-    if (elt) {
-      elt.scrollIntoView();
-    } else {
-      document.querySelector("#scroll-container")?.scrollTo(0, 0);
-    }
+    scrollOnInit(this.route);
   }
 }

@@ -8,6 +8,7 @@ import {
   FilePreviewOutput,
   NgxVoyageComponent,
 } from "../../../../../ngx-voyage/src/public-api";
+import { scrollOnInit } from "../scroll";
 import { SideNavComponent, SideNavLink } from "../sidenav.component";
 
 @Component({
@@ -92,12 +93,7 @@ export class ReferenceComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    const elt = document.querySelector("#" + this.route.snapshot.fragment);
-    if (elt) {
-      elt.scrollIntoView();
-    } else {
-      document.querySelector("#scroll-container")?.scrollTo(0, 0);
-    }
+    scrollOnInit(this.route);
   }
 
   openFile(path: string) {

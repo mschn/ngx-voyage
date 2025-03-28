@@ -73,9 +73,7 @@ describe("BookmarksComponent", () => {
     bookmarks.set([{ icon: "bookmark", name: "Bbb", path: "/bbb" }]);
     fixture.detectChanges();
     expect(component.path()).toEqual("/aaa");
-    getByTestId(fixture.nativeElement, "bookmark")
-      .querySelector("button")
-      ?.click();
+    getByTestId(fixture.nativeElement, "bookmark")?.click();
     expect(component.path()).toEqual("/bbb");
   });
 });
