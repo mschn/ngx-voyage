@@ -1,10 +1,66 @@
 @import "tailwindcss";
 
-.p-popover:after,
-.p-popover:before {
-  display: none;
-}
-
 @import "../../../../../node_modules/highlight.js/styles/github.min.css";
 @import "../../../../../node_modules/highlight.js/styles/github-dark.min.css"
   screen and (prefers-color-scheme: dark);
+
+.main {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  background: var(--p-surface-100);
+
+  @media (prefers-color-scheme: dark) {
+    background: var(--p-surface-800);
+  }
+
+  container-type: inline-size;
+
+  .sidebar {
+    display: none;
+    flex-direction: column;
+
+    padding: 1rem;
+    max-width: 32rem;
+
+    @container (width >= 64rem) {
+      max-width: 48rem;
+    }
+
+    @container (width >= 28rem) {
+      display: flex;
+    }
+
+    background: var(--p-surface-200);
+    @media (prefers-color-scheme: dark) {
+      background: var(--p-surface-700);
+    }
+
+    .footer {
+      margin-top: auto;
+    }
+  }
+
+  .center {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 0.5rem;
+    overflow: hidden;
+    padding: 0.75rem;
+
+    .files {
+      height: 100%;
+      flex: 1;
+      padding-top: 0;
+
+      overflow-y: auto;
+      overflow-x: hidden;
+
+      border-radius: var(--p-form-field-border-radius);
+      border: 1px solid var(--p-form-field-border-color);
+
+      background: var(--p-content-background);
+    }
+  }
+}

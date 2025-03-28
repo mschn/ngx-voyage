@@ -61,10 +61,6 @@ export class ThemingComponent {
       name: "Red",
     },
     {
-      value: "indigo",
-      name: "indigo",
-    },
-    {
       value: "green",
       name: "green",
     },
@@ -116,6 +112,10 @@ export class ThemingComponent {
   }
 
   themeCode = computed(() => {
+    if (!this.selectedTheme().length) {
+      return "";
+    }
+
     const themeName =
       this.selectedTheme()[0].toUpperCase() + this.selectedTheme().substring(1);
     return `import ${themeName} from "@primeng/themes/${this.selectedTheme()}";

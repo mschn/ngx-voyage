@@ -1,26 +1,26 @@
 <div
-  class="@container flex-1 flex flex-row bg-gray-200 dark:bg-gray-800 overflow-hidden"
+  class="main"
 >
   <div
-    class="flex-col bg-gray-300 dark:bg-gray-700 p-3 hidden max-w-32 lg:max-w-48 @lg:flex"
+    class="sidebar"
   >
     @if (header()) {
       <ng-container *ngTemplateOutlet="header()!"></ng-container>
     }
     <ngx-voyage-bookmarks [(path)]="path"></ngx-voyage-bookmarks>
-    <div class="mt-auto" *ngIf="footer()">
+    <div class="footer" *ngIf="footer()">
       <ng-container *ngTemplateOutlet="footer()!"></ng-container>
     </div>
   </div>
 
-  <div class="flex-1 flex flex-col gap-3 overflow-hidden p-3">
+  <div class="center">
     <ngx-voyage-title
       [path]="path()"
       (navigate)="path.set($event)"
     ></ngx-voyage-title>
 
     <div
-      class="h-100 flex-1 pt-0 bg-white dark:bg-gray-900 overflow-y-auto overflow-x-hidden rounded-lg border border-gray-300 dark:border-gray-700"
+      class="files"
     >
       <ngx-voyage-files-view
         [(path)]="path"

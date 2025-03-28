@@ -10,8 +10,9 @@
       target="_blank"
       >Check the PrimeNG docs on theming for more details.</a
     >
-    <br><br>
-    You can easily define your own theme presets starting from the following examples:
+    <br /><br />
+    You can easily define your own theme presets starting from the following
+    examples:
   </p>
 
   <span class="font-semibold mt-3">Theme</span>
@@ -21,6 +22,7 @@
     (ngModelChange)="changeTheme()"
     optionLabel="name"
     optionValue="value"
+    allowEmpty="false"
   />
 
   <span class="font-semibold mt-3">Primary color</span>
@@ -30,6 +32,7 @@
     (ngModelChange)="changeColor()"
     optionLabel="name"
     optionValue="value"
+    allowEmpty="false"
   >
     <ng-template #item let-item>
       <span
@@ -38,7 +41,6 @@
           'bg-red-500': item.value === 'red',
           'bg-blue-500': item.value === 'blue',
           'bg-green-500': item.value === 'green',
-          'bg-indigo-500': item.value === 'indigo',
           'bg-zinc-500': item.value === 'zinc',
         }"
       ></span>
