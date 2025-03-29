@@ -31,9 +31,16 @@ cd ngx-voyage-demo]]></code></pre>
 
       <p>
         This will create all the Angular boilerplate for a new app.<br />
-        Edit <code>app.component.ts</code> to write the app code,<br />
-        and use <code>npm run start</code> to test it.
+        Edit <code>app.component.ts</code> to write the app code.<br />
+        To test your demo app, run:
       </p>
+      <pre><code class="language-bash rounded-md"><![CDATA[npm run start]]></code></pre>
+      <p
+        >And then point your browser to
+        <a class="text-blue-500" href="http://localhost:4200" target="_blank"
+          >http://localhost:4200</a
+        >.</p
+      >
     </section>
 
     <section class="flex flex-col gap-3" id="primeng">
@@ -81,8 +88,8 @@ export const appConfig: ApplicationConfig = {
 };]]></code></pre>
 
       <p>
-        Lastly we can add some global styles in <code>style.css</code>,
-        in order to override some ugly defaults:
+        Lastly we can add some global styles in <code>style.css</code>, in order
+        to override some ugly defaults:
       </p>
 
       <pre><code class="language-css rounded-md"><![CDATA[html, body {
@@ -99,23 +106,23 @@ export const appConfig: ApplicationConfig = {
 
       <p>
         Now we can install <code>ngx-voyage</code> through npm.<br />
-        We need <code>highlight.js</code> as peer dependency in order to do code
-        highlighting when previewing files.
+        We need <code>highlight.js</code> as peer dependency in order to
+        highlight code in the file preview.
       </p>
 
       <pre><code class="language-bash rounded-md"><![CDATA[npm install ngx-voyage highlight.js]]></code></pre>
 
       <p>
-        Now we simply need to use the component in
+        Here's the simplest way to use the component in
         <code>app.component.ts</code>:
       </p>
 
       <pre><code class="language-typescript rounded-md" ngNonBindable><![CDATA[import { Component } from '@angular/core';
 import { NgxVoyageComponent } from 'ngx-voyage';
 @Component({
-selector: 'app-root',
-imports: [NgxVoyageComponent],
-template: `<ngx-voyage path="/" [files]="[]"></ngx-voyage>`,
+  selector: 'app-root',
+  imports: [NgxVoyageComponent],
+  template: `<ngx-voyage path="/" [files]="[]"></ngx-voyage>`,
 })
 export class AppComponent {}]]></code></pre>
 
@@ -129,8 +136,8 @@ export class AppComponent {}]]></code></pre>
         </li></ul
       >
       <p>
-        For this example these are empty, later on we'll see how to provide
-        actual files there.<br />
+        For this example the list of files is empty. Later on we'll see how to
+        provide actual files coming from an HTTP server.<br />
         You can run the code with <code>npm run start</code> and see the result:
       </p>
 
@@ -147,6 +154,8 @@ export class AppComponent {}]]></code></pre>
       </a>
 
       <p>
+        A Javascript application running in the browser cannot access the
+        filesystem of a computer directly.<br />
         In order to fetch some actual files to display in our file explorer, we
         need to setup a server.<br />
         For this example we will create a small <code>NodeJS</code> server that
@@ -278,17 +287,29 @@ files = computed(() => this.filesResource.value() ?? []);
         Last we will add the ability to preview files inside the explorer.<br />
         To do that we need to read the file content.
       </p>
+      <p
+        >First we need to add a new server endpoint at
+        <code>GET /open/:file</code> that will read a file path, and return the
+        response as text:</p
+      >
 
       <pre><code class="language-typescript rounded-md"><![CDATA[const mime = require('mime-types');
 
 app.get('/open/:file', async (req, res) => {
-const filePath = decodeURIComponent(req.params.file);
-const mimeType = mime.lookup(filePath);
-res.set('Content-Type', mimeType);
-const content = fs.readFileSync(filePath);
-res.send(content);
+  const filePath = decodeURIComponent(req.params.file);
+  const mimeType = mime.lookup(filePath);
+  res.set('Content-Type', mimeType);
+  const content = fs.readFileSync(filePath);
+  res.send(content);
 });
 ]]></code></pre>
+
+      <p
+        >Then we can integrate the preview by binding the
+        <code>(previewFile)</code> output of <code>ngx-voyage</code>.<br />
+        This requires sending the file content as a <code>Blob</code> to a
+        callback:
+      </p>
 
       <pre><code class="language-typescript rounded-md" ngNonBindable><![CDATA[import { Component, computed, model, resource } from '@angular/core';
 import { File, FilePreviewOutput, NgxVoyageComponent } from 'ngx-voyage';
@@ -296,36 +317,36 @@ import { File, FilePreviewOutput, NgxVoyageComponent } from 'ngx-voyage';
 selector: 'app-root',
 imports: [NgxVoyageComponent],
 template: `<ngx-voyage
-  [(path)]="path"
-  [files]="files()"
-  [loading]="filesResource.isLoading()"
-  (previewFile)="getFileContent($event)"
-  (openFile)="openFile($event)"
-></ngx-voyage>`,
+    [(path)]="path"
+    [files]="files()"
+    [loading]="filesResource.isLoading()"
+    (previewFile)="getFileContent($event)"
+    (openFile)="openFile($event)"
+  ></ngx-voyage>`,
 })
 export class AppComponent {
-filesResource = resource({
-  request: () => ({ path: encodeURIComponent(this.path()) }),
-  loader: async ({ request }) => {
-    const response = await fetch('http://localhost:3003/ls/' + request.path);
-    return (await response.json()) as File[];
-  },
-});
-path = model('/');
-files = computed(() => this.filesResource.value() ?? []);
-
-openFile(path: string) {
-  const url = encodeURIComponent(path);
-  window.open('http://localhost:3003/open/' + url, '_blank')?.focus();
-}
-
-getFileContent({ path, cb }: FilePreviewOutput) {
-  const url = encodeURIComponent(path);
-  fetch('http://localhost:3003/open/' + url).then(async (value) => {
-    const blob = await value.blob();
-    cb(blob);
+  filesResource = resource({
+    request: () => ({ path: encodeURIComponent(this.path()) }),
+    loader: async ({ request }) => {
+      const response = await fetch('http://localhost:3003/ls/' + request.path);
+      return (await response.json()) as File[];
+    },
   });
-}
+  path = model('/');
+  files = computed(() => this.filesResource.value() ?? []);
+
+  openFile(path: string) {
+    const url = encodeURIComponent(path);
+    window.open('http://localhost:3003/open/' + url, '_blank')?.focus();
+  }
+
+  getFileContent({ path, cb }: FilePreviewOutput) {
+    const url = encodeURIComponent(path);
+    fetch('http://localhost:3003/open/' + url).then(async (value) => {
+      const blob = await value.blob();
+      cb(blob);
+    });
+  }
 }]]></code></pre>
 
       <img
