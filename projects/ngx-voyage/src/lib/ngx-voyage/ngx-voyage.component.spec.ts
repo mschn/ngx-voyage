@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { getByTestId, getByText, queryByTestId } from "@testing-library/dom";
 import { getFileMock } from "../model/model.mock";
 import { NgxVoyageComponent } from "./ngx-voyage.component";
+import { provideNoopAnimations } from "@angular/platform-browser/animations";
 
 @Component({
   selector: "ngx-voyage-test",
@@ -23,7 +24,7 @@ describe("NgxVoyageComponent templates", () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [TestComponent],
-      providers: [],
+      providers: [provideNoopAnimations()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(TestComponent);
@@ -45,6 +46,7 @@ describe("NgxVoyageComponent", () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [NgxVoyageComponent],
+      providers: [provideNoopAnimations()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(NgxVoyageComponent);

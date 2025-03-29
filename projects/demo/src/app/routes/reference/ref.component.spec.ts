@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { getByText } from "@testing-library/dom";
 import { ReferenceComponent } from "./ref.component";
 import { ActivatedRoute } from "@angular/router";
+import { provideNoopAnimations } from "@angular/platform-browser/animations";
 
 describe("ReferenceComponent", () => {
   let component: ReferenceComponent;
@@ -11,6 +12,7 @@ describe("ReferenceComponent", () => {
     await TestBed.configureTestingModule({
       imports: [ReferenceComponent],
       providers: [
+        provideNoopAnimations(),
         { provide: ActivatedRoute, useValue: { snapshot: { fragment: "" } } },
       ],
     }).compileComponents();
