@@ -1,12 +1,9 @@
-<div
-  class="flex gap-2 flex-wrap p-1 text-gray-700 dark:text-gray-200"
-  data-testid="grid-view"
->
+<div class="view" data-testid="grid-view">
   @for (file of sortedFiles(); track file.name; let index = $index) {
     <div
-      class="w-24 text-center hover:bg-gray-100 p-1 rounded-md cursor-pointer h-fit"
+      class="item"
       [ngClass]="{
-        'bg-(--p-primary-100) text-(--p-highlight-color)': isSelectedFile(file),
+        active: isSelectedFile(file),
       }"
       (dblclick)="onDoubleClick(file)"
       (mousedown)="onMouseDown($event)"
@@ -17,15 +14,12 @@
       [attr.data-fileIndex]="index"
     >
       @if (file.isDirectory) {
-        <ngx-voyage-icon type="folder" class="text-4xl"></ngx-voyage-icon>
+        <ngx-voyage-icon type="folder"></ngx-voyage-icon>
       } @else {
-        <ngx-voyage-icon
-          [type]="getFileIcon(file)"
-          class="text-4xl"
-        ></ngx-voyage-icon>
+        <ngx-voyage-icon [type]="getFileIcon(file)"></ngx-voyage-icon>
       }
       <div
-        class="line-clamp-2 break-all text-sm"
+        class="name"
         data-testid="files-grid-name"
         >{{ file.name }}</div
       >

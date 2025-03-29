@@ -13,6 +13,7 @@ import { Store } from "../model/store";
     TranslatePipe,
   ],
   templateUrl: "./settings.component.html",
+  styleUrl: "./settings.component.css",
 })
 export class SettingsComponent {
   store = inject(Store);

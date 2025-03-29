@@ -1,0 +1,38 @@
+.view {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  padding: 0.25rem;
+  color: var(--p-datatable-row-color);
+
+  .item {
+    width: 6rem;
+    text-align: center;
+    padding: 0.25rem;
+    border-radius: var(--p-form-field-border-radius);
+    cursor: pointer;
+    height: fit-content;
+
+    &:hover {
+      background: var(--p-button-text-primary-hover-background);
+    }
+
+    &.active {
+      background: var(--p-highlight-background);
+      color: var(--p-highlight-color);
+    }
+
+    ngx-voyage-icon {
+      font-size: 2.5rem;
+    }
+
+    .name {
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      word-break: break-all;
+      font-size: 0.875rem;
+    }
+  }
+}

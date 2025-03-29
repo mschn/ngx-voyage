@@ -9,6 +9,7 @@ import { NgClass } from "@angular/common";
   selector: "ngx-voyage-grid-view",
   templateUrl: "./grid-view.component.html",
   imports: [VoyageIconComponent, ContextMenuModule, PreviewComponent, NgClass],
+  styleUrl: "./grid-view.component.css",
 })
 export class GridViewComponent extends BaseViewComponent {
   @HostListener("window:keydown", ["$event"])
