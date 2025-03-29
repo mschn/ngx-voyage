@@ -8,7 +8,6 @@ import {
   OnInit,
   output,
   TemplateRef,
-  ViewEncapsulation,
 } from "@angular/core";
 import { ProgressBarModule } from "primeng/progressbar";
 import { BookmarksComponent } from "../bookmarks/bookmarks.component";
@@ -31,10 +30,6 @@ import { FilesViewComponent } from "../views/files-view.component";
   ],
   providers: [Store],
   templateUrl: "./ngx-voyage.component.html",
-  encapsulation: ViewEncapsulation.None,
-  host: {
-    class: "flex flex-col h-full overflow-hidden",
-  },
   styleUrls: ["ngx-voyage.component.css"],
 })
 export class NgxVoyageComponent implements OnInit {

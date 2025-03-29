@@ -13,64 +13,53 @@
     [sortField]="sortField()"
     [sortOrder]="sortOrder()"
     [resizableColumns]="true"
-    tableStyleClass="table-fixed"
+    [tableStyle]="{ 'table-layout': 'fixed' }"
   >
     <ng-template #header>
       <tr>
-        <th pResizableColumn pSortableColumn="name" class="max-w-0">
+        <th pResizableColumn pSortableColumn="name">
           {{ "NAME" | translate }} <p-sortIcon field="name" />
         </th>
-        <th pResizableColumn pSortableColumn="size" class="w-1/5">
+        <th pResizableColumn pSortableColumn="size">
           {{ "SIZE" | translate }} <p-sortIcon field="size" />
         </th>
-        <th pResizableColumn pSortableColumn="type" class="w-1/5">
+        <th pResizableColumn pSortableColumn="type">
           {{ "TYPE" | translate }} <p-sortIcon field="type" />
         </th>
-        <th pResizableColumn pSortableColumn="modifiedDate" class="w-3/10">
+        <th pResizableColumn pSortableColumn="modifiedDate">
           {{ "DATE" | translate }} <p-sortIcon field="modifiedDate" />
         </th>
       </tr>
     </ng-template>
     <ng-template #body let-file let-rowIndex="rowIndex">
       <tr
-        class="cursor-pointer"
         (contextmenu)="onContextMenu($event, file)"
         [pSelectableRow]="file"
         (dblclick)="onDoubleClick(file)"
         (mousedown)="onMouseDown($event)"
         [attr.data-fileIndex]="rowIndex"
+        [ngClass]="{ 'hidden-file': file.name.startsWith('.') }"
       >
         <td>
-          <div
-            class="flex flex-row gap-3 items-center"
-            [ngClass]="{ 'text-gray-500': file.name.startsWith('.') }"
-          >
-            <div class="w-6" class="text-2xl">
+          <div class="name">
+            <div>
               @if (file.isDirectory) {
                 <ngx-voyage-icon type="folder"></ngx-voyage-icon>
               } @else {
                 <ngx-voyage-icon [type]="getFileIcon(file)"></ngx-voyage-icon>
               }
             </div>
-            <span class="truncate" data-testid="files-list-name">{{
-              file.name
-            }}</span>
+            <span class="file-name" data-testid="files-list-name">{{ file.name }}</span>
           </div>
         </td>
-        <td
-          class="truncate"
-          [ngClass]="{ 'text-gray-500': file.name.startsWith('.') }"
-          data-testid="files-list-size"
-        >
+        <td data-testid="files-list-size">
           {{ prettyBytes(file.size) }}
         </td>
-        <td class="truncate" data-testid="files-list-type">
+        <td data-testid="files-list-type">
           {{ file.type | translate }}
         </td>
-        <td>
-          <div class="truncate" data-testid="files-list-date">
-            {{ formatDate(file) }}
-          </div>
+        <td data-testid="files-list-date">
+          {{ formatDate(file) }}
         </td>
       </tr>
     </ng-template>

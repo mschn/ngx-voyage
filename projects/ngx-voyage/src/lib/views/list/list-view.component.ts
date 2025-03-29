@@ -28,6 +28,7 @@ import { BaseViewComponent } from "../base-view.component";
 @Component({
   selector: "ngx-voyage-list-view",
   templateUrl: "./list-view.component.html",
+  styleUrl: "./list-view.component.css",
   imports: [
     NgClass,
     TableModule,

@@ -1,0 +1,26 @@
+@switch (message()?.type) {
+  @case ("info") {
+    <p-message severity="secondary">
+      <ng-template #icon>
+        <ngx-voyage-icon type="circle-info"></ngx-voyage-icon>
+      </ng-template>
+      {{ message()?.text }}</p-message
+    >
+  }
+  @case ("warn") {
+    <p-message severity="warn">
+      <ng-template #icon>
+        <ngx-voyage-icon type="triangle-exclamation"></ngx-voyage-icon>
+      </ng-template>
+      {{ message()?.text }}</p-message
+    >
+  }
+  @case ("error") {
+    <p-message severity="error">
+      <ng-template #icon>
+        <ngx-voyage-icon type="circle-xmark"></ngx-voyage-icon>
+      </ng-template>
+      {{ message()?.text }}</p-message
+    >
+  }
+}

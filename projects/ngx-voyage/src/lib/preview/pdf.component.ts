@@ -9,13 +9,20 @@ import {
 
 @Component({
   selector: "ngx-voyage-pdf",
-  template: `
-    <iframe
-      #iframe
-      class="mx-auto w-full lg:w-5xl xl:w-7xl"
-      width="1024px"
-      style="height: 90vh"
-    ></iframe>
+  template: ` <iframe #iframe width="1024px"></iframe> `,
+  styles: `
+    iframe {
+      margin: 0 auto;
+      width: 100%;
+      height: 90vw;
+
+      @media (width >= 64rem /* 1024px */) {
+        width: var(--container-5xl) /* 64rem = 1024px */;
+      }
+      @media (width >= 80rem /* 1280px */) {
+        width: var(--container-7xl) /* 80rem = 1280px */;
+      }
+    }
   `,
 })
 export class PdfComponent implements AfterViewInit, OnDestroy {

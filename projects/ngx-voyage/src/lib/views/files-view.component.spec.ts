@@ -1,7 +1,8 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { provideNoopAnimations } from "@angular/platform-browser/animations";
 import { getByText, queryByText } from "@testing-library/dom";
-import { FilesViewComponent } from "./files-view.component";
 import { Store } from "../model/store";
+import { FilesViewComponent } from "./files-view.component";
 
 describe("FilesViewComponent", () => {
   let component: FilesViewComponent;
@@ -10,7 +11,7 @@ describe("FilesViewComponent", () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [FilesViewComponent],
-      providers: [Store],
+      providers: [Store, provideNoopAnimations()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(FilesViewComponent);
