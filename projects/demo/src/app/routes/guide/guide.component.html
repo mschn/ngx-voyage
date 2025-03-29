@@ -1,7 +1,7 @@
 <div class="flex">
   <div class="flex flex-col gap-3">
     <section id="howto">
-      <h1 class="text-4xl font-semibold">Howto Guide</h1>
+      <h1 class="text-4xl font-semibold mb-6">Howto Guide</h1>
       <p>
         This guide will show you how to build a full Angular application with
         <code>ngx-voyage</code> from scratch.<br />
@@ -89,7 +89,7 @@ export const appConfig: ApplicationConfig = {
   height: 100%;
 }]]></code></pre>
     </section>
-    
+
     <section class="flex flex-col gap-3" id="install">
       <a href="guide#install" class="text-2xl font-semibold mt-8">
         3. Install ngx-voyage
@@ -331,6 +331,31 @@ getFileContent({ path, cb }: FilePreviewOutput) {
         class="w-fit mx-auto"
         alt="ngx-voyage file preview"
       />
+    </section>
+
+    <section id="next">
+      <a href="guide#next" class="text-2xl font-semibold mt-8">
+        6. Next steps
+      </a>
+      <p>
+        Our Angular File Explorer app is ready! <br /><br />
+
+        Next up we can add some customization to make our app stand out.
+      </p>
+      <ul class="list-disc ml-6">
+        <Li
+          ><a class="text-blue-500" href="reference#templates"
+            >Add a header/footer template</a
+          >
+          to add a custom action or logo</Li
+        >
+        <Li
+          ><a class="text-blue-500" href="theming"
+            >Create a custom PrimeNG theme</a
+          >
+          to use your own colors and design tokens</Li
+        >
+      </ul>
     </section>
   </div>
 

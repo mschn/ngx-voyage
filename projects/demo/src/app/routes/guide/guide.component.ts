@@ -38,6 +38,11 @@ export class GuideComponent implements OnInit, AfterViewInit {
       id: "preview",
       text: "5. File preview from a server",
     },
+    {
+      href: "guide#next",
+      id: "next",
+      text: "6. Next steps",
+    },
   ];
 
   ngOnInit() {
