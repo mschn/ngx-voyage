@@ -44,7 +44,7 @@
       >
         <ngx-voyage-icon type="star-solid"></ngx-voyage-icon>
       </p-button>
-    } @else {
+    } @else if (path() !== '/') {
       <p-button
         variant="text"
         class="bookmark"
