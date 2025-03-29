@@ -1,8 +1,13 @@
-@import "tailwindcss";
-
 @import "../../../../../node_modules/highlight.js/styles/github.min.css";
 @import "../../../../../node_modules/highlight.js/styles/github-dark.min.css"
   screen and (prefers-color-scheme: dark);
+
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
 
 .main {
   display: flex;
