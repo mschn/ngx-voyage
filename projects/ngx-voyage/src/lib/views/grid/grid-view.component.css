@@ -34,5 +34,9 @@
       word-break: break-all;
       font-size: 0.875rem;
     }
+
+    &.hidden-file {
+      color: var(--p-text-muted-color);
+    }
   }
 }

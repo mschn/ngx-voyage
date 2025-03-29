@@ -1,0 +1,39 @@
+tr {
+  cursor: pointer;
+
+  th:nth-child(1) {
+    max-width: 0;
+  }
+
+  th:nth-child(2) {
+    width: 20%;
+  }
+
+  th:nth-child(3) {
+    width: 20%;
+  }
+
+  th:nth-child(4) {
+    width: 30%;
+  }
+}
+
+.name {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.hidden-file {
+  color: var(--p-text-muted-color);
+}
+
+ngx-voyage-icon {
+  font-size: 1.5rem;
+}
+
+td, .file-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

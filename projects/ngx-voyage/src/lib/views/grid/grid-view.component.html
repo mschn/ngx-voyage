@@ -4,6 +4,7 @@
       class="item"
       [ngClass]="{
         active: isSelectedFile(file),
+        'hidden-file': file.name.startsWith('.'),
       }"
       (dblclick)="onDoubleClick(file)"
       (mousedown)="onMouseDown($event)"
@@ -18,11 +19,7 @@
       } @else {
         <ngx-voyage-icon [type]="getFileIcon(file)"></ngx-voyage-icon>
       }
-      <div
-        class="name"
-        data-testid="files-grid-name"
-        >{{ file.name }}</div
-      >
+      <div class="name" data-testid="files-grid-name">{{ file.name }}</div>
     </div>
   }
 
