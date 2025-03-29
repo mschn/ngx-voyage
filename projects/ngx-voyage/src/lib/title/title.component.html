@@ -3,6 +3,7 @@
     <p-button
       icon="pi"
       text="true"
+      severity="secondary"
       (click)="onBack()"
       [disabled]="backButtonDisabled()"
     >
@@ -11,6 +12,7 @@
     <p-button
       icon="pi"
       text="true"
+      severity="secondary"
       (click)="onForward()"
       [disabled]="forwardButtonDisabled()"
     >
@@ -44,7 +46,7 @@
       >
         <ngx-voyage-icon type="star-solid"></ngx-voyage-icon>
       </p-button>
-    } @else if (path() !== '/') {
+    } @else if (path() !== "/") {
       <p-button
         variant="text"
         class="bookmark"
@@ -74,7 +76,13 @@
     </ng-template>
   </p-selectbutton>
 
-  <p-button (click)="op.toggle($event)" icon="pi" text="true" class="bars-button">
+  <p-button
+    (click)="op.toggle($event)"
+    icon="pi"
+    text="true"
+    severity="secondary"
+    class="bars-button"
+  >
     <ngx-voyage-icon type="bars"></ngx-voyage-icon>
   </p-button>
 </div>
