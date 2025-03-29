@@ -14,7 +14,7 @@
     overflow: hidden;
     justify-content: flex-end;
     width: 100%;
-    padding: calc(var(--spacing) * 1);
+    padding: 0.25rem;
     border: 1px solid var(--p-form-field-border-color);
     border-radius: var(--p-form-field-border-radius);
     height: 3.2rem;
@@ -44,10 +44,9 @@
     display: none;
   }
 
-  @container (width < 28rem) {
-    .no-bookmark {
-      margin-left: auto;
-    }
+  .no-bookmark,
+  .justify-anchor-small {
+    margin-left: auto;
   }
 
   @container (width >= 28rem) {
@@ -55,7 +54,7 @@
       display: inline-block;
     }
 
-    .no-bookmark {
+    .justify-anchor-small {
       display: none;
     }
 

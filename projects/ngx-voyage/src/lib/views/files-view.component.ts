@@ -33,21 +33,26 @@ import { NgTemplateOutlet } from "@angular/common";
 
     <ng-template #empty>
       @if (message()) {
-        <div class="p-2">
+        <div class="message-wrapper">
           <ngx-voyage-message [message]="message()"></ngx-voyage-message>
         </div>
       } @else if (loading()) {
-        <div class="p-2">
+        <div class="message-wrapper">
           <p-progressbar mode="indeterminate" styleClass="!h-2" />
         </div>
       } @else if (isEmpty()) {
-        <div class="p-2">
+        <div class="message-wrapper">
           <ngx-voyage-message
             [message]="{ text: 'This folder is empty', type: 'info' }"
           ></ngx-voyage-message>
         </div>
       }
     </ng-template>
+  `,
+  styles: `
+    .message-wrapper {
+      padding: 0.5rem;
+    }
   `,
   imports: [
     GridViewComponent,

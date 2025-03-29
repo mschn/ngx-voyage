@@ -81,12 +81,14 @@ export const appConfig: ApplicationConfig = {
 };]]></code></pre>
 
       <p>
-        Lastly we can add this in our global <code>style.css</code> file to make
-        sure the components scales properly:
+        Lastly we can add some global styles in <code>style.css</code>,
+        in order to override some ugly defaults:
       </p>
 
       <pre><code class="language-css rounded-md"><![CDATA[html, body {
   height: 100%;
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }]]></code></pre>
     </section>
 

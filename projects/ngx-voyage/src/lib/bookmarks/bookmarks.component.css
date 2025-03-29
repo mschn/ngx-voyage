@@ -10,10 +10,12 @@
     white-space: nowrap;
     text-align: start;
     cursor: pointer;
+    font-size: 16px;
 
     padding: var(--p-togglebutton-sm-padding);
     border-radius: var(--p-togglebutton-border-radius);
     color: var(--p-togglebutton-color);
+    border: 0;
 
     &.active {
       background: var(--p-togglebutton-checked-background);

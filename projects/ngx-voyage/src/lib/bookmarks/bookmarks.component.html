@@ -1,6 +1,17 @@
 <div class="bookmarks">
   @for (bookmark of bookmarks(); track bookmark.path) {
-    <button
+    <p-button
+      (click)="open(bookmark)"
+      [text]="!isActive(bookmark)"
+      severity="secondary"
+      data-testid="bookmark"
+      fluid="true"
+      [style]="{ 'justify-content': 'start' }"
+    >
+      <ngx-voyage-icon [type]="bookmark.icon"></ngx-voyage-icon>
+      {{ bookmark.name }}
+    </p-button>
+    <!-- <button
       (click)="open(bookmark)"
       [class.active]="isActive(bookmark)"
       class="bookmark"
@@ -8,6 +19,6 @@
     >
       <ngx-voyage-icon [type]="bookmark.icon"></ngx-voyage-icon>
       {{ bookmark.name }}
-    </button>
+    </button> -->
   }
 </div>
