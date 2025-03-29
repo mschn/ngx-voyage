@@ -210,7 +210,7 @@ app.get('/ls/:folder', (req, res) => {
 });
 
 // start express server
-app.listen(3003, () => console.log(\`server listening on port 3003\`));
+app.listen(3003, () => console.log('server listening on port 3003'));
 ]]></code></pre>
 
       <p>
@@ -235,15 +235,15 @@ template: `<ngx-voyage
 ></ngx-voyage>`,
 })
 export class AppComponent {
-filesResource = resource({
-  request: () => ({ path: encodeURIComponent(this.path()) }),
-  loader: async ({ request }) => {
-    const response = await fetch('http://localhost:3003/ls/' + request.path);
-    return (await response.json()) as File[];
-  },
-});
-path = model('/');
-files = computed(() => this.filesResource.value() ?? []);
+  filesResource = resource({
+    request: () => ({ path: encodeURIComponent(this.path()) }),
+    loader: async ({ request }) => {
+      const response = await fetch('http://localhost:3003/ls/' + request.path);
+      return (await response.json()) as File[];
+    },
+  });
+  path = model('/');
+  files = computed(() => this.filesResource.value() ?? []);
 }
 ]]></code></pre>
 
@@ -313,16 +313,17 @@ app.get('/open/:file', async (req, res) => {
 
       <pre><code class="language-typescript rounded-md" ngNonBindable><![CDATA[import { Component, computed, model, resource } from '@angular/core';
 import { File, FilePreviewOutput, NgxVoyageComponent } from 'ngx-voyage';
+
 @Component({
-selector: 'app-root',
-imports: [NgxVoyageComponent],
-template: `<ngx-voyage
-    [(path)]="path"
-    [files]="files()"
-    [loading]="filesResource.isLoading()"
-    (previewFile)="getFileContent($event)"
-    (openFile)="openFile($event)"
-  ></ngx-voyage>`,
+  selector: 'app-root',
+  imports: [NgxVoyageComponent],
+  template: `<ngx-voyage
+      [(path)]="path"
+      [files]="files()"
+      [loading]="filesResource.isLoading()"
+      (previewFile)="getFileContent($event)"
+      (openFile)="openFile($event)"
+    ></ngx-voyage>`,
 })
 export class AppComponent {
   filesResource = resource({

@@ -183,7 +183,8 @@ export class ThemingComponent {
     const themeName =
       this.selectedTheme()[0].toUpperCase() + this.selectedTheme().substring(1);
     return `import ${themeName} from "@primeng/themes/${this.selectedTheme()}";
-    
+import { definePreset } from "@primeng/themes";
+
 export const appConfig: ApplicationConfig = {
   providers: [
     providePrimeNG({

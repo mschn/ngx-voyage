@@ -3,7 +3,7 @@
   gap: 0.5rem;
   flex-wrap: wrap;
   padding: 0.25rem;
-  color: var(--p-datatable-row-color);
+  color: var(--p-content-color);
 
   .item {
     width: 6rem;

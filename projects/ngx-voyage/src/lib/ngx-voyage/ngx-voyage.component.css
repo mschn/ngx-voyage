@@ -2,16 +2,9 @@
 @import "../../../../../node_modules/highlight.js/styles/github-dark.min.css"
   screen and (prefers-color-scheme: dark);
 
-:host {
-  display: flex;
-  flex-direction: column;
+.ngx-voyage {
   height: 100%;
-  overflow: hidden;
-}
-
-.main {
   display: flex;
-  flex: 1;
   overflow: hidden;
   background: var(--p-surface-100);
 
