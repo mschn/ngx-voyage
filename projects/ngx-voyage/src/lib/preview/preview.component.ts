@@ -19,6 +19,7 @@ import { TextComponent } from "./text.component";
     VoyageIconComponent,
   ],
   templateUrl: "./preview.component.html",
+  styleUrl: "preview.component.css",
 })
 export class PreviewComponent {
   data = input.required<Blob>();

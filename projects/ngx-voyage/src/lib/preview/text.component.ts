@@ -3,13 +3,31 @@ import { getLanguageClass, highlight } from "../model/highlight";
 
 @Component({
   selector: "ngx-voyage-text",
-  template: ` <div
-    class="bg-white dark:bg-[#0d1117] mx-auto max-w-[90vw] h-[90vh] overflow-y-auto p-3 "
-  >
+  template: ` <div class="text ">
     <pre
-      class="whitespace-pre-wrap text-s theme-github"
+      class="theme-github"
     ><code class="hljs {{codeClass()}}">{{ text() }}</code></pre>
   </div>`,
+  styles: `
+    :host {
+      display: flex;
+      flex: 1;
+    }
+
+    .text {
+      background: var(--p-content-background);
+      margin: 0 auto;
+      max-width: 90vw;
+      overflow-y: auto;
+      padding: 0.75rem;
+      flex: 1;
+
+      pre {
+        white-space: pre-wrap;
+        font-size: 0.9rem;
+      }
+    }
+  `,
 })
 export class TextComponent implements AfterViewInit {
   data = input.required<Blob>();

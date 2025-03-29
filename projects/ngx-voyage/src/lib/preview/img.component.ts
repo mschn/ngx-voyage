@@ -9,11 +9,12 @@ import {
 
 @Component({
   selector: "ngx-voyage-img",
-  template: ` <img #img alt="image preview" class="mx-auto" /> `,
+  template: ` <img #img alt="image preview" /> `,
   styles: `
     img {
       max-width: 90vw;
       max-height: 90vh;
+      margin: 0 auto;
     }
   `,
 })
