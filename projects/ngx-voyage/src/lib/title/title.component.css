@@ -1,7 +1,6 @@
 .title {
   display: flex;
   align-items: center;
-  container-type: inline-size;
   gap: 0.5rem;
 
   .nav-buttons {
@@ -49,7 +48,7 @@
     margin-left: auto;
   }
 
-  @container (width >= 28rem) {
+  @container (width >= 36rem) {
     .bookmark {
       display: inline-block;
     }
@@ -62,5 +61,4 @@
       display: inline-flex;
     }
   }
-
 }
