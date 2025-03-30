@@ -49,7 +49,7 @@ describe("Bookmark", () => {
       ]);
       expect(Storage.prototype.setItem).toHaveBeenNthCalledWith(
         1,
-        "VOYAGE_BOOKMARKS",
+        "VOYAGE_BOOKMARKS_localhost",
         '[{"icon":"home","name":"foo","path":"/foo"}]',
       );
     });

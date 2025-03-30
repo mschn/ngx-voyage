@@ -1,5 +1,4 @@
 import { test, expect } from "@playwright/test";
-import { getByText } from "@testing-library/dom";
 
 test.describe("bookmarks", () => {
   test("should add a bookmark", async ({ page }) => {

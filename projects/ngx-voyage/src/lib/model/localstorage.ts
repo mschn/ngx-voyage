@@ -1,13 +1,19 @@
 import { FileSortFields, isFileSortField } from "./model";
 
-export const LocalstorageKeys = {
+const LocalstorageKeys = {
   sort: "VOYAGE_SORT_ORDER",
   field: "VOYAGE_SORT_FIELD",
   bookmarks: "VOYAGE_BOOKMARKS",
 };
 
+type LocalstorageKey = keyof typeof LocalstorageKeys;
+
+export function getStorageKey(key: LocalstorageKey) {
+  return `${LocalstorageKeys[key]}_${window.location.hostname}`;
+}
+
 export function getSortOrderFromLocalstorage(): number {
-  const storageSort = localStorage.getItem(LocalstorageKeys.sort);
+  const storageSort = localStorage.getItem(getStorageKey("sort"));
   if (storageSort == null) {
     return 0;
   }
@@ -19,7 +25,7 @@ export function getSortOrderFromLocalstorage(): number {
 }
 
 export function getSortFieldFromLocalstorage(): FileSortFields | undefined {
-  const storageField = localStorage.getItem(LocalstorageKeys.field);
+  const storageField = localStorage.getItem(getStorageKey("field"));
   if (isFileSortField(storageField)) {
     return storageField;
   }
@@ -30,6 +36,6 @@ export function writeSortToLocalstorage(
   order: number | undefined,
   field: string | undefined,
 ) {
-  localStorage.setItem(LocalstorageKeys.field, `${field}`);
-  localStorage.setItem(LocalstorageKeys.sort, `${order}`);
+  localStorage.setItem(getStorageKey("field"), `${field}`);
+  localStorage.setItem(getStorageKey("sort"), `${order}`);
 }

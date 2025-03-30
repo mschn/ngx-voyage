@@ -1,6 +1,5 @@
 import { IconType } from "../icon";
-
-export const BOOKMARKS_STORAGE_KEY = "VOYAGE_BOOKMARKS";
+import { getStorageKey } from "./localstorage";
 
 export interface Bookmark {
   name: string;
@@ -20,7 +19,7 @@ export function isBookmarks(bookmarks: unknown): bookmarks is Bookmark[] {
 }
 
 export function getBookmarksFromLocalstorage(): Bookmark[] {
-  const bookmarksStr = localStorage.getItem(BOOKMARKS_STORAGE_KEY);
+  const bookmarksStr = localStorage.getItem(getStorageKey("bookmarks"));
   if (!bookmarksStr) {
     return [];
   }
@@ -33,5 +32,5 @@ export function getBookmarksFromLocalstorage(): Bookmark[] {
 }
 
 export function writeBookmarksToLocalstorage(bookmarks: Bookmark[]) {
-  localStorage.setItem(BOOKMARKS_STORAGE_KEY, JSON.stringify(bookmarks));
+  localStorage.setItem(getStorageKey("bookmarks"), JSON.stringify(bookmarks));
 }
