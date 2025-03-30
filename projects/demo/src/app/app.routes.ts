@@ -18,6 +18,13 @@ export const routes: Routes = [
       ),
   },
   {
+    title: "ngx-voyage - Guide",
+    path: "guide",
+    data: { name: "Howto Guide" },
+    loadComponent: () =>
+      import("./routes/guide/guide.component").then((c) => c.GuideComponent),
+  },
+  {
     title: "ngx-voyage - Reference",
     path: "reference",
     data: { name: "Reference" },
@@ -25,13 +32,6 @@ export const routes: Routes = [
       import("./routes/reference/ref.component").then(
         (c) => c.ReferenceComponent,
       ),
-  },
-  {
-    title: "ngx-voyage - Guide",
-    path: "guide",
-    data: { name: "Howto Guide" },
-    loadComponent: () =>
-      import("./routes/guide/guide.component").then((c) => c.GuideComponent),
   },
   {
     title: "ngx-voyage - Theming",
