@@ -8,13 +8,14 @@ import {
   signal,
   SimpleChanges,
 } from "@angular/core";
+import { FormsModule } from "@angular/forms";
 import { ButtonModule } from "primeng/button";
 import { PopoverModule } from "primeng/popover";
-import { IconType, VoyageIconComponent } from "../icon";
-import { SettingsComponent } from "../settings/settings.component";
-import { Store, ViewType } from "../model/store";
 import { SelectButtonModule } from "primeng/selectbutton";
-import { FormsModule } from "@angular/forms";
+import { IconType, VoyageIconComponent } from "../icon";
+import { Store, ViewType } from "../model/store";
+import { SettingsComponent } from "../settings/settings.component";
+import { EditBookmarkComponent } from "./edit-bookmark/edit-bookmark.component";
 
 @Component({
   selector: "ngx-voyage-title",
@@ -27,6 +28,7 @@ import { FormsModule } from "@angular/forms";
     VoyageIconComponent,
     SelectButtonModule,
     FormsModule,
+    EditBookmarkComponent,
   ],
 })
 export class TitleComponent implements OnChanges {

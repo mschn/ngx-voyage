@@ -27,17 +27,30 @@ export class Store {
 
   addBookmark(bookmark: Bookmark) {
     const bookmarks = [...this.bookmarks(), bookmark];
-    writeBookmarksToLocalstorage(bookmarks);
-    this.bookmarks.set(bookmarks);
+    this.saveBookmarks(bookmarks);
+  }
+
+  setBookmark(bookmark: Bookmark) {
+    const bookmarks = [...this.bookmarks()];
+    for (const b of bookmarks) {
+      if (bookmark.path === b.path) {
+        b.name = bookmark.name;
+      }
+    }
+    this.saveBookmarks(bookmarks);
   }
 
   removeBookmark(path: string) {
     const bookmarks = this.bookmarks().filter((b) => b.path !== path);
-    writeBookmarksToLocalstorage(bookmarks);
-    this.bookmarks.set(bookmarks);
+    this.saveBookmarks(bookmarks);
   }
 
   setSelectedView(view: ViewType) {
     this.selectedView.set(view);
+  }
+
+  private saveBookmarks(bookmarks: Bookmark[]) {
+    writeBookmarksToLocalstorage(bookmarks);
+    this.bookmarks.set(bookmarks);
   }
 }
