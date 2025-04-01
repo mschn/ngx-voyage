@@ -12,7 +12,12 @@ import { TranslatePipe } from "../../i18n/translate.pipe";
   template: `
     <div class="edit-bookmarks">
       <h3>{{ "EDIT_BOOKMARK" | translate }}</h3>
-      <input type="text" pInputText [(ngModel)]="name" />
+      <input
+        type="text"
+        pInputText
+        [(ngModel)]="name"
+        data-testid="edit-bookmark-input"
+      />
       <div class="buttons">
         <p-button severity="secondary" (onClick)="remove()">{{
           "REMOVE" | translate
