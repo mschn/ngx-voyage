@@ -24,17 +24,14 @@ You will need to have `@angular/core`, `primeng` and `highlight.js` as they are 
 Then you can use `<ngx-voyage>` in your app:
 
 ```ts
-import { File, NgxVoyageComponent } from "ngx-voyage";
+import { NgxVoyageComponent } from "ngx-voyage";
 
 @Component({
   selector: "app-root",
   imports: [NgxVoyageComponent],
-  template: '<ngx-voyage [path]="path()" [files]="files()"></ngx-voyage>',
+  template: '<ngx-voyage [path]="/home" [files]="[]"></ngx-voyage>',
 })
-export class AppComponent {
-  path = signal("/home/");
-  files = signal<File[]>([]);
-}
+export class AppComponent {}
 ```
 
 ## Built with
