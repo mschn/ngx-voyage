@@ -1,9 +1,11 @@
 import { Injectable, signal } from "@angular/core";
+import { Bookmark } from "./bookmark";
 import {
-  Bookmark,
   getBookmarksFromLocalstorage,
+  getViewFromLocalstorage,
   writeBookmarksToLocalstorage,
-} from "./bookmark";
+  writeViewToLocalstorage,
+} from "./localstorage";
 import { File } from "./model";
 
 export type ViewType = "list" | "grid";
@@ -19,6 +21,7 @@ export class Store {
 
   constructor() {
     this.bookmarks.set(getBookmarksFromLocalstorage());
+    this.selectedView.set(getViewFromLocalstorage());
   }
 
   toggleHiddenFiles() {
@@ -46,6 +49,7 @@ export class Store {
   }
 
   setSelectedView(view: ViewType) {
+    writeViewToLocalstorage(view);
     this.selectedView.set(view);
   }
 

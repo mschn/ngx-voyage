@@ -1,9 +1,11 @@
-import { FileSortFields, isFileSortField } from "./model";
+import { Bookmark, isBookmarks } from "./bookmark";
+import { FileSortFields, isFileSortField, isViewType, ViewType } from "./model";
 
 const LocalstorageKeys = {
   sort: "VOYAGE_SORT_ORDER",
   field: "VOYAGE_SORT_FIELD",
   bookmarks: "VOYAGE_BOOKMARKS",
+  viewType: "VOYAGE_VIEW_TYPE",
 };
 
 type LocalstorageKey = keyof typeof LocalstorageKeys;
@@ -38,4 +40,33 @@ export function writeSortToLocalstorage(
 ) {
   localStorage.setItem(getStorageKey("field"), `${field}`);
   localStorage.setItem(getStorageKey("sort"), `${order}`);
+}
+
+export function getBookmarksFromLocalstorage(): Bookmark[] {
+  const bookmarksStr = localStorage.getItem(getStorageKey("bookmarks"));
+  if (!bookmarksStr) {
+    return [];
+  }
+  const bookmarks = JSON.parse(bookmarksStr);
+
+  if (isBookmarks(bookmarks)) {
+    return bookmarks;
+  }
+  return [];
+}
+
+export function writeBookmarksToLocalstorage(bookmarks: Bookmark[]) {
+  localStorage.setItem(getStorageKey("bookmarks"), JSON.stringify(bookmarks));
+}
+
+export function writeViewToLocalstorage(viewType: ViewType) {
+  localStorage.setItem(getStorageKey("viewType"), viewType);
+}
+
+export function getViewFromLocalstorage(): ViewType {
+  const view = localStorage.getItem(getStorageKey("viewType"));
+  if (isViewType(view)) {
+    return view;
+  }
+  return "grid";
 }

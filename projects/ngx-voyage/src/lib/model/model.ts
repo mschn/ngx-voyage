@@ -12,6 +12,12 @@ export interface File {
 
 export type FileSortFields = "name" | "size" | "modifiedDate" | "type";
 
+export type ViewType = "list" | "grid";
+
+export function isViewType(viewType: unknown): viewType is ViewType {
+  return viewType === "list" || viewType === "grid";
+}
+
 export function isFileEqual(f1: File, f2: File) {
   return (
     f1.name === f2.name &&

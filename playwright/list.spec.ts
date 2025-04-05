@@ -23,10 +23,10 @@ test.describe("list view", () => {
       "Markdown Document",
     ]);
 
-    expect(page.getByTestId("files-list-date").first()).toContainText(
+    await expect(page.getByTestId("files-list-date").first()).toContainText(
       "Today at",
     );
-    expect(page.getByTestId("files-list-date").nth(1)).toContainText(
+    await expect(page.getByTestId("files-list-date").nth(1)).toContainText(
       "Yesterday at",
     );
   });
