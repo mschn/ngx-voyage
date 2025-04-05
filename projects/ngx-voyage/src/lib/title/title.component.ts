@@ -7,10 +7,11 @@ import {
   output,
   signal,
   SimpleChanges,
+  viewChild,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { ButtonModule } from "primeng/button";
-import { PopoverModule } from "primeng/popover";
+import { Popover, PopoverModule } from "primeng/popover";
 import { SelectButtonModule } from "primeng/selectbutton";
 import { IconType, VoyageIconComponent } from "../icon";
 import { Store, ViewType } from "../model/store";
@@ -36,6 +37,7 @@ export class TitleComponent implements OnChanges {
 
   path = model.required<string>();
 
+  bookmarksPopover = viewChild<Popover>("bookmarksPopover");
   bookmarks = this.store.bookmarks;
   bookmark = computed(() =>
     this.bookmarks().find((bookmark) => bookmark.path === this.path()),
@@ -128,12 +130,15 @@ export class TitleComponent implements OnChanges {
     }
   }
 
-  onAddBookmark() {
-    const name = this.path().substring(this.path().lastIndexOf("/") + 1);
-    this.store.addBookmark({
-      icon: "bookmark",
-      name,
-      path: this.path(),
+  onAddBookmark(e: Event) {
+    this.bookmarksPopover()?.show(e);
+    setTimeout(() => {
+      const name = this.path().substring(this.path().lastIndexOf("/") + 1);
+      this.store.addBookmark({
+        icon: "bookmark",
+        name,
+        path: this.path(),
+      });
     });
   }
 
