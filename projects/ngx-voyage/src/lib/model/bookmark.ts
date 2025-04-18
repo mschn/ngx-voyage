@@ -1,5 +1,4 @@
 import { IconType } from "../icon";
-import { getStorageKey } from "./localstorage";
 
 export interface Bookmark {
   name: string;
@@ -16,21 +15,4 @@ export function isBookmarks(bookmarks: unknown): bookmarks is Bookmark[] {
     );
   }
   return false;
-}
-
-export function getBookmarksFromLocalstorage(): Bookmark[] {
-  const bookmarksStr = localStorage.getItem(getStorageKey("bookmarks"));
-  if (!bookmarksStr) {
-    return [];
-  }
-  const bookmarks = JSON.parse(bookmarksStr);
-
-  if (isBookmarks(bookmarks)) {
-    return bookmarks;
-  }
-  return [];
-}
-
-export function writeBookmarksToLocalstorage(bookmarks: Bookmark[]) {
-  localStorage.setItem(getStorageKey("bookmarks"), JSON.stringify(bookmarks));
 }

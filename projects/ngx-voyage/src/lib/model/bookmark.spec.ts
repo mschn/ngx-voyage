@@ -1,8 +1,8 @@
+import { isBookmarks } from "./bookmark";
 import {
   getBookmarksFromLocalstorage,
-  isBookmarks,
   writeBookmarksToLocalstorage,
-} from "./bookmark";
+} from "./localstorage";
 
 describe("Bookmark", () => {
   describe("isBookmarks", () => {

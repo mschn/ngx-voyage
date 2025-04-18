@@ -1,4 +1,9 @@
-import { ComponentFixture, TestBed } from "@angular/core/testing";
+import {
+  ComponentFixture,
+  fakeAsync,
+  flush,
+  TestBed,
+} from "@angular/core/testing";
 import { getAllByTestId } from "@testing-library/dom";
 import { Store } from "../model/store";
 import { TitleComponent } from "./title.component";
@@ -50,13 +55,14 @@ describe("TitleComponent", () => {
     expect(component.pathIsBookmarked()).toBe(true);
   });
 
-  it("should add a bookmark", () => {
+  it("should add a bookmark", fakeAsync(() => {
     fixture.componentRef.setInput("path", "/oink");
     fixture.detectChanges();
     expect(component.pathIsBookmarked()).toBe(false);
-    component.onAddBookmark();
+    component.onAddBookmark({} as Event);
+    flush();
     expect(component.pathIsBookmarked()).toBe(true);
-  });
+  }));
 
   it("should remove a bookmark", () => {
     const store = TestBed.inject(Store);
