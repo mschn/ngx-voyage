@@ -72,13 +72,13 @@ describe("ListViewComponent", () => {
   });
 
   it("should reset file sort", () => {
+    const store = TestBed.inject(Store);
     fixture.componentRef.setInput("files", [
       getFileMock({ name: "Bbb" }),
       getFileMock({ name: "Ccc" }),
       getFileMock({ name: "Aaa" }),
     ]);
-    component.sortOrder.set(-1);
-    component.sortField.set("name");
+    store.setSort({ order: -1, field: "name" });
     component.onSort({ order: 1, field: "name" });
     fixture.detectChanges();
     expect(

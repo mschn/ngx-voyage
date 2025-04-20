@@ -21,6 +21,71 @@
   </div>
 
   <hr />
+  <div>{{ "SORT" | translate }}</div>
+  <div class="setting">
+    <p-radiobutton
+      name="sort"
+      inputId="name_1"
+      value="name_1"
+      [ngModel]="sortValue()"
+      (ngModelChange)="store.setSort({ field: 'name', order: 1 })"
+    ></p-radiobutton>
+    <label for="name_1">{{ "SORT_AZ" | translate }}</label>
+  </div>
+  <div class="setting">
+    <p-radiobutton
+      name="sort"
+      inputId="name_-1"
+      value="name_-1"
+      [ngModel]="sortValue()"
+      (ngModelChange)="store.setSort({ field: 'name', order: -1 })"
+    ></p-radiobutton>
+    <label for="name_-1">{{ "SORT_ZA" | translate }}</label>
+  </div>
+
+  <div class="setting">
+    <p-radiobutton
+      name="sort"
+      inputId="size_1"
+      value="size_1"
+      [ngModel]="sortValue()"
+      (ngModelChange)="store.setSort({ field: 'size', order: 1 })"
+    ></p-radiobutton>
+    <label for="size_1">{{ "SORT_SMALLEST" | translate }}</label>
+  </div>
+  <div class="setting">
+    <p-radiobutton
+      name="sort"
+      inputId="size_-1"
+      value="size_-1"
+      [ngModel]="sortValue()"
+      (ngModelChange)="store.setSort({ field: 'size', order: -1 })"
+    ></p-radiobutton>
+    <label for="size_-1">{{ "SORT_LARGEST" | translate }}</label>
+  </div>
+
+  <div class="setting">
+    <p-radiobutton
+      name="sort"
+      inputId="modifiedDate_1"
+      value="modifiedDate_1"
+      [ngModel]="sortValue()"
+      (ngModelChange)="store.setSort({ field: 'modifiedDate', order: 1 })"
+    ></p-radiobutton>
+    <label for="modifiedDate_1">{{ "SORT_LAST_MODIFIED" | translate }}</label>
+  </div>
+  <div class="setting">
+    <p-radiobutton
+      name="sort"
+      inputId="modifiedDate-1"
+      value="modifiedDate-1"
+      [ngModel]="sortValue()"
+      (ngModelChange)="store.setSort({ field: 'modifiedDate', order: -1 })"
+    ></p-radiobutton>
+    <label for="modifiedDate-1">{{ "SORT_FIRST_MODIFIED" | translate }}</label>
+  </div>
+
+  <hr />
 
   <div class="setting">
     <label for="showHiddenFiles">{{ "SHOW_HIDDEN_FILES" | translate }}</label>

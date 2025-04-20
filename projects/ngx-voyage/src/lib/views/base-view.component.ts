@@ -18,7 +18,6 @@ import { canPreviewFile, getFileIcon } from "../model/file-types";
 import {
   File,
   FilePreviewOutput,
-  FileSortFields,
   isFileEqual,
   sortFiles,
 } from "../model/model";
@@ -51,17 +50,12 @@ export abstract class BaseViewComponent implements OnChanges {
       return this.files().filter(({ name }) => !name.startsWith("."));
     }
   });
-  sortOrder = signal<number>(0);
-  sortField = signal<FileSortFields | undefined>(undefined);
+
   sortedFiles = computed(() => {
-    if (this.sortOrder() == undefined || this.sortField() == undefined) {
+    if (this.store.sort() == undefined) {
       return this.filteredFiles();
     }
-    return sortFiles(
-      [...this.filteredFiles()],
-      this.sortField(),
-      this.sortOrder(),
-    );
+    return sortFiles([...this.filteredFiles()], this.store.sort());
   });
 
   menuItems: MenuItem[] = [

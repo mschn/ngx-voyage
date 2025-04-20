@@ -1,11 +1,5 @@
 import { DatePipe, NgClass, NgTemplateOutlet } from "@angular/common";
-import {
-  Component,
-  effect,
-  HostListener,
-  inject,
-  viewChild,
-} from "@angular/core";
+import { Component, HostListener, inject, viewChild } from "@angular/core";
 import { SortEvent } from "primeng/api";
 import { ContextMenu, ContextMenuModule } from "primeng/contextmenu";
 import { DialogModule } from "primeng/dialog";
@@ -15,12 +9,7 @@ import { getMessages } from "../../i18n/i18n";
 import { TranslatePipe } from "../../i18n/translate.pipe";
 import { VoyageIconComponent } from "../../icon";
 import { isToday, isYesterday } from "../../model/dates";
-import {
-  getSortFieldFromLocalstorage,
-  getSortOrderFromLocalstorage,
-  writeSortToLocalstorage,
-} from "../../model/localstorage";
-import { File, isFileSortField } from "../../model/model";
+import { File, FileSortState, isFileSortField } from "../../model/model";
 import { prettyBytes } from "../../model/utils";
 import { PreviewComponent } from "../../preview/preview.component";
 import { BaseViewComponent } from "../base-view.component";
@@ -50,30 +39,21 @@ export class ListViewComponent extends BaseViewComponent {
 
   prettyBytes = prettyBytes;
 
-  constructor() {
-    super();
-    this.sortField.set(getSortFieldFromLocalstorage());
-    this.sortOrder.set(getSortOrderFromLocalstorage());
-
-    effect(() => {
-      writeSortToLocalstorage(this.sortOrder(), this.sortField());
-    });
-  }
-
   onSort(event: SortEvent) {
-    if (
-      event.order === 1 &&
-      this.sortOrder() === -1 &&
-      this.sortField() === event.field
-    ) {
-      this.sortField.set(undefined);
-      this.sortOrder.set(0);
+    const storeOrder = this.store.sort()?.order;
+    const storeField = this.store.sort()?.field;
+    if (event.order === 1 && storeOrder === -1 && storeField === event.field) {
+      this.store.setSort(undefined);
       this.dataTable()?.reset();
     } else {
+      const newSort: FileSortState = {
+        order: event.order ?? 0,
+        field: storeField ?? "name",
+      };
       if (isFileSortField(event.field)) {
-        this.sortField.set(event.field);
+        newSort.field = event.field;
       }
-      this.sortOrder.set(event.order ?? 0);
+      this.store.setSort(newSort);
     }
   }
 

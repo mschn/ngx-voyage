@@ -1,4 +1,4 @@
-import { Component, inject } from "@angular/core";
+import { Component, computed, inject } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ToggleSwitchModule } from "primeng/toggleswitch";
 import { TranslatePipe } from "../i18n/translate.pipe";
@@ -19,4 +19,8 @@ import { RadioButtonModule } from "primeng/radiobutton";
 })
 export class SettingsComponent {
   store = inject(Store);
+
+  sortValue = computed(
+    () => `${this.store.sort()?.field}_${this.store.sort()?.order}`,
+  );
 }

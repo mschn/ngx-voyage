@@ -11,6 +11,18 @@ export interface File {
 }
 
 export type FileSortFields = "name" | "size" | "modifiedDate" | "type";
+export interface FileSortState {
+  field: FileSortFields;
+  order: number;
+}
+export function isFileSort(fileSort: unknown): fileSort is FileSortState {
+  return (
+    fileSort != null &&
+    typeof fileSort === "object" &&
+    "field" in fileSort &&
+    "order" in fileSort
+  );
+}
 
 export type ViewType = "list" | "grid";
 
@@ -57,9 +69,9 @@ export function getExtension(name: string) {
 
 export function sortFiles(
   files: File[],
-  field?: FileSortFields,
-  order?: number,
+  sortState: FileSortState = { field: "name", order: 1 },
 ): File[] {
+  const { field, order } = sortState;
   if (field == undefined || order == undefined) {
     return files;
   }

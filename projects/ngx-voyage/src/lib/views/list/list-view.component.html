@@ -10,8 +10,8 @@
     [(selection)]="selectedFile"
     [customSort]="true"
     (sortFunction)="onSort($event)"
-    [sortField]="sortField()"
-    [sortOrder]="sortOrder()"
+    [sortField]="store.sort()?.field"
+    [sortOrder]="store.sort()?.order ?? 0"
     [resizableColumns]="true"
     [tableStyle]="{ 'table-layout': 'fixed' }"
   >
@@ -49,7 +49,9 @@
                 <ngx-voyage-icon [type]="getFileIcon(file)"></ngx-voyage-icon>
               }
             </div>
-            <span class="file-name" data-testid="files-list-name">{{ file.name }}</span>
+            <span class="file-name" data-testid="files-list-name">{{
+              file.name
+            }}</span>
           </div>
         </td>
         <td data-testid="files-list-size">

@@ -1,5 +1,5 @@
 import { Bookmark, isBookmarks } from "./bookmark";
-import { FileSortFields, isFileSortField, isViewType, ViewType } from "./model";
+import { FileSortState, isFileSort, isViewType, ViewType } from "./model";
 
 const LocalstorageKeys = {
   sort: "VOYAGE_SORT_ORDER",
@@ -14,32 +14,24 @@ export function getStorageKey(key: LocalstorageKey) {
   return `${LocalstorageKeys[key]}_${window.location.hostname}`;
 }
 
-export function getSortOrderFromLocalstorage(): number {
+export function getFileSortFromLocalstorage(): FileSortState | undefined {
   const storageSort = localStorage.getItem(getStorageKey("sort"));
   if (storageSort == null) {
-    return 0;
+    return undefined;
   }
-  const sort = Number.parseInt(storageSort);
-  if (isNaN(sort)) {
-    return 0;
-  }
-  return sort;
-}
-
-export function getSortFieldFromLocalstorage(): FileSortFields | undefined {
-  const storageField = localStorage.getItem(getStorageKey("field"));
-  if (isFileSortField(storageField)) {
-    return storageField;
+  const sort = JSON.parse(storageSort);
+  if (isFileSort(sort)) {
+    return sort;
   }
   return undefined;
 }
 
-export function writeSortToLocalstorage(
-  order: number | undefined,
-  field: string | undefined,
-) {
-  localStorage.setItem(getStorageKey("field"), `${field}`);
-  localStorage.setItem(getStorageKey("sort"), `${order}`);
+export function writeFileSortToLocalstorage(sort: FileSortState | undefined) {
+  if (sort === undefined) {
+    localStorage.removeItem(getStorageKey("sort"));
+  } else {
+    localStorage.setItem(getStorageKey("sort"), JSON.stringify(sort));
+  }
 }
 
 export function getBookmarksFromLocalstorage(): Bookmark[] {

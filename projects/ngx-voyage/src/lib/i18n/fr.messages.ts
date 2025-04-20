@@ -43,4 +43,11 @@ export const messages: Messages = {
   YESTERDAY_AT: "Hier à",
   LIST_VIEW: "Vue liste",
   GRID_VIEW: "Vue grille",
+  SORT: "Sort",
+  SORT_AZ: "A-Z",
+  SORT_ZA: "Z-A",
+  SORT_LAST_MODIFIED: "Dernier modifié",
+  SORT_FIRST_MODIFIED: "Premier modifié",
+  SORT_SMALLEST: "Plus petit",
+  SORT_LARGEST: "Plus gros",
 };
