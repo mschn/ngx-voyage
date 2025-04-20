@@ -28,4 +28,14 @@ test.describe("views", () => {
       "Today at",
     );
   });
+
+  test("should switch views using the settings menu", async ({ page }) => {
+    await page.goto("http://localhost:4200/");
+    await page.getByTestId("settings-menu-button").click();
+    await expect(page.getByText("Grid view")).toBeChecked();
+    await page.getByText("List view").click();
+    await expect(page.getByTestId("files-list-date").first()).toContainText(
+      "Today at",
+    );
+  });
 });
