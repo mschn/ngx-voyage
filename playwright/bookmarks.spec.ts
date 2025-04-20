@@ -10,7 +10,6 @@ test.describe("bookmarks", () => {
     await expect(page.getByText("light.png")).toBeVisible();
 
     await page.getByTestId("add-bookmark").click();
-
     await expect(page.getByTestId("bookmark")).toHaveText([
       "Home",
       "screenshots",
@@ -29,7 +28,6 @@ test.describe("bookmarks", () => {
     await expect(page.getByText("light.png")).toBeVisible();
 
     await page.getByTestId("add-bookmark").click();
-    await page.getByTestId("edit-bookmark").click();
 
     await page.getByTestId("edit-bookmark-input").fill("my bookmark");
     await page.getByRole("button", { name: "Save" }).click();
@@ -47,7 +45,6 @@ test.describe("bookmarks", () => {
     await expect(page.getByText("light.png")).toBeVisible();
 
     await page.getByTestId("add-bookmark").click();
-    await page.getByTestId("edit-bookmark").click();
     await page.getByRole("button", { name: "Remove" }).click();
 
     await expect(page.getByTestId("bookmark")).toHaveText(["Home"]);
