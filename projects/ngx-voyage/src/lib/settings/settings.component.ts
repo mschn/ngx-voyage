@@ -3,6 +3,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ToggleSwitchModule } from "primeng/toggleswitch";
 import { TranslatePipe } from "../i18n/translate.pipe";
 import { Store } from "../model/store";
+import { RadioButtonModule } from "primeng/radiobutton";
 
 @Component({
   selector: "ngx-voyage-settings",
@@ -11,6 +12,7 @@ import { Store } from "../model/store";
     ReactiveFormsModule,
     ToggleSwitchModule,
     TranslatePipe,
+    RadioButtonModule,
   ],
   templateUrl: "./settings.component.html",
   styleUrl: "./settings.component.css",

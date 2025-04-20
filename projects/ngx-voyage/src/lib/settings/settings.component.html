@@ -1,9 +1,32 @@
 <div class="settings">
   <div class="setting">
+    <p-radiobutton
+      name="viewType"
+      inputId="gridView"
+      value="grid"
+      [ngModel]="store.selectedView()"
+      (ngModelChange)="store.setSelectedView($event)"
+    ></p-radiobutton>
+    <label for="gridView">{{ "GRID_VIEW" | translate }}</label>
+  </div>
+  <div class="setting">
+    <p-radiobutton
+      name="viewType"
+      inputId="listView"
+      value="list"
+      [ngModel]="store.selectedView()"
+      (ngModelChange)="store.setSelectedView($event)"
+    ></p-radiobutton>
+    <label for="listView">{{ "LIST_VIEW" | translate }}</label>
+  </div>
+
+  <hr />
+
+  <div class="setting">
     <label for="showHiddenFiles">{{ "SHOW_HIDDEN_FILES" | translate }}</label>
     <p-toggleswitch
       inputId="showHiddenFiles"
-      [ngModel]="store.showHiddenFiles"
+      [ngModel]="store.showHiddenFiles()"
       (ngModelChange)="store.toggleHiddenFiles()"
     />
   </div>

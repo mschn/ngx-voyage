@@ -41,4 +41,6 @@ export const messages: Messages = {
   XML_DOCUMENT: "Document XML",
   YAML_DOCUMENT: "Document YAML",
   YESTERDAY_AT: "Hier à",
+  LIST_VIEW: "Vue liste",
+  GRID_VIEW: "Vue grille",
 };
