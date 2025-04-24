@@ -1,5 +1,5 @@
 import { File } from "./model";
-export function getFileMock(file: Partial<File>): File {
+export function getFileMock(file?: Partial<File>): File {
   return {
     isDirectory: false,
     isFile: true,

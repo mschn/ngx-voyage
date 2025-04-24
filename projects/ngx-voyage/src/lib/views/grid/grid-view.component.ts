@@ -1,18 +1,24 @@
-import { Component, HostListener } from "@angular/core";
-import { BaseViewComponent } from "../base-view.component";
-import { VoyageIconComponent } from "../../icon";
-import { ContextMenuModule } from "primeng/contextmenu";
-import { PreviewComponent } from "../../preview/preview.component";
 import { NgClass } from "@angular/common";
+import { Component } from "@angular/core";
+import { ContextMenuModule } from "primeng/contextmenu";
+import { VoyageIconComponent } from "../../icon";
+import { PreviewComponent } from "../../preview/preview.component";
+import { BaseViewComponent } from "../base-view.component";
+import { AutoFocusModule } from "primeng/autofocus";
 
 @Component({
   selector: "ngx-voyage-grid-view",
   templateUrl: "./grid-view.component.html",
-  imports: [VoyageIconComponent, ContextMenuModule, PreviewComponent, NgClass],
+  imports: [
+    VoyageIconComponent,
+    ContextMenuModule,
+    PreviewComponent,
+    NgClass,
+    AutoFocusModule,
+  ],
   styleUrl: "./grid-view.component.css",
 })
 export class GridViewComponent extends BaseViewComponent {
-  @HostListener("window:keydown", ["$event"])
   onKeydown(event: KeyboardEvent) {
     const selected = this.selectedFile();
     if (event.key === "ArrowLeft") {

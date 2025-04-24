@@ -1,4 +1,10 @@
-<div data-testid="list-view">
+<div
+  data-testid="list-view"
+  (keydown)="onKeydown($event)"
+  role="region"
+  tabindex="0"
+  class="view"
+>
   <p-table
     #dataTable
     [value]="sortedFiles()"
@@ -39,6 +45,7 @@
         (mousedown)="onMouseDown($event)"
         [attr.data-fileIndex]="rowIndex"
         [ngClass]="{ 'hidden-file': file.name.startsWith('.') }"
+        [attr.aria-selected]="file === selectedFile()"
       >
         <td>
           <div class="name">

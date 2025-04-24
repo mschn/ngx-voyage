@@ -24,6 +24,11 @@ export function isFileSort(fileSort: unknown): fileSort is FileSortState {
   );
 }
 
+export interface RenameFile {
+  file: File;
+  newName: string;
+}
+
 export type ViewType = "list" | "grid";
 
 export function isViewType(viewType: unknown): viewType is ViewType {

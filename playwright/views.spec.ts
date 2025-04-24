@@ -6,13 +6,9 @@ test.describe("views", () => {
     await page.getByText("README.md").click();
 
     await page.getByTestId("select-view-list").click();
-    await page.keyboard.press("Enter");
-
-    await expect(
-      page.getByText(
-        "ngx-voyage is an Angular File Explorer component built with PrimeNG.",
-      ),
-    ).toBeVisible();
+    await expect(page.getByRole("row", { selected: true })).toContainText(
+      "README.md",
+    );
   });
 
   test("should keep view selection after page reload", async ({ page }) => {

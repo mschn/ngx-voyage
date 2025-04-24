@@ -14,7 +14,12 @@ import { ProgressBarModule } from "primeng/progressbar";
 import { BookmarksComponent } from "../bookmarks/bookmarks.component";
 import { getMessages } from "../i18n/i18n";
 import { Message } from "../model/message";
-import { File, FilePreviewOutput, normalizeFile } from "../model/model";
+import {
+  File,
+  FilePreviewOutput,
+  normalizeFile,
+  RenameFile,
+} from "../model/model";
 import { Store } from "../model/store";
 import { TitleComponent } from "../title/title.component";
 import { FilesViewComponent } from "../views/files-view.component";
@@ -86,6 +91,13 @@ export class NgxVoyageComponent implements OnInit {
    * Preview the content of a file
    */
   previewFile = output<FilePreviewOutput>();
+
+  /**
+   * Fired when the user requests the file to be renamed.
+   * This provides a `RenameFile` as `$event`,
+   * containing the file path and the new name.
+   */
+  renameFile = output<RenameFile>();
 
   header = contentChild<TemplateRef<Element>>("header");
   footer = contentChild<TemplateRef<Element>>("footer");

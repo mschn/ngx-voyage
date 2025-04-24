@@ -1,6 +1,12 @@
-import { ComponentFixture, TestBed } from "@angular/core/testing";
+import {
+  ComponentFixture,
+  fakeAsync,
+  flush,
+  TestBed,
+} from "@angular/core/testing";
 import { provideNoopAnimations } from "@angular/platform-browser/animations";
-import { getByText, queryByText } from "@testing-library/dom";
+import { getByTestId, getByText, queryByText } from "@testing-library/dom";
+import { getFileMock } from "../model/model.mock";
 import { Store } from "../model/store";
 import { FilesViewComponent } from "./files-view.component";
 
@@ -55,4 +61,22 @@ describe("FilesViewComponent", () => {
     expect(fixture.nativeElement.querySelector("p-progressbar")).toBeFalsy();
     expect(getByText(fixture.nativeElement, "Hello test")).toBeTruthy();
   });
+
+  it("should rename a file", fakeAsync(() => {
+    const store = TestBed.inject(Store);
+    jest.spyOn(component.renameFile, "emit");
+    store.selectedFile.set(getFileMock({ name: "foo.txt" }));
+    component.onRenameFile();
+    fixture.detectChanges();
+    flush();
+    expect(component.renameFileName()).toEqual("foo.txt");
+    getByTestId(fixture.nativeElement, "rename-button")
+      ?.querySelector("button")
+      ?.click();
+    fixture.detectChanges();
+    flush();
+
+    expect(component.renameFile.emit).toHaveBeenCalledTimes(1);
+    expect(component.showRenameModal()).toBe(false);
+  }));
 });

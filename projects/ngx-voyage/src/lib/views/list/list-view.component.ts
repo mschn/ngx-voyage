@@ -1,5 +1,5 @@
 import { DatePipe, NgClass, NgTemplateOutlet } from "@angular/common";
-import { Component, HostListener, inject, viewChild } from "@angular/core";
+import { Component, inject, viewChild } from "@angular/core";
 import { SortEvent } from "primeng/api";
 import { ContextMenu, ContextMenuModule } from "primeng/contextmenu";
 import { DialogModule } from "primeng/dialog";
@@ -57,7 +57,6 @@ export class ListViewComponent extends BaseViewComponent {
     }
   }
 
-  @HostListener("window:keydown", ["$event"])
   onKeydown(event: KeyboardEvent) {
     const selected = this.selectedFile();
     if (event.key === "ArrowUp") {

@@ -1,9 +1,10 @@
-import { Component, computed, model } from "@angular/core";
+import { Component, linkedSignal, model } from "@angular/core";
 import { RouterLink } from "@angular/router";
 import { ButtonModule } from "primeng/button";
 import {
   FilePreviewOutput,
   NgxVoyageComponent,
+  RenameFile,
   VoyageIconComponent,
 } from "../../../../../ngx-voyage/src/public-api";
 import { filesContentMock, filesMock } from "../../mocks/files.mock";
@@ -15,7 +16,7 @@ import { filesContentMock, filesMock } from "../../mocks/files.mock";
 })
 export class HomeComponent {
   path = model("/home/ngx-voyage");
-  files = computed(() => filesMock[this.path()]);
+  files = linkedSignal(() => filesMock[this.path()]);
 
   preview({ path, cb }: FilePreviewOutput) {
     if (path.endsWith("light.png")) {
@@ -31,6 +32,19 @@ export class HomeComponent {
         type: "text/plain",
       });
       cb(blob);
+    }
+  }
+
+  rename(renameFile: RenameFile) {
+    const file = filesMock[this.path()].find(
+      (file) => file.name === renameFile.file.name,
+    );
+    if (file) {
+      const oldFilePath = `${this.path()}/${file.name}`;
+      const newFilePath = `${this.path()}/${renameFile.newName}`;
+      file.name = renameFile.newName;
+      this.files.set([...filesMock[this.path()]]);
+      filesContentMock[newFilePath] = filesContentMock[oldFilePath];
     }
   }
 }

@@ -2,8 +2,11 @@
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
+  align-content: start;
   padding: 0.25rem;
+  height: 100%;
   color: var(--p-content-color);
+
 
   .item {
     width: 6rem;

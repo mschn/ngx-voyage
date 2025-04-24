@@ -1,9 +1,5 @@
-<div
-  class="ngx-voyage"
->
-  <div
-    class="sidebar"
-  >
+<div class="ngx-voyage">
+  <div class="sidebar">
     @if (header()) {
       <ng-container *ngTemplateOutlet="header()!"></ng-container>
     }
@@ -19,9 +15,7 @@
       (navigate)="path.set($event)"
     ></ngx-voyage-title>
 
-    <div
-      class="files"
-    >
+    <div class="files">
       <ngx-voyage-files-view
         [(path)]="path"
         [files]="files()"
@@ -29,6 +23,7 @@
         [loading]="loading()"
         (openFile)="openFile.emit($event)"
         (previewFile)="previewFile.emit($event)"
+        (renameFile)="renameFile.emit($event)"
       ></ngx-voyage-files-view>
     </div>
   </div>

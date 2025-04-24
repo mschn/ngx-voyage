@@ -50,4 +50,5 @@ export const messages = {
   SORT_FIRST_MODIFIED: "First modified",
   SORT_SMALLEST: "Smallest",
   SORT_LARGEST: "Largest",
+  RENAME: "Rename",
 };

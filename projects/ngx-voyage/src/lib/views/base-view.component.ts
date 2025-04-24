@@ -33,6 +33,7 @@ export abstract class BaseViewComponent implements OnChanges {
 
   openFile = output<string>();
   previewFile = output<FilePreviewOutput>();
+  renameFile = output<void>();
 
   selectedFile = this.store.selectedFile;
   showPreview = model(false);
@@ -76,6 +77,14 @@ export abstract class BaseViewComponent implements OnChanges {
         if (f) {
           this.openFileOrFolder(f);
         }
+      },
+    },
+    {
+      label: "Rename",
+      command: () => {
+        // setTimeout to allow the menu to be hidden before we show the rename popup
+        // otherwise this causes some issues with the auto focus of rename the text input
+        setTimeout(() => this.renameFile.emit());
       },
     },
   ];

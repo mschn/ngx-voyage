@@ -1,4 +1,11 @@
-<div class="view" data-testid="grid-view">
+<div
+  class="view"
+  data-testid="grid-view"
+  (keydown)="onKeydown($event)"
+  role="region"
+  [pAutoFocus]="true"
+  tabindex="0"
+>
   @for (file of sortedFiles(); track file.name; let index = $index) {
     <div
       class="item"
