@@ -54,4 +54,6 @@ export const messages: Messages = {
   CANCEL: "Annuler",
   DELETE: "Supprimer",
   DELETE_CONFIRM: "Êtes vous sûr de vouloir supprimer",
+  PREVIEW: "Prévisualiser",
+  OPEN: "Ouvrir",
 };

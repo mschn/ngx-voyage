@@ -22,6 +22,7 @@ import {
   sortFiles,
 } from "../model/model";
 import { Store } from "../model/store";
+import { getMessages } from "../i18n/i18n";
 @Component({
   template: ``,
 })
@@ -62,7 +63,7 @@ export abstract class BaseViewComponent implements OnChanges {
 
   menuItems: MenuItem[] = [
     {
-      label: "Preview",
+      label: getMessages().PREVIEW,
       visible: false,
       command: () => {
         const f = this.selectedFile();
@@ -72,7 +73,7 @@ export abstract class BaseViewComponent implements OnChanges {
       },
     },
     {
-      label: "Open",
+      label: getMessages().OPEN,
       command: () => {
         const f = this.selectedFile();
         if (f) {
@@ -81,7 +82,7 @@ export abstract class BaseViewComponent implements OnChanges {
       },
     },
     {
-      label: "Rename",
+      label: getMessages().RENAME,
       command: () => {
         // setTimeout to allow the menu to be hidden before we show the rename popup
         // otherwise this causes some issues with the auto focus of rename the text input
@@ -89,7 +90,7 @@ export abstract class BaseViewComponent implements OnChanges {
       },
     },
     {
-      label: "Delete",
+      label: getMessages().DELETE,
       command: () => {
         setTimeout(() => this.deleteFile.emit());
       },

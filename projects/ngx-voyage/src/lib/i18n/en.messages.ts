@@ -54,4 +54,6 @@ export const messages = {
   CANCEL: "Cancel",
   DELETE: "Delete",
   DELETE_CONFIRM: "Are you sure you want to delete",
+  PREVIEW: "Preview",
+  OPEN: "Open",
 };
