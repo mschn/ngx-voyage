@@ -51,4 +51,7 @@ export const messages = {
   SORT_SMALLEST: "Smallest",
   SORT_LARGEST: "Largest",
   RENAME: "Rename",
+  CANCEL: "Cancel",
+  DELETE: "Delete",
+  DELETE_CONFIRM: "Are you sure you want to delete",
 };

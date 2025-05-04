@@ -51,4 +51,7 @@ export const messages: Messages = {
   SORT_SMALLEST: "Plus petit",
   SORT_LARGEST: "Plus gros",
   RENAME: "Renommer",
+  CANCEL: "Annuler",
+  DELETE: "Supprimer",
+  DELETE_CONFIRM: "Êtes vous sûr de vouloir supprimer",
 };

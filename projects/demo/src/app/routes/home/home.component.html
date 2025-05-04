@@ -41,6 +41,7 @@
       [files]="files()"
       (previewFile)="preview($event)"
       (renameFile)="rename($event)"
+      (deleteFile)="deleteFile($event)"
       class="border border-gray-400 dark:border-gray-500 rounded-lg shadow-2xl"
     >
       <ng-template #header

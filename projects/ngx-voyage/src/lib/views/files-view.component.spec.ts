@@ -79,4 +79,21 @@ describe("FilesViewComponent", () => {
     expect(component.renameFile.emit).toHaveBeenCalledTimes(1);
     expect(component.showRenameModal()).toBe(false);
   }));
+
+  it("should delete a file", fakeAsync(() => {
+    const store = TestBed.inject(Store);
+    jest.spyOn(component.deleteFile, "emit");
+    store.selectedFile.set(getFileMock({ name: "foo.txt" }));
+    component.onDeleteFile();
+    fixture.detectChanges();
+    flush();
+    getByTestId(fixture.nativeElement, "delete-button")
+      ?.querySelector("button")
+      ?.click();
+    fixture.detectChanges();
+    flush();
+
+    expect(component.deleteFile.emit).toHaveBeenCalledTimes(1);
+    expect(component.showDeleteModal()).toBe(false);
+  }));
 });

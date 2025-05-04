@@ -2,6 +2,7 @@ import { Component, linkedSignal, model } from "@angular/core";
 import { RouterLink } from "@angular/router";
 import { ButtonModule } from "primeng/button";
 import {
+  File,
   FilePreviewOutput,
   NgxVoyageComponent,
   RenameFile,
@@ -46,5 +47,13 @@ export class HomeComponent {
       this.files.set([...filesMock[this.path()]]);
       filesContentMock[newFilePath] = filesContentMock[oldFilePath];
     }
+  }
+
+  deleteFile(f: File) {
+    const filteredFilesMock = filesMock[this.path()].filter(
+      (file) => file.name !== f.name,
+    );
+    filesMock[this.path()] = filteredFilesMock;
+    this.files.set(filesMock[this.path()]);
   }
 }

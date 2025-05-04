@@ -99,6 +99,11 @@ export class NgxVoyageComponent implements OnInit {
    */
   renameFile = output<RenameFile>();
 
+  /**
+   * Fired when the user requests the file to be deleted
+   */
+  deleteFile = output<File>();
+
   header = contentChild<TemplateRef<Element>>("header");
   footer = contentChild<TemplateRef<Element>>("footer");
 

@@ -32,6 +32,7 @@ import { TranslatePipe } from "../i18n/translate.pipe";
         (openFile)="openFile.emit($event)"
         (previewFile)="previewFile.emit($event)"
         (renameFile)="onRenameFile()"
+        (deleteFile)="onDeleteFile()"
       ></ngx-voyage-grid-view>
     } @else {
       <ngx-voyage-list-view
@@ -40,6 +41,7 @@ import { TranslatePipe } from "../i18n/translate.pipe";
         (openFile)="openFile.emit($event)"
         (previewFile)="previewFile.emit($event)"
         (renameFile)="onRenameFile()"
+        (deleteFile)="onDeleteFile()"
       >
         <ng-template #emptyFiles>
           <ng-container *ngTemplateOutlet="empty"></ng-container>
@@ -71,7 +73,7 @@ import { TranslatePipe } from "../i18n/translate.pipe";
       [(visible)]="showRenameModal"
       (onShow)="focusRenameInput()"
     >
-      <div class="rename-form">
+      <div class="flex">
         <input
           type="text"
           pInputText
@@ -83,9 +85,29 @@ import { TranslatePipe } from "../i18n/translate.pipe";
           (onClick)="doRename()"
           [disabled]="renameFileName().length === 0"
           data-testid="rename-button"
-        >
           >{{ "RENAME" | translate }}</p-button
         >
+      </div>
+    </p-dialog>
+
+    <p-dialog [modal]="true" header="Delete" [(visible)]="showDeleteModal">
+      <div class="flex flex-col">
+        <div>
+          {{ "DELETE_CONFIRM" | translate }} {{ store.selectedFile()?.name }} ?
+        </div>
+        <div class="flex justify-end">
+          <p-button
+            (onClick)="showDeleteModal.set(false)"
+            severity="secondary"
+            >{{ "CANCEL" | translate }}</p-button
+          >
+          <p-button
+            (onClick)="doDelete()"
+            severity="danger"
+            data-testid="delete-button"
+            >{{ "DELETE" | translate }}</p-button
+          >
+        </div>
       </div>
     </p-dialog>
   `,
@@ -94,9 +116,17 @@ import { TranslatePipe } from "../i18n/translate.pipe";
       padding: 0.5rem;
     }
 
-    .rename-form {
+    .flex {
       display: flex;
-      gap: 0.5rem;
+      gap: 1rem;
+    }
+
+    .flex-col {
+      flex-direction: column;
+    }
+
+    .justify-end {
+      justify-content: end;
     }
   `,
   imports: [
@@ -122,10 +152,13 @@ export class FilesViewComponent {
   openFile = output<string>();
   previewFile = output<FilePreviewOutput>();
   renameFile = output<RenameFile>();
+  deleteFile = output<File>();
 
   showRenameModal = model(false);
   renameFileName = model("");
   renameFileInput = viewChild<ElementRef<HTMLInputElement>>("renameFileInput");
+
+  showDeleteModal = model(false);
 
   isEmpty() {
     return this.files() == null || this.files().length === 0;
@@ -136,6 +169,13 @@ export class FilesViewComponent {
     if (selected != null) {
       this.renameFileName.set(selected.name);
       this.showRenameModal.set(true);
+    }
+  }
+
+  onDeleteFile() {
+    const selected = this.store.selectedFile();
+    if (selected != null) {
+      this.showDeleteModal.set(true);
     }
   }
 
@@ -151,11 +191,18 @@ export class FilesViewComponent {
   }
 
   doRename() {
-    console.log("OINK");
     const selected = this.store.selectedFile();
     if (selected && this.renameFileName().length > 0) {
       this.renameFile.emit({ file: selected, newName: this.renameFileName() });
       this.showRenameModal.set(false);
+    }
+  }
+
+  doDelete() {
+    const selected = this.store.selectedFile();
+    if (selected != null) {
+      this.deleteFile.emit(selected);
+      this.showDeleteModal.set(false);
     }
   }
 }
