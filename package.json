@@ -8,6 +8,10 @@
     "file explorer"
   ],
   "homepage": "https://github.com/mschn/ngx-voyage",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mschn/ngx-voyage.git"
+  },
   "bugs": {
     "url": "https://github.com/mschn/ngx-voyage/issues"
   },
