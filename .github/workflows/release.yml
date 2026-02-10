@@ -49,7 +49,11 @@ jobs:
 
       - run: npm run build:lib
 
-      - run: npm publish
+      - name: Publish to npm
+        run: npm publish --access public
+        working-directory: dist/ngx-voyage
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # - uses: JS-DevTools/npm-publish@v4
       #   with:
