@@ -46,8 +46,7 @@ jobs:
 
       - run: npm run build:lib
 
-      - uses: JS-DevTools/npm-publish@v3
+      - uses: JS-DevTools/npm-publish@v4
         with:
-          token: ${{ secrets.NPM_TOKEN }}
           access: public
           package: dist/ngx-voyage
