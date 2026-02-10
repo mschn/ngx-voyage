@@ -1,9 +1,4 @@
-import {
-  ComponentFixture,
-  fakeAsync,
-  flush,
-  TestBed,
-} from "@angular/core/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { provideNoopAnimations } from "@angular/platform-browser/animations";
 import { getByTestId, getByText, queryByText } from "@testing-library/dom";
 import { getFileMock } from "../model/model.mock";
@@ -62,38 +57,38 @@ describe("FilesViewComponent", () => {
     expect(getByText(fixture.nativeElement, "Hello test")).toBeTruthy();
   });
 
-  it("should rename a file", fakeAsync(() => {
+  it("should rename a file", async () => {
     const store = TestBed.inject(Store);
     jest.spyOn(component.renameFile, "emit");
     store.selectedFile.set(getFileMock({ name: "foo.txt" }));
     component.onRenameFile();
     fixture.detectChanges();
-    flush();
+    await fixture.whenStable();
     expect(component.renameFileName()).toEqual("foo.txt");
     getByTestId(fixture.nativeElement, "rename-button")
       ?.querySelector("button")
       ?.click();
     fixture.detectChanges();
-    flush();
+    await fixture.whenStable();
 
     expect(component.renameFile.emit).toHaveBeenCalledTimes(1);
     expect(component.showRenameModal()).toBe(false);
-  }));
+  });
 
-  it("should delete a file", fakeAsync(() => {
+  it("should delete a file", async () => {
     const store = TestBed.inject(Store);
     jest.spyOn(component.deleteFile, "emit");
     store.selectedFile.set(getFileMock({ name: "foo.txt" }));
     component.onDeleteFile();
     fixture.detectChanges();
-    flush();
+    await fixture.whenStable();
     getByTestId(fixture.nativeElement, "delete-button")
       ?.querySelector("button")
       ?.click();
     fixture.detectChanges();
-    flush();
+    await fixture.whenStable();
 
     expect(component.deleteFile.emit).toHaveBeenCalledTimes(1);
     expect(component.showDeleteModal()).toBe(false);
-  }));
+  });
 });
