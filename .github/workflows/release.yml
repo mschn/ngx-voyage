@@ -49,7 +49,9 @@ jobs:
 
       - run: npm run build:lib
 
-      - uses: JS-DevTools/npm-publish@v4
-        with:
-          access: public
-          package: dist/ngx-voyage
+      - run: npm publish
+
+      # - uses: JS-DevTools/npm-publish@v4
+      #   with:
+      #     access: public
+      #     package: dist/ngx-voyage
