@@ -21,10 +21,10 @@
     "email": "mathieu.schnoor@gmail.com"
   },
   "peerDependencies": {
-    "@angular/common": "^19.1.0",
-    "@angular/core": "^19.1.0",
-    "@primeuix/themes": "^19.0.9",
-    "primeng": "^19.0.0",
+    "@angular/common": "^21.1.3",
+    "@angular/core": "^21.1.3",
+    "@primeuix/themes": "^2.0.0",
+    "primeng": "^21.0.0",
     "highlight.js": "^11.11.1"
   },
   "dependencies": {
