@@ -31,6 +31,8 @@ jobs:
           DEFAULT_BUMP: ${{ github.event.inputs.bumpType || 'patch' }}
 
       - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
 
       - run: npm ci
 
