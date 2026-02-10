@@ -4,9 +4,11 @@
       <ng-container *ngTemplateOutlet="header()!"></ng-container>
     }
     <ngx-voyage-bookmarks [(path)]="path"></ngx-voyage-bookmarks>
-    <div class="footer" *ngIf="footer()">
-      <ng-container *ngTemplateOutlet="footer()!"></ng-container>
-    </div>
+    @if (footer()) {
+      <div class="footer">
+        <ng-container *ngTemplateOutlet="footer()!"></ng-container>
+      </div>
+    }
   </div>
 
   <div class="center">

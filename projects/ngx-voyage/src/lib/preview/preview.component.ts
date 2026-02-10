@@ -1,5 +1,4 @@
 import { Component, HostListener, input, output } from "@angular/core";
-import { ButtonModule } from "primeng/button";
 import { TranslatePipe } from "../i18n/translate.pipe";
 import { VoyageIconComponent } from "../icon";
 import { ImageExtensions, TextExtensions } from "../model/file-types";
@@ -7,6 +6,7 @@ import { getExtension } from "../model/model";
 import { ImgComponent } from "./img.component";
 import { PdfComponent } from "./pdf.component";
 import { TextComponent } from "./text.component";
+import { ButtonModule } from "primeng/button";
 
 @Component({
   selector: "ngx-voyage-preview",
@@ -26,7 +26,7 @@ export class PreviewComponent {
   name = input.required<string>();
   closed = output<void>();
 
-  @HostListener("document:keydown.escape", ["$event"]) onKeydownHandler() {
+  @HostListener("document:keydown.escape") onKeydownHandler() {
     this.closed.emit();
   }
 

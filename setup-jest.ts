@@ -1,6 +1,6 @@
-import { setupZoneTestEnv } from "jest-preset-angular/setup-env/zone/index.mjs";
+import { setupZonelessTestEnv } from "jest-preset-angular/setup-env/zoneless/index.mjs";
 
-setupZoneTestEnv();
+setupZonelessTestEnv();
 
 Object.defineProperty(window, "matchMedia", {
   writable: true,

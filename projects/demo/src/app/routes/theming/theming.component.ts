@@ -1,11 +1,11 @@
 import { NgClass } from "@angular/common";
 import { Component, computed, model } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { updatePreset, usePreset } from "@primeng/themes";
-import Aura from "@primeng/themes/aura";
-import Lara from "@primeng/themes/lara";
-import Material from "@primeng/themes/material";
-import Nora from "@primeng/themes/nora";
+import { updatePreset, usePreset } from "@primeuix/themes";
+import Aura from "@primeuix/themes/aura";
+import Lara from "@primeuix/themes/lara";
+import Material from "@primeuix/themes/material";
+import Nora from "@primeuix/themes/nora";
 import hljs from "highlight.js/lib/core";
 import typescript from "highlight.js/lib/languages/typescript";
 import { ButtonModule } from "primeng/button";
@@ -182,8 +182,8 @@ export class ThemingComponent {
 
     const themeName =
       this.selectedTheme()[0].toUpperCase() + this.selectedTheme().substring(1);
-    return `import ${themeName} from "@primeng/themes/${this.selectedTheme()}";
-import { definePreset } from "@primeng/themes";
+    return `import ${themeName} from "@primeuix/themes/${this.selectedTheme()}";
+import { definePreset } from "@primeuix/themes";
 
 export const appConfig: ApplicationConfig = {
   providers: [

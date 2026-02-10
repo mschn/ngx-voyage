@@ -1,17 +1,17 @@
 import {
   ApplicationConfig,
-  provideExperimentalZonelessChangeDetection,
+  provideZonelessChangeDetection,
 } from "@angular/core";
 import { provideAnimationsAsync } from "@angular/platform-browser/animations/async";
 import { provideRouter, withInMemoryScrolling } from "@angular/router";
-import { definePreset } from "@primeng/themes";
-import Aura from "@primeng/themes/aura";
+import { definePreset } from "@primeuix/themes";
+import Aura from "@primeuix/themes/aura";
 import { providePrimeNG } from "primeng/config";
 import { routes } from "./app.routes";
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideExperimentalZonelessChangeDetection(),
+    provideZonelessChangeDetection(),
     provideRouter(
       routes,
       withInMemoryScrolling({

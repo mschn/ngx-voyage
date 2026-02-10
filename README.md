@@ -34,6 +34,14 @@ import { NgxVoyageComponent } from "ngx-voyage";
 export class AppComponent {}
 ```
 
+
+## Local dev
+
+```bash
+npm i
+npm run start:demo
+```
+
 ## Built with
 
 - [Angular](https://angular.dev/)
